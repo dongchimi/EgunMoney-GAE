@@ -1,0 +1,39 @@
+<settings xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<localRepository>E:\egun-money\dev\repo</localRepository>
+
+	<servers>
+		<server>
+			<id>appengine.google.com</id>
+			<username>egunmoney@gmail.com</username>
+			<password>08210103</password>
+		</server>
+	</servers>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+
+			<repositories>
+				<repository>
+					<id>maven-gae-plugin-repo</id>
+					<name>maven-gae-plugin repository</name>
+					<url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>maven-gae-plugin-repo</id>
+					<name>maven-gae-plugin repository</name>
+					<url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+	</activeProfiles>
+</settings>
