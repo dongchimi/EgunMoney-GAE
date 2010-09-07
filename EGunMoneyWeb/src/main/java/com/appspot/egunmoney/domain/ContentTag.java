@@ -1,12 +1,14 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
+
 /**
  * 태그
  * 예) @죽녹원여행
  * @author dklee
  * @since 2010.09.01
  */
-public class ContentTag {
+public class ContentTag implements Serializable{
 	
 	/** 오브젝트 id */
 	private int oid;

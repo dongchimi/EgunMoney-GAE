@@ -1,13 +1,18 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
+
 
 /**
  * 예산부 item
  * @author dklee
  * @since 2010.09.01
  */
-public class BudgetBookItem {
+public class BudgetBookItem implements Serializable{
 	
+	/** UID */
+	private static final long serialVersionUID = 6063459783628670236L;
+
 	/** 오브젝트 id */
 	private long oid;
 	

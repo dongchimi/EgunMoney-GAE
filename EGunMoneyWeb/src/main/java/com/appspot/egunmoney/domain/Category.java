@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ import com.appspot.egunmoney.utility.CollectionUtil;
  * @author dklee
  * @since 2010.09.01
  */
-public class Category implements Comparable<Category> {
+public class Category implements Comparable<Category>, Serializable {
 	
 	/** 오브젝트 id */
 	private long oid;

@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,8 +10,11 @@ import java.util.List;
  * @since 2010.09.01
  *
  */
-public class AccountBookItem {
+public class AccountBookItem implements Serializable{
 	
+	/** UID */
+	private static final long serialVersionUID = 9068836291602127173L;
+
 	/** ³»¿ë*/
 	private long itemId;
 	

@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,8 +8,11 @@ import java.util.List;
  * @author dklee
  *
  */
-public class AccountBookAuthorize {
+public class AccountBookAuthorize implements Serializable{
 	
+	/** UID */
+	private static final long serialVersionUID = 3826375588748184957L;
+
 	/** ±ÇÇÑ id */
 	private long authorizeId;
 	

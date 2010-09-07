@@ -1,12 +1,16 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.appspot.egunmoney.utility.CollectionUtil;
 
-public class AccountBookCategoryGroup {
+public class AccountBookCategoryGroup implements Serializable{
+	
+	/** UID */
+	private static final long serialVersionUID = 1970970654340276984L;
 	
 	/** 분류목록 */
 	private List<Category> categories;

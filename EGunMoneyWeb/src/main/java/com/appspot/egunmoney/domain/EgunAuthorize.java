@@ -1,12 +1,14 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
+
 /** 
  * 이건머니에 적용 가능한 권한
  * @author dklee
  * @since 2010.09.01
  *
  */
-public enum EgunAuthorize {
+public enum EgunAuthorize  implements Serializable{
 	READ("읽기"),
 	WRITE("쓰기"),
 	READ_WRITE("읽고 쓰기");

@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @since 2010.09.01
  *
  */
-public class EgunAccountBook {
+public class EgunAccountBook implements Serializable{
 	
 	/** 오브젝트 id */
 	private long oId;

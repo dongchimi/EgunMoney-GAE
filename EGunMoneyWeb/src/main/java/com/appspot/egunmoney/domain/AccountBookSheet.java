@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,8 +9,11 @@ import java.util.List;
  * @author dklee
  * @since 2010.09.01
  */
-public class AccountBookSheet {
+public class AccountBookSheet implements Serializable{
 	
+	/** UID */
+	private static final long serialVersionUID = -1153265749342898292L;
+
 	/** Ω√¿€¿œ */
 	private String startDate;
 	
