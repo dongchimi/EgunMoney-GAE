@@ -3,32 +3,45 @@ package com.appspot.egunmoney.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 /**
  * 이건머니 사용자
  * @author dklee
  * @since 2010.08.31
  */
+@PersistenceCapable
 public class EgunUser implements Serializable{
 	
 	/** UID */
 	private static final long serialVersionUID = 6726740521064705083L;
 
 	/** 오브젝트 id */
-	private int oid;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long oid;
 	
 	/** 비밀번호 */
+	@Persistent
 	private String password;
 	
 	/** 이메일 - key */
+	@Persistent
 	private String userEmail;
 	
 	/** 별명 */
+	@Persistent
 	private String nickName;
 	
 	/** 가계부 */
+	@Persistent
 	private List<EgunAccountBook> accountBooks;
 	
 	/** 가계부 사용 권한 */
+	@Persistent
 	private List<AccountBookAuthorize> bookAuthorizes;
 	
 	// method ------------------------------------------------------------------
@@ -65,11 +78,11 @@ public class EgunUser implements Serializable{
 		this.password = password;
 	}
 	
-	public int getOid() {
+	public Long getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
 	}
 

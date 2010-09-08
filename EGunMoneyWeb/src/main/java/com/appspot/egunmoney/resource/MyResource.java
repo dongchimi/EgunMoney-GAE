@@ -9,10 +9,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.constant.EgunMoneyConstant;
+import com.appspot.egunmoney.service.EgunUserService;
 
 //The Java class will be hosted at the URI path "/myresource"
 @Path("/myresource")
@@ -20,10 +22,11 @@ import com.appspot.egunmoney.constant.EgunMoneyConstant;
 @Scope("request")
 public class MyResource {
 	
-	PersistenceManagerFactory pmfInstance = JDOHelper.getPersistenceManagerFactory(EgunMoneyConstant.PERSISTENCE_MANAGER_FACTORY_NAME);
-
 	/** 로거 */
 	private static final Logger logger = Logger.getLogger(MyResource.class.getName());
+	
+	@Autowired
+	private EgunUserService egunUserService;
 	
 	// The Java method will process HTTP GET requests
     @GET
@@ -40,9 +43,6 @@ public class MyResource {
     	} else {
     		logger.warning(logger.getLevel().getName());
     	}
-
-    	// TODO db 테스트
-    	// PersistenceManager persistenceManager = pmfInstance.getPersistenceManager();
     	
         String nickName = "no nick Name";
         return nickName;

@@ -11,5 +11,5 @@ public interface EgunUserService {
 	
 	public long registerUser(User user);
 	
-	public boolean signinEgunMoney(User user);
+	public boolean signInEgunMoney(User user);
 }
