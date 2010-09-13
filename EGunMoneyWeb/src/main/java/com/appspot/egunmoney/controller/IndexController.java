@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.Action;
 public class IndexController {
 	
 	public String execute() {
+		System.out.println("11111111111111111111");
 		return Action.SUCCESS;
 	}
 }

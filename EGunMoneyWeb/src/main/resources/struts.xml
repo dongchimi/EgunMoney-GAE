@@ -11,7 +11,7 @@
   <constant name="struts.action.extension" value="xhtml" />
   <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 
-  <package name="" extends="struts-default" namespace="/">
+  <package name="egunmoney" extends="struts-default" namespace="/">
 	<action name="index" class="com.appspot.egunmoney.controller.IndexController" method="execute" >
 		<result>index.jsp</result>
 	</action>
