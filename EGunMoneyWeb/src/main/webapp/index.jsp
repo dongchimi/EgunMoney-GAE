@@ -5,6 +5,6 @@
     <title>Welcome</title>
 </head>
 <body>
-<p>E-gun money web!! deploy</p>
+<p>Hello Struts2</p>
 </body>
 </html>
