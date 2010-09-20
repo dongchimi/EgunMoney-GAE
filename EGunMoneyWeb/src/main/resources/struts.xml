@@ -17,11 +17,12 @@
 	</action>
   </package>
   
-  <package name="" extends="struts-default" namespace="/">
+  <package name="index" extends="struts-default" namespace="/">
 	<action name="index" class="com.appspot.egunmoney.controller.IndexController" method="execute" >
 		<result>index.jsp</result>
 	</action>
   </package>
 
   <include file="struts-login.xml" />
+  <include file="struts-accountBook.xml" />
 </struts>

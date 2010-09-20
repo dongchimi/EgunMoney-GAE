@@ -4,13 +4,25 @@
   "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<package name="login" namespace="/login" extends="egunmoney-default">
+	
 		<action name="login" class="com.appspot.egunmoney.controller.EgunUserController" method="login">
 			<result name="success">login.jsp</result>
 			<result name="loginFail">login.jsp</result>
 		</action>
 		
-		<action name="view" class="com.appspot.egunmoney.controller.EgunUserController" method="view">
+		<action name="loginView" class="com.appspot.egunmoney.controller.BlankController" method="loginView">
 			<result>login.jsp</result>
+		</action>
+		
+		<action name="joinView" class="com.appspot.egunmoney.controller.BlankController" method="joinView">
+			<result>join.jsp</result>		
+		</action>
+		
+		<action name="join" class="com.appspot.egunmoney.controller.EgunUserController" method="join">
+			<result name="success" type="redirectAction">
+				<param name="actionName">accountBookListView</param>
+				<param name="namespace">/accountBook</param>
+			</result>
 		</action>
 	</package>
 </struts>

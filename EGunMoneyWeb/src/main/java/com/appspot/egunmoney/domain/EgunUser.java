@@ -1,6 +1,5 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -8,21 +7,20 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
 /**
  * 이건머니 사용자
  * @author dklee
  * @since 2010.08.31
  */
 @PersistenceCapable
-public class EgunUser implements Serializable{
+public class EgunUser{
 	
-	/** UID */
-	private static final long serialVersionUID = 6726740521064705083L;
-
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long oid;
+	private Key oid;
 	
 	/** 비밀번호 */
 	@Persistent
@@ -78,11 +76,11 @@ public class EgunUser implements Serializable{
 		this.password = password;
 	}
 	
-	public Long getOid() {
+	public Key getOid() {
 		return oid;
 	}
 
-	public void setOid(Long oid) {
+	public void setOid(Key oid) {
 		this.oid = oid;
 	}
 

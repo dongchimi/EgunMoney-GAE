@@ -1,6 +1,6 @@
 package com.appspot.egunmoney.service;
 
-import com.google.appengine.api.users.User;
+import com.appspot.egunmoney.domain.EgunUser;
 
 /**
  * 이건머니 사용자 서비스
@@ -9,7 +9,7 @@ import com.google.appengine.api.users.User;
  */
 public interface EgunUserService {
 	
-	public long registerUser(User user);
+	public long registerUser(EgunUser user);
 	
-	public boolean signInEgunMoney(User user);
+	public boolean signInEgunMoney(EgunUser user);
 }

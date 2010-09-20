@@ -1,14 +1,16 @@
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${requestContext.request.contextRoot}" scope="request" />
  
 <!DOCTYPE HTML>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <title>Welcome</title>
+<title>나의 가계부 </title>
+<script type="text/javascript" src="${ctx}/style/js/jquery-1.4.2.min.js" charset="utf-8"></script>
 </head>
 <body>
-<p><a href="${ctx}/login/loginView.xhtml">로그인</a> |<a href="${ctx}/login/joinView.xhtml">회원가입</a></p>
+
+나의 가계부닷!
 </body>
 </html>

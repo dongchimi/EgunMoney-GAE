@@ -7,8 +7,8 @@ import javax.jdo.PersistenceManagerFactory;
 import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.constant.EgunMoneyConstant;
+import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.EgunUserService;
-import com.google.appengine.api.users.User;
 
 @Component
 public class EgunUserLogic implements EgunUserService {
@@ -18,12 +18,17 @@ public class EgunUserLogic implements EgunUserService {
 	private PersistenceManager pm = pmfInstance.getPersistenceManager(); 
 	
 	@Override
-	public long registerUser(User user) {
-		return 0;
+	public long registerUser(EgunUser user) {
+		try {
+			pm.makePersistent(user);
+		} finally {
+			pm.close();
+		}
+		return user.getOid().getId();
 	}
 
 	@Override
-	public boolean signInEgunMoney(User user) {
+	public boolean signInEgunMoney(EgunUser user) {
 		return false;
 	}
 }
