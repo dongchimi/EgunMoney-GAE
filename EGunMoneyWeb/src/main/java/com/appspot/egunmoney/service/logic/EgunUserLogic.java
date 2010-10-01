@@ -9,17 +9,23 @@ import org.springframework.stereotype.Component;
 import com.appspot.egunmoney.constant.EgunMoneyConstant;
 import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.EgunUserService;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 @Component
 public class EgunUserLogic implements EgunUserService {
 	
 	private PersistenceManagerFactory pmfInstance = JDOHelper.getPersistenceManagerFactory(EgunMoneyConstant.PERSISTENCE_MANAGER_FACTORY_NAME);
 	
-	private PersistenceManager pm = pmfInstance.getPersistenceManager(); 
+	private PersistenceManager pm = null; 
 	
 	@Override
 	public long registerUser(EgunUser user) {
 		try {
+			pm = pmfInstance.getPersistenceManager();
+			
+			Key key = KeyFactory.createKey(EgunUser.class.getSimpleName(), user.getUserEmail());
+			user.setOid(key);
 			pm.makePersistent(user);
 		} finally {
 			pm.close();
@@ -36,7 +42,8 @@ public class EgunUserLogic implements EgunUserService {
 	public EgunUser getUserInfo(String email) {
 		EgunUser user = null;
 		try {
-			user = (EgunUser) pm.getObjectById(email);
+			pm = pmfInstance.getPersistenceManager();
+			user = pm.getObjectById(EgunUser.class, email);
 		} finally {
 			pm.close();
 		}
