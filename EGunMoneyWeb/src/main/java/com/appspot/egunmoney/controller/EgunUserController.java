@@ -30,6 +30,18 @@ public class EgunUserController {
 	/* 사용자 */
 	private EgunUser user;
 	
+	public String viewUserInfo() {
+		logger.log(Level.WARNING, user.getUserEmail());
+		String email = user.getUserEmail();
+		user = egunUserService.getUserInfo(email);
+		
+		logger.log(Level.WARNING, "데이터 가져옴");
+		logger.log(Level.WARNING, user.getUserEmail());
+		logger.log(Level.WARNING, user.getPassword());
+		logger.log(Level.WARNING, user.getNickName());
+		
+		return Action.SUCCESS;
+	}
 	/**
 	 * 로그인화면 조회
 	 */

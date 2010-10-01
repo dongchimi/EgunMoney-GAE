@@ -13,8 +13,7 @@ import com.google.appengine.tools.development.testing.LocalUserServiceTestConfig
 
 public class AuthenticationTest {
 
-    private final LocalServiceTestHelper helper =
-        new LocalServiceTestHelper(new LocalUserServiceTestConfig())
+    private final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalUserServiceTestConfig())
             .setEnvIsAdmin(true).setEnvIsLoggedIn(true);
 
     @Before

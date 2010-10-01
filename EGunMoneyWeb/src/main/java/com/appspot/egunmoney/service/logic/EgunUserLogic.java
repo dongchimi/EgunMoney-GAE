@@ -31,4 +31,16 @@ public class EgunUserLogic implements EgunUserService {
 	public boolean signInEgunMoney(EgunUser user) {
 		return false;
 	}
+
+	@Override
+	public EgunUser getUserInfo(String email) {
+		EgunUser user = null;
+		try {
+			user = (EgunUser) pm.getObjectById(email);
+		} finally {
+			pm.close();
+		}
+		
+		return user;
+	}
 }

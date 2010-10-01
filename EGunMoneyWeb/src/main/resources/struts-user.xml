@@ -3,6 +3,11 @@
   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
   "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	<package name="user" namespace="/user" extends="egunmoney-default">
+		<action name="viewUserInfo" class="com.appspot.egunmoney.controller.EgunUserController" method="viewUserInfo">
+			<result>login.jsp</result>
+		</action>
+	</package>
 	<package name="login" namespace="/login" extends="egunmoney-default">
 	
 		<action name="login" class="com.appspot.egunmoney.controller.EgunUserController" method="login">

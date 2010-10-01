@@ -23,6 +23,6 @@
 	</action>
   </package>
 
-  <include file="struts-login.xml" />
+  <include file="struts-user.xml" />
   <include file="struts-accountBook.xml" />
 </struts>
