@@ -22,7 +22,7 @@ import com.opensymphony.xwork2.Action;
 public class EgunUserController {
 	
 	/** ·Î°Å */
-	private static final Logger logger = Logger.getLogger(EgunUserController.class.getName());
+	private static final Logger logger = Logger.getLogger(EgunUserController.class.getSimpleName());
 	
 	@Autowired
 	private EgunUserService egunUserService;

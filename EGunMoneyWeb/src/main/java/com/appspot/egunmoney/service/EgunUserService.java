@@ -11,7 +11,7 @@ public interface EgunUserService {
 	
 	public long registerUser(EgunUser user);
 	
-	public boolean signInEgunMoney(EgunUser user);
+	public boolean hasEgunUser(EgunUser user);
 
 	public EgunUser getUserInfo(String email);
 }

@@ -6,5 +6,6 @@ package com.appspot.egunmoney.constant;
  *
  */
 public class EgunMoneyConstant {
-	public static final String PERSISTENCE_MANAGER_FACTORY_NAME = "transactions-optional";
+	/** PERSISTENCE_MANAGER_FACTORY_NAME */
+	public static final String PMFN = "transactions-optional";
 }
