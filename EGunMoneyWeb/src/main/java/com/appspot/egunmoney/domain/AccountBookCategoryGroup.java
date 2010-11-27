@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.appspot.egunmoney.utility.CollectionUtil;
+import com.appspot.egunmoney.utility.CU;
 
 public class AccountBookCategoryGroup implements Serializable{
 	
@@ -17,7 +17,7 @@ public class AccountBookCategoryGroup implements Serializable{
 
 	/** 정렬된 카테고리 조회 */
 	public List<Category> getSortedCategories() {
-		if (CollectionUtil.isEmpty(categories)) return new ArrayList<Category>();
+		if (CU.isEmpty(categories)) return new ArrayList<Category>();
 		
 		Collections.sort(categories);
 		for (Category category : categories) {

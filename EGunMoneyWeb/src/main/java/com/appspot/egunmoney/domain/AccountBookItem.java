@@ -1,70 +1,81 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
 import java.util.List;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 가계부 item
- * 예) 2010.09.01. 커피한잔 1,000원
  * @author dklee
  * @since 2010.09.01
- *
  */
-public class AccountBookItem implements Serializable{
+@PersistenceCapable
+public class AccountBookItem{
 	
-	/** UID */
-	private static final long serialVersionUID = 9068836291602127173L;
-
-	/** 내용*/
-	private long itemId;
+	/** id*/
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key oId;
 	
 	/** 날짜 */
-	private String date;
-	
+	@Persistent
+	private String useDate;
+
 	/** 금액 */
+	@Persistent
 	private long amount;
 	
-	/** 내역 */
-	private String content;
-	
 	/** 비고 */
+	@Persistent
 	private String description;
 	
+	/** 카테고리 */
+	@Persistent
+	private Category category;
+	
 	/** 태그목록 */
+	@Persistent
 	private List<ContentTag> tags;
 	
 	// method ------------------------------------------------------------------
+	public String getMyCategoryName() {
+		if (category == null) return null;
+		
+		return category.getCategoryName();
+	}
 	
-	public long getItemId() {
-		return itemId;
+	public void setTagString(String tagString) {
+		if (tagString == null || tagString.length() < 1) return;
+		
+		String[] tagStrings = tagString.split("/,");
+		for(String tag : tagStrings) {
+			ContentTag contentTag = new ContentTag(tag);
+			tags.add(contentTag);
+		}
 	}
-
-	public void setItemId(long itemId) {
-		this.itemId = itemId;
+	
+	public String getTagString() {
+		if (tags == null || tags.size() == 0) return "";
+		
+		StringBuilder tagBuilder = new StringBuilder();
+		for(ContentTag tag : tags) {
+			tagBuilder.append(tag.getName()).append(", ");
+		}
+		
+		return tagBuilder.toString();
 	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
+	
 	public long getAmount() {
 		return amount;
 	}
 
 	public void setAmount(long amount) {
 		this.amount = amount;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public String getDescription() {
@@ -82,6 +93,28 @@ public class AccountBookItem implements Serializable{
 	public void setTags(List<ContentTag> tags) {
 		this.tags = tags;
 	}
-
 	
+	public String getUseDate() {
+		return useDate;
+	}
+
+	public void setUseDate(String useDate) {
+		this.useDate = useDate;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Key getoId() {
+		return oId;
+	}
+
+	public void setoId(Key oId) {
+		this.oId = oId;
+	}
 }

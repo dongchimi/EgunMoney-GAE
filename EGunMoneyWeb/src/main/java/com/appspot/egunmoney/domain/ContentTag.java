@@ -10,11 +10,19 @@ import java.io.Serializable;
  */
 public class ContentTag implements Serializable{
 	
+	/** UID */
+	private static final long serialVersionUID = -9165491965093509365L;
+
 	/** 오브젝트 id */
 	private int oid;
-	
+
+	/** 태그명 */
+	private String name;
+
 	// method ------------------------------------------------------------------
-	
+	public ContentTag(String tagName) {
+		this.name = tagName;
+	}
 	public int getOid() {
 		return oid;
 	}
@@ -22,9 +30,6 @@ public class ContentTag implements Serializable{
 	public void setOid(int oid) {
 		this.oid = oid;
 	}
-
-	/** 태그명 */
-	private String name;
 
 	public String getName() {
 		return name;

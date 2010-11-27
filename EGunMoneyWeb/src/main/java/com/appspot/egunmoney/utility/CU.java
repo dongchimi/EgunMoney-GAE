@@ -8,7 +8,7 @@ import java.util.List;
  * @author dklee
  *
  */
-public class CollectionUtil {
+public class CU {
 	
 	/**
 	 * List가 비었는지 확인

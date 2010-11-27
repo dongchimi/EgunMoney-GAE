@@ -22,10 +22,4 @@ public class BlankController {
 	public String joinView() {
 		return Action.SUCCESS;
 	}
-	
-	/** 가계부목록 화면 조회 TODO 이동규 추후 제거할것!*/
-	public String accountBookListView() {
-		return Action.SUCCESS;
-	}
-	
 }
