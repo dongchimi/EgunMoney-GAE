@@ -24,6 +24,6 @@ public class AccountBookItemLogic implements AccountBookItemService {
 				pm.close();
 			}
 		}
-		return item.getoId();
+		return item.getOid();
 	}
 }

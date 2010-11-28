@@ -13,4 +13,5 @@
 			<result>myAccountBook.jsp</result>
 		</action>
 	</package>
+	
 </struts>

@@ -20,7 +20,7 @@ public class AccountBookItem{
 	/** id*/
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key oId;
+	private Key oid;
 	
 	/** ³¯Â¥ */
 	@Persistent
@@ -110,11 +110,11 @@ public class AccountBookItem{
 		this.category = category;
 	}
 
-	public Key getoId() {
-		return oId;
+	public Key getOid() {
+		return oid;
 	}
 
-	public void setoId(Key oId) {
-		this.oId = oId;
+	public void setOid(Key oid) {
+		this.oid = oid;
 	}
 }

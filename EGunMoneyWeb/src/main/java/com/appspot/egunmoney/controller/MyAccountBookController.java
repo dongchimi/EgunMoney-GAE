@@ -3,10 +3,13 @@ package com.appspot.egunmoney.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.domain.AccountBookItem;
+import com.appspot.egunmoney.service.AccountBookItemService;
+import com.google.appengine.api.datastore.Key;
 import com.opensymphony.xwork2.Action;
 
 /**
@@ -22,10 +25,15 @@ public class MyAccountBookController {
 	private List<AccountBookItem> accountBookItems;
 	private AccountBookItem accountBookItem;
 	
+	@Autowired
+	private AccountBookItemService bookItemService;
+	
 	/**
 	 * µ·¾´°Å ÀÔ·Â
 	 */
 	public String registerAccountBookItem() {
+		Key oid = bookItemService.registerAccountBookItem(accountBookItem);
+		accountBookItem.setOid(oid);
 		return Action.SUCCESS;
 	}
 	
