@@ -27,8 +27,11 @@ public class EgunUserController {
 	@Autowired
 	private EgunUserService egunUserService;
 	
-	/* 사용자 */
+	/** 사용자 */
 	private EgunUser user;
+	
+	/** 에러 메시지*/
+	private String errorMessage;
 	
 	public String viewUserInfo() {
 		logger.log(Level.WARNING, user.getUserEmail());
@@ -66,9 +69,26 @@ public class EgunUserController {
 		logger.log(Level.FINE, "로그인 성공");
 		return nextPage;
 	}
+	
 	private boolean loginSuccess() {
-		logger.log(Level.FINE, "로그인이 가능한가?");
-		return false;
+		
+		boolean login = false;
+		
+		String inputEmail = user.getUserEmail();
+		EgunUser emailUser = egunUserService.getUserInfo(inputEmail);
+		if (emailUser != null) {
+			String emailUserPassword = emailUser.getPassword();
+			String inputPassword = user.getPassword(); 
+			if (emailUserPassword.equals( inputPassword )) {
+				login = true;
+			} else {
+				login = false;
+			}
+		} else {
+			login = false;
+		}
+		
+		return login;
 	}
 	
 	/**
@@ -91,5 +111,8 @@ public class EgunUserController {
 
 	public void setUser(EgunUser user) {
 		this.user = user;
+	}
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 }

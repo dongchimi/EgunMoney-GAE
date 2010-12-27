@@ -1,6 +1,7 @@
 package com.appspot.egunmoney.service.logic;
 
 import javax.jdo.JDOHelper;
+import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 
@@ -19,8 +20,7 @@ public class EgunUserLogic implements EgunUserService {
 	@Override
 	public long registerUser(EgunUser user) {
 		try {
-			pm = pmfInstance.getPersistenceManager();
-			pm.makePersistent(user);
+			getPersistenceManager().makePersistent(user);
 		} finally {
 			if(!pm.isClosed()) {
 				pm.close();
@@ -38,11 +38,23 @@ public class EgunUserLogic implements EgunUserService {
 	public EgunUser getUserInfo(String email) {
 		EgunUser user = null;
 		try {
-			user = (EgunUser) pm.getObjectById(email);
-		} finally {
-			pm.close();
+			user = (EgunUser) getPersistenceManager().getObjectById(email);
+		} catch (JDOObjectNotFoundException e) {
+			new RuntimeException(email + "에 해당하는 사용자가 존재하지 않습니다.");
+		}
+		finally {
+			if(!pm.isClosed()) {
+				pm.close();
+			}
 		}
 		
 		return user;
+	}
+	
+	private PersistenceManager getPersistenceManager() {
+		if (pm == null) {
+			pm = pmfInstance.getPersistenceManager();
+		}
+		return pm;
 	}
 }

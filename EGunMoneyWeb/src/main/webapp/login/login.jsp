@@ -15,6 +15,7 @@ $(document).ready(function({
 </head>
 <body>
 
+<!-- 
 <canvas id="myCanvas">I do not support canvas tag</canvas>
 <script type="text/javascript">
 var canvas=document.getElementById('myCanvas');
@@ -22,9 +23,12 @@ context=canvas.getContext('2d');
 context.fillStyle='#00AA00';
 context.fillRect(0,0,100,100);
 </script>
+ -->
+<div><c:out value="errorMessage" /></div>
+
 <form action="${ctx}/login/login.xhtml" method="post">
-id : <input type="text" name="user.id" /><br />
-pass : <input type="password" name="user.password" /><br />
+아이디 : <input type="text" name="user.userEmail" /> ( 예 : honggildong@chosun.co.kr ) <br />
+비밀번호 : <input type="password" name="user.password" /><br />
 <input type="submit" value="로그인" />
 </form>
 
