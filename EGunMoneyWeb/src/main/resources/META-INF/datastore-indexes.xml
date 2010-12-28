@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes>
+    <datastore-index kind="com.appspot.egunmoney.domain.EgunUser" ancestor="false">
+        <property name="userEmail" direction="asc" />
+    </datastore-index>
+</datastore-indexes>

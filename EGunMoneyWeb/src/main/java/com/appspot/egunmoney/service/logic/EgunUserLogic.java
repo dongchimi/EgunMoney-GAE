@@ -2,22 +2,19 @@ package com.appspot.egunmoney.service.logic;
 
 import java.util.List;
 
-import javax.jdo.JDOHelper;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egunmoney.constant.EgunMoneyConstant;
 import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.EgunUserService;
+import com.appspot.egunmoney.utility.PMF;
 
 @Component
 public class EgunUserLogic implements EgunUserService {
 	
-	private PersistenceManagerFactory pmfInstance = JDOHelper.getPersistenceManagerFactory(EgunMoneyConstant.PMFN);
 	private PersistenceManager pm = null;
 	
 	@Override
@@ -42,13 +39,15 @@ public class EgunUserLogic implements EgunUserService {
 		EgunUser user = null;
 		try {
 //			String getUserByEmailQueryStr = EgunUserQueryBuilder.getUserByEmailQueryStr();
-//			Query getUserQuery = getPersistenceManager().newQuery( getUserByEmailQueryStr );
-//			getUserQuery.declareParameters(email);
-			Query query = getPM().newQuery(getPM().getExtent(EgunUser.class, false));
-			query.setFilter("userEmail == \'" + email + "\'");
-			query.setResultClass(EgunUser.class);
-			List<EgunUser> results = (List<EgunUser>)query.execute();
 			
+			Query getUserQuery = getPM().newQuery( EgunUser.class, "userEmail == emailParam" );
+			getUserQuery.declareParameters("String emailParam");
+//			Query query = getPM().newQuery(getPM().getExtent(EgunUser.class, false));
+//			query.setFilter("userEmail == emailParam");
+			System.out.println("query : " + getUserQuery );
+			System.out.println("param : " + email );
+			
+			List<EgunUser> results = (List<EgunUser>)getUserQuery.execute(email);
 			System.out.println(results.size());
 			
 			
@@ -65,9 +64,7 @@ public class EgunUserLogic implements EgunUserService {
 	}
 	
 	private PersistenceManager getPM() {
-		if (pm == null) {
-			pm = pmfInstance.getPersistenceManager();
-		}
+		pm = PMF.getInstance().getPersistenceManager();
 		return pm;
 	}
 }
