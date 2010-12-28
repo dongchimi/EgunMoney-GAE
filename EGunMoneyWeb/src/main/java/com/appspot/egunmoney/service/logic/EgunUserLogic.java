@@ -1,9 +1,12 @@
 package com.appspot.egunmoney.service.logic;
 
+import java.util.List;
+
 import javax.jdo.JDOHelper;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +23,7 @@ public class EgunUserLogic implements EgunUserService {
 	@Override
 	public long registerUser(EgunUser user) {
 		try {
-			getPersistenceManager().makePersistent(user);
+			getPM().makePersistent(user);
 		} finally {
 			if(!pm.isClosed()) {
 				pm.close();
@@ -35,12 +38,22 @@ public class EgunUserLogic implements EgunUserService {
 	}
 
 	@Override
-	public EgunUser getUserInfo(String email) {
+	public EgunUser getUserByEmail(String email) throws RuntimeException {
 		EgunUser user = null;
 		try {
-			user = (EgunUser) getPersistenceManager().getObjectById(email);
+//			String getUserByEmailQueryStr = EgunUserQueryBuilder.getUserByEmailQueryStr();
+//			Query getUserQuery = getPersistenceManager().newQuery( getUserByEmailQueryStr );
+//			getUserQuery.declareParameters(email);
+			Query query = getPM().newQuery(getPM().getExtent(EgunUser.class, false));
+			query.setFilter("userEmail == \'" + email + "\'");
+			query.setResultClass(EgunUser.class);
+			List<EgunUser> results = (List<EgunUser>)query.execute();
+			
+			System.out.println(results.size());
+			
+			
 		} catch (JDOObjectNotFoundException e) {
-			new RuntimeException(email + "에 해당하는 사용자가 존재하지 않습니다.");
+			throw new RuntimeException(email + "에 해당하는 사용자가 존재하지 않습니다.");
 		}
 		finally {
 			if(!pm.isClosed()) {
@@ -51,7 +64,7 @@ public class EgunUserLogic implements EgunUserService {
 		return user;
 	}
 	
-	private PersistenceManager getPersistenceManager() {
+	private PersistenceManager getPM() {
 		if (pm == null) {
 			pm = pmfInstance.getPersistenceManager();
 		}

@@ -36,12 +36,14 @@ public class EgunUserController {
 	public String viewUserInfo() {
 		logger.log(Level.WARNING, user.getUserEmail());
 		String email = user.getUserEmail();
-		user = egunUserService.getUserInfo(email);
+		
+		try {
+			user = egunUserService.getUserByEmail(email);
+		} catch (RuntimeException e) {
+			errorMessage = e.getMessage();
+		}
 		
 		logger.log(Level.WARNING, "데이터 가져옴");
-		logger.log(Level.WARNING, user.getUserEmail());
-		logger.log(Level.WARNING, user.getPassword());
-		logger.log(Level.WARNING, user.getNickName());
 		
 		return Action.SUCCESS;
 	}
@@ -75,7 +77,7 @@ public class EgunUserController {
 		boolean login = false;
 		
 		String inputEmail = user.getUserEmail();
-		EgunUser emailUser = egunUserService.getUserInfo(inputEmail);
+		EgunUser emailUser = egunUserService.getUserByEmail(inputEmail);
 		if (emailUser != null) {
 			String emailUserPassword = emailUser.getPassword();
 			String inputPassword = user.getPassword(); 

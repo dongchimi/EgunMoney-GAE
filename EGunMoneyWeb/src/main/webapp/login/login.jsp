@@ -24,7 +24,7 @@ context.fillStyle='#00AA00';
 context.fillRect(0,0,100,100);
 </script>
  -->
-<div><c:out value="errorMessage" /></div>
+<div><c:out value="${errorMessage}" /></div>
 
 <form action="${ctx}/login/login.xhtml" method="post">
 아이디 : <input type="text" name="user.userEmail" /> ( 예 : honggildong@chosun.co.kr ) <br />
