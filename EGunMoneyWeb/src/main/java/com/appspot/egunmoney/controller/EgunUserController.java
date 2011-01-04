@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.Action;
 @Component
 @Scope("request")
 public class EgunUserController {
-	
+	 
 	/** ·Î°Å */
 	private static final Logger logger = Logger.getLogger(EgunUserController.class.getSimpleName());
 	
