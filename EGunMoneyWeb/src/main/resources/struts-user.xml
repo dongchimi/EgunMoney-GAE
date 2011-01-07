@@ -12,7 +12,7 @@
 	
 		<action name="login" class="com.appspot.egunmoney.controller.EgunUserController" method="login">
 			<result name="success" type="redirectAction">
-				<param name="actionName">accountBookListView</param>
+				<param name="actionName">viewAccountBookItems</param>
 				<param name="namespace">/accountBook</param>
 			</result>
 			<result name="loginFail">login.jsp</result>
@@ -28,7 +28,7 @@
 		
 		<action name="join" class="com.appspot.egunmoney.controller.EgunUserController" method="join">
 			<result name="success" type="redirectAction">
-				<param name="actionName">accountBookListView</param>
+				<param name="actionName">viewAccountBookItems</param>
 				<param name="namespace">/accountBook</param>
 			</result>
 		</action>

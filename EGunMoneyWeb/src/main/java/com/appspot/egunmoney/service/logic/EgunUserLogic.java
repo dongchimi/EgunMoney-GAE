@@ -38,18 +38,11 @@ public class EgunUserLogic implements EgunUserService {
 	public EgunUser getUserByEmail(String email) throws RuntimeException {
 		EgunUser user = null;
 		try {
-//			String getUserByEmailQueryStr = EgunUserQueryBuilder.getUserByEmailQueryStr();
-			
 			Query getUserQuery = getPM().newQuery( EgunUser.class, "userEmail == emailParam" );
 			getUserQuery.declareParameters("String emailParam");
-//			Query query = getPM().newQuery(getPM().getExtent(EgunUser.class, false));
-//			query.setFilter("userEmail == emailParam");
-			System.out.println("query : " + getUserQuery );
-			System.out.println("param : " + email );
 			
 			List<EgunUser> results = (List<EgunUser>)getUserQuery.execute(email);
 			System.out.println(results.size());
-			
 			
 		} catch (JDOObjectNotFoundException e) {
 			throw new RuntimeException(email + "에 해당하는 사용자가 존재하지 않습니다.");
