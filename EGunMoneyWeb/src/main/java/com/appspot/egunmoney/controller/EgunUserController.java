@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.Action;
 @Component
 @Scope("request")
 public class EgunUserController {
-	 
+	
 	/** 로거 */
 	private static final Logger logger = Logger.getLogger(EgunUserController.class.getSimpleName());
 	
@@ -59,16 +59,16 @@ public class EgunUserController {
 	 * 로그인
 	 */
 	public String login() {
-		
 		String nextPage = "";
 		logger.log(Level.FINE, "로그인");
-		if (!loginSuccess()) {
+		if ( loginSuccess() ) {
+			logger.log(Level.FINE, "로그인 성공");
+			nextPage = Action.SUCCESS;
+		} else {
 			logger.log(Level.FINE, "로그인 실패");
 			nextPage = "loginFail";
-		} else {
-			nextPage = Action.SUCCESS;
 		}
-		logger.log(Level.FINE, "로그인 성공");
+		
 		return nextPage;
 	}
 	
