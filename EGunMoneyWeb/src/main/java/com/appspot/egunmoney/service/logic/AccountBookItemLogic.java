@@ -1,23 +1,25 @@
 package com.appspot.egunmoney.service.logic;
 
-import javax.jdo.JDOHelper;
-import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
+import java.util.List;
 
-import com.appspot.egunmoney.constant.EgunMoneyConstant;
+import javax.jdo.PersistenceManager;
+
+import org.springframework.stereotype.Component;
+
 import com.appspot.egunmoney.domain.AccountBookItem;
 import com.appspot.egunmoney.service.AccountBookItemService;
+import com.appspot.egunmoney.utility.PMFInstanceProvider;
 import com.google.appengine.api.datastore.Key;
 
+@Component
 public class AccountBookItemLogic implements AccountBookItemService {
 	
-	private PersistenceManagerFactory pmfInstance = JDOHelper.getPersistenceManagerFactory(EgunMoneyConstant.PMFN);
 	private PersistenceManager pm = null;
 	
 	@Override
 	public Key registerAccountBookItem(AccountBookItem item) {
 		try {
-			pm = pmfInstance.getPersistenceManager();
+			pm = PMFInstanceProvider.get().getPersistenceManager();
 			pm.makePersistent(item);
 		} finally {
 			if(!pm.isClosed()) {
@@ -25,5 +27,11 @@ public class AccountBookItemLogic implements AccountBookItemService {
 			}
 		}
 		return item.getOid();
+	}
+
+	@Override
+	public List<AccountBookItem> findMyAccountBookItemByEMail(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

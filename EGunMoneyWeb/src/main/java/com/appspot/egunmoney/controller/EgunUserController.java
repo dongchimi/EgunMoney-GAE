@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.EgunUserService;
+import com.appspot.egunmoney.utility.SessionManager;
 import com.opensymphony.xwork2.Action;
 
 /**
@@ -60,29 +61,36 @@ public class EgunUserController {
 	 */
 	public String login() {
 		String nextPage = "";
+		
+		String inputEmail = user.getUserEmail();
+		
 		logger.log(Level.FINE, "로그인");
-		if ( loginSuccess() ) {
-			logger.log(Level.FINE, "로그인 성공");
+		if ( loginSuccess(inputEmail) ) {
+			logger.log(Level.ALL, "로그인 성공");
 			nextPage = Action.SUCCESS;
 		} else {
-			logger.log(Level.FINE, "로그인 실패");
+			logger.log(Level.ALL, "로그인 실패");
+			errorMessage = "존재하지 않는 아이디 입니다. 입력하신 아이디는 : " + inputEmail + "입니다."; 
 			nextPage = "loginFail";
 		}
 		
 		return nextPage;
 	}
 	
-	private boolean loginSuccess() {
+	private boolean loginSuccess(String inputEmail) {
 		
 		boolean login = false;
 		
-		String inputEmail = user.getUserEmail();
 		EgunUser emailUser = egunUserService.getUserByEmail(inputEmail);
 		if (emailUser != null) {
 			String emailUserPassword = emailUser.getPassword();
 			String inputPassword = user.getPassword(); 
 			if (emailUserPassword.equals( inputPassword )) {
 				login = true;
+				
+				// 로그인 성공 했으므로 로그인 정보를 세션에 담는다.
+				// TODO 이동규 세션에 담는게 맞는가?
+				SessionManager.putUser(emailUser);
 			} else {
 				login = false;
 			}

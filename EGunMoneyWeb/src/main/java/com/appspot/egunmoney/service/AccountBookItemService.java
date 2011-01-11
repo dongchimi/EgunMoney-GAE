@@ -1,5 +1,7 @@
 package com.appspot.egunmoney.service;
 
+import java.util.List;
+
 import com.appspot.egunmoney.domain.AccountBookItem;
 import com.google.appengine.api.datastore.Key;
 
@@ -15,5 +17,7 @@ public interface AccountBookItemService {
 	 * @param item ¿Â∫Œ item
 	 * @return item ≈∞
 	 */
-	public Key registerAccountBookItem(AccountBookItem item) ;
+	public Key registerAccountBookItem(AccountBookItem item);
+	
+	public List<AccountBookItem> findMyAccountBookItemByEMail(String email);
 }

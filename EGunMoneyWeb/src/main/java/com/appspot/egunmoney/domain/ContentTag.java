@@ -1,6 +1,10 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 /**
  * 태그
@@ -8,15 +12,16 @@ import java.io.Serializable;
  * @author dklee
  * @since 2010.09.01
  */
-public class ContentTag implements Serializable{
+@PersistenceCapable(identityType=IdentityType.DATASTORE)
+public class ContentTag {
 	
-	/** UID */
-	private static final long serialVersionUID = -9165491965093509365L;
-
 	/** 오브젝트 id */
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private int oid;
 
 	/** 태그명 */
+	@Persistent
 	private String name;
 
 	// method ------------------------------------------------------------------
