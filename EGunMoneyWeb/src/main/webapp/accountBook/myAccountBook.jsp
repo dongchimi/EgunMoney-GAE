@@ -1,14 +1,10 @@
-<%@page import="java.util.Enumeration"%>
 <%@ page language="java" pageEncoding="utf-8" contentType="text/html;charset=utf-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="/WEB-INF/tags/c.tld"%>
-
-<c:set var="ctx" value="${requestContext.request.contextRoot}" scope="request" />
  
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>나의 가계부 </title>
-<script type="text/javascript" src="${ctx}/style/js/jquery-1.4.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${requestContext.request.contextRoot}/style/js/jquery-1.4.2.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	function registerAccountBookItem(){
 		$("#registerAccountBookItemForm").attr("action", "${ctx}/accountBook/registerAccountBookItem.xhtml");

@@ -9,5 +9,6 @@ xsi:schemaLocation="http://appengine.google.com/ns/1.0 http://googleappengine.go
     </system-properties>
 
     <sessions-enabled>true</sessions-enabled>
-
+	
+	<precompilation-enabled>true</precompilation-enabled>
 </appengine-web-app>
