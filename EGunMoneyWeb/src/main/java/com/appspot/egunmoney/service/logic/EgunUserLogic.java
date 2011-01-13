@@ -4,16 +4,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.jdo.JDOFatalUserException;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
-import javax.jdo.Transaction;
 
 import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.EgunUserService;
-import com.appspot.egunmoney.utility.PMFInstanceProvider;
+import com.appspot.egunmoney.utility.PMFProvider;
+import com.google.appengine.api.datastore.Key;
 
 @Component
 public class EgunUserLogic implements EgunUserService {
@@ -24,24 +25,27 @@ public class EgunUserLogic implements EgunUserService {
 	private PersistenceManager pm = null;
 	
 	@Override
-	public long registerUser(EgunUser user) {
+	public Key registerUser(EgunUser user) {
 		
-		pm = PMFInstanceProvider.get().getPersistenceManager();
+		pm = PMFProvider.getPersistenceManager();
+//		Transaction currentTransaction = pm.currentTransaction();
 		
 		try {
-			Transaction currentTransaction = pm.currentTransaction();
-			currentTransaction.begin();
+//			currentTransaction.begin();
 			
 			pm.makePersistent(user);
 			
-			currentTransaction.commit();
+//			currentTransaction.commit();
 
+		} catch (JDOFatalUserException e) {
+//			currentTransaction.rollback();
+			e.printStackTrace();
 		} finally {
 			if(!pm.isClosed()) {
 				pm.close();
 			}
 		}
-		return user.getOid().getId();
+		return user.getOid();
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class EgunUserLogic implements EgunUserService {
 	public EgunUser getUserByEmail(String email) throws RuntimeException {
 		EgunUser user = null;
 		
-		pm = PMFInstanceProvider.get().getPersistenceManager();
+		pm = PMFProvider.getPersistenceManager();
 		
 		try {
 			Query getUserQuery = pm.newQuery( EgunUser.class, "userEmail == emailParam" );

@@ -4,7 +4,7 @@ import java.util.List;
 
 
 /**
- * List 관련 유틸리티
+ * Collection 관련 유틸리티
  * @author dklee
  *
  */

@@ -1,7 +1,6 @@
 package com.appspot.egunmoney.domain;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -12,7 +11,7 @@ import javax.jdo.annotations.PrimaryKey;
  * @author dklee
  * @since 2010.09.01
  */
-@PersistenceCapable(identityType=IdentityType.DATASTORE)
+@PersistenceCapable
 public class ContentTag {
 	
 	/** 오브젝트 id */
@@ -23,6 +22,9 @@ public class ContentTag {
 	/** 태그명 */
 	@Persistent
 	private String name;
+	
+	@Persistent
+	private AccountBookItem accountBookItem;
 
 	// method ------------------------------------------------------------------
 	public ContentTag(String tagName) {
@@ -42,5 +44,11 @@ public class ContentTag {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public AccountBookItem getAccountBookItem() {
+		return accountBookItem;
+	}
+	public void setAccountBookItem(AccountBookItem accountBookItem) {
+		this.accountBookItem = accountBookItem;
 	}
 }

@@ -2,6 +2,7 @@ package com.appspot.egunmoney.utility;
 
 import javax.jdo.JDOFatalUserException;
 import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 
 import com.appspot.egunmoney.constant.EgunMoneyConstant;
@@ -10,13 +11,13 @@ import com.appspot.egunmoney.constant.EgunMoneyConstant;
  * PersistenceManagerFactory 인스턴스 제공자
  * @author dongkyu
  */
-public class PMFInstanceProvider {
+public class PMFProvider {
 	
 	private static PersistenceManagerFactory pmfInstance = null;
 
-	private PMFInstanceProvider() {
+	private PMFProvider() {
 	}
-
+	
 	public static PersistenceManagerFactory get() {
 		if (pmfInstance == null) {
 			try {
@@ -26,5 +27,9 @@ public class PMFInstanceProvider {
 			}
 		}
 		return pmfInstance;
+	}
+	
+	public static PersistenceManager getPersistenceManager() {
+		return get().getPersistenceManager();
 	}
 }

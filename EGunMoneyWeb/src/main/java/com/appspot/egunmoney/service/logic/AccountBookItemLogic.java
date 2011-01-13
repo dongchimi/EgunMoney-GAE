@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.appspot.egunmoney.domain.AccountBookItem;
 import com.appspot.egunmoney.service.AccountBookItemService;
-import com.appspot.egunmoney.utility.PMFInstanceProvider;
+import com.appspot.egunmoney.utility.PMFProvider;
 import com.google.appengine.api.datastore.Key;
 
 @Component
@@ -19,7 +19,7 @@ public class AccountBookItemLogic implements AccountBookItemService {
 	@Override
 	public Key registerAccountBookItem(AccountBookItem item) {
 		try {
-			pm = PMFInstanceProvider.get().getPersistenceManager();
+			pm = PMFProvider.get().getPersistenceManager();
 			pm.makePersistent(item);
 		} finally {
 			if(!pm.isClosed()) {

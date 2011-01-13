@@ -1,26 +1,37 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 예산부 item
  * @author dklee
  * @since 2010.09.01
  */
-public class BudgetBookItem implements Serializable{
+@PersistenceCapable(identityType=IdentityType.DATASTORE)
+public class BudgetBookItem {
 	
-	/** UID */
-	private static final long serialVersionUID = 6063459783628670236L;
-
 	/** 오브젝트 id */
-	private long oid;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key oid;
 	
 	/** 카테고리명 */
+	@Persistent
 	private String categoryName;
 	
 	/** 예산금액 */
+	@Persistent
 	private long budgetAmount;
+	
+	/** 예산부*/
+	@Persistent(defaultFetchGroup="true")
+	private BudgetBook budgetBook;
 	
 	// method ------------------------------------------------------------------
 
@@ -40,11 +51,19 @@ public class BudgetBookItem implements Serializable{
 		this.budgetAmount = budgetAmount;
 	}
 
-	public long getOid() {
+	public Key getOid() {
 		return oid;
 	}
 
-	public void setOid(long oid) {
+	public void setOid(Key oid) {
 		this.oid = oid;
+	}
+
+	public BudgetBook getBudgetBook() {
+		return budgetBook;
+	}
+
+	public void setBudgetBook(BudgetBook budgetBook) {
+		this.budgetBook = budgetBook;
 	}
 }

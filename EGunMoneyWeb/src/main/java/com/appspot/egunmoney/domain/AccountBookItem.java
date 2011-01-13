@@ -3,7 +3,6 @@ package com.appspot.egunmoney.domain;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -15,8 +14,8 @@ import com.google.appengine.api.datastore.Key;
  * @author dklee
  * @since 2010.09.01
  */
-@PersistenceCapable(identityType=IdentityType.DATASTORE)
-public class AccountBookItem{
+@PersistenceCapable
+public class AccountBookItem {
 	
 	/** id*/
 	@PrimaryKey
@@ -37,19 +36,16 @@ public class AccountBookItem{
 	
 	/** 카테고리 */
 	@Persistent
-	private Category category;
+	private Key categoryOid;
 	
 	/** 태그목록 */
-	@Persistent
+	@Persistent(mappedBy="accountBookItem")
 	private List<ContentTag> tags;
 	
-	// method ------------------------------------------------------------------
-	public String getMyCategoryName() {
-		if (category == null) return null;
-		
-		return category.getCategoryName();
-	}
+	@Persistent(defaultFetchGroup="false")
+	private EgunAccountBook egunAccountBook;
 	
+	// method ------------------------------------------------------------------
 	public void setTagString(String tagString) {
 		if (tagString == null || tagString.length() < 1) return;
 		
@@ -103,19 +99,27 @@ public class AccountBookItem{
 		this.useDate = useDate;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public Key getOid() {
 		return oid;
 	}
 
 	public void setOid(Key oid) {
 		this.oid = oid;
+	}
+
+	public EgunAccountBook getEgunAccountBook() {
+		return egunAccountBook;
+	}
+
+	public void setEgunAccountBook(EgunAccountBook egunAccountBook) {
+		this.egunAccountBook = egunAccountBook;
+	}
+
+	public Key getCategoryOid() {
+		return categoryOid;
+	}
+
+	public void setCategoryOid(Key categoryOid) {
+		this.categoryOid = categoryOid;
 	}
 }

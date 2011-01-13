@@ -1,6 +1,8 @@
 package com.appspot.egunmoney.utility;
 
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.appspot.egunmoney.domain.EgunUser;
 
@@ -8,17 +10,22 @@ public class SessionManager {
 	
 	private static String userKey = "USER_KEY";
 	
-	private static Map<String, Object> sessionMap = null;
+	private static HttpSession session = null;
 
-	public static void newInstance( Map<String, Object> sessionMap ) {
-		SessionManager.sessionMap = sessionMap;
+	private static void newInstance() {
+		if (session == null) {
+			session = ServletActionContext.getRequest().getSession();
+		}
 	}
 	
 	public static void putUser(EgunUser user) {
-		sessionMap.put(userKey, user);
+		if (session == null) {
+			SessionManager.newInstance();
+		}
+		session.setAttribute(userKey, user);
 	}
 	
 	public static EgunUser getUser() {
-		return (EgunUser) sessionMap.get(userKey);
+		return (EgunUser) session.getAttribute(userKey);
 	}
 }

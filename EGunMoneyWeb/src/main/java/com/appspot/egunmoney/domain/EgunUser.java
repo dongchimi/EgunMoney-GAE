@@ -1,5 +1,6 @@
 package com.appspot.egunmoney.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -16,8 +17,11 @@ import com.google.appengine.api.datastore.Key;
  * @since 2010.08.31
  */
 @PersistenceCapable(identityType=IdentityType.DATASTORE)
-public class EgunUser{
+public class EgunUser implements Serializable {
 	
+	/** UID */
+	private static final long serialVersionUID = 924101381822315782L;
+
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
@@ -35,24 +39,10 @@ public class EgunUser{
 	@Persistent
 	private String nickName;
 	
-	/** 가계부 */
-	@Persistent
-	private List<EgunAccountBook> accountBooks;
-	
 	/** 가계부 사용 권한 */
-	@Persistent
 	private List<AccountBookAuthorize> bookAuthorizes;
 	
 	// method ------------------------------------------------------------------
-	
-	public List<EgunAccountBook> getAccountBooks() {
-		return accountBooks;
-	}
-
-	public void setAccountBooks(List<EgunAccountBook> accountBooks) {
-		this.accountBooks = accountBooks;
-	}
-
 	public List<AccountBookAuthorize> getBookAuthorizes() {
 		return bookAuthorizes;
 	}

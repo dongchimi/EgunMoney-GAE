@@ -1,70 +1,115 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
-import java.util.List;
+import java.text.DecimalFormat;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.appspot.egunmoney.constant.EgunMoneyConstant;
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 이건머니 가계부
  * @author dklee
  * @since 2010.09.01
- *
  */
-public class EgunAccountBook implements Serializable{
+@PersistenceCapable(identityType=IdentityType.DATASTORE)
+public class EgunAccountBook {
 	
 	/** 오브젝트 id */
-	private long oId;
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key oid;
 
 	/** 가계부 명 */
-	private String name;
+	@Persistent
+	private String accountBookName;
 	
 	/** 기준일 */
+	@Persistent
 	private String baseDay;
 	
-	/** 장부 목록 */
-	private List<AccountBookSheet> bookSheets;
+	/** 장부 내역목록 */
+//	@Persistent(mappedBy="egunAccountBook")
+//	private List<AccountBookItem> accountBookItems;
+	
+	/** 예산부 */
+	@Persistent(mappedBy="egunAccountBook")
+	private BudgetBook budgetBook;
 	
 	/** 가계부 분류 */
-	private AccountBookCategoryGroup categoryGroup;
+//	@Persistent(mappedBy="egunAccountBook")
+//	private AccountBookCategoryGroup categoryGroup;
+	
+	@Persistent
+	private String ownerId;
 	
 	// method ------------------------------------------------------------------
+	public EgunAccountBook(EgunUser user) {
+		ownerId = user.getUserEmail();
+		accountBookName = user.getNickName() + "님의 가계부";
+ 		baseDay = EgunMoneyConstant.INITIAL_BASE_DATE;
+		
+		// 이번달 예산을 만듦
+		budgetBook = new BudgetBook(baseDay);
+	}
 	
-	public AccountBookCategoryGroup getCategoryGroup() {
-		return categoryGroup;
-	}
-
-	public void setCategoryGroup(AccountBookCategoryGroup categoryGroup) {
-		this.categoryGroup = categoryGroup;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<AccountBookSheet> getBookSheets() {
-		return bookSheets;
-	}
-
-	public void setBookSheets(List<AccountBookSheet> bookSheets) {
-		this.bookSheets = bookSheets;
-	}
-
 	public String getBaseDay() {
 		return baseDay;
 	}
 
 	public void setBaseDay(String baseDay) {
-		this.baseDay = baseDay;
+		DecimalFormat df = new DecimalFormat("00");
+		this.baseDay = df.format(baseDay);
 	}
 
-	public long getoId() {
-		return oId;
+	public Key getOid() {
+		return oid;
 	}
 
-	public void setoId(long oId) {
-		this.oId = oId;
+	public void setOid(Key oid) {
+		this.oid = oid;
+	}
+//	public AccountBookCategoryGroup getCategoryGroup() {
+//	return categoryGroup;
+//}
+//
+//public void setCategoryGroup(AccountBookCategoryGroup categoryGroup) {
+//	this.categoryGroup = categoryGroup;
+//}
+	
+//	public List<AccountBookItem> getAccountBookItems() {
+//		return accountBookItems;
+//	}
+//
+//	public void setAccountBookItems(List<AccountBookItem> accountBookItems) {
+//		this.accountBookItems = accountBookItems;
+//	}
+
+	public BudgetBook getBudgetBook() {
+		return budgetBook;
+	}
+
+	public void setBudgetBook(BudgetBook budgetBook) {
+		this.budgetBook = budgetBook;
+	}
+
+	public String getAccountBookName() {
+		return accountBookName;
+	}
+
+	public void setAccountBookName(String accountBookName) {
+		this.accountBookName = accountBookName;
+	}
+
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 }

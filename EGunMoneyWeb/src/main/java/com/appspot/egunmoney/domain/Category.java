@@ -36,11 +36,12 @@ public class Category implements Comparable<Category> {
 	private String name;
 	
 	/** 하위 카테고리 */
-	@Persistent
+	@Persistent(mappedBy="parentCategory")
 	private List<Category> subCategories;
 	
+	@Persistent
+	private Category parentCategory;
 	// method ------------------------------------------------------------------
-	
 	/**
 	 * 하위 카테고리 명 을 포함하여 조회<br />
 	 * 예) 식비 > 주식
@@ -114,5 +115,13 @@ public class Category implements Comparable<Category> {
 		if (order < o.getOrder()) return -1;
 		
 		return 0;
+	}
+
+	public Category getParentCategory() {
+		return parentCategory;
+	}
+
+	public void setParentCategory(Category parentCategory) {
+		this.parentCategory = parentCategory;
 	}
 }

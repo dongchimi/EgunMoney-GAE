@@ -1,6 +1,7 @@
 package com.appspot.egunmoney.service;
 
 import com.appspot.egunmoney.domain.EgunUser;
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 이건머니 사용자 서비스
@@ -9,7 +10,7 @@ import com.appspot.egunmoney.domain.EgunUser;
  */
 public interface EgunUserService {
 	
-	public long registerUser(EgunUser user);
+	public Key registerUser(EgunUser user);
 	
 	public boolean hasEgunUser(EgunUser user);
 

@@ -1,20 +1,24 @@
 package com.appspot.egunmoney.domain;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.jdo.annotations.Persistent;
+
 import com.appspot.egunmoney.utility.CU;
 
-public class AccountBookCategoryGroup implements Serializable{
-	
-	/** UID */
-	private static final long serialVersionUID = 1970970654340276984L;
+
+public class AccountBookCategoryGroup{
 	
 	/** 분류목록 */
 	private List<Category> categories;
 
+	/** 가계부 */
+	@Persistent(defaultFetchGroup = "false")
+	private EgunAccountBook egunAccountBook;
+	
+	
 	/** 정렬된 카테고리 조회 */
 	public List<Category> getSortedCategories() {
 		if (CU.isEmpty(categories)) return new ArrayList<Category>();
@@ -35,6 +39,14 @@ public class AccountBookCategoryGroup implements Serializable{
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	public EgunAccountBook getEgunAccountBook() {
+		return egunAccountBook;
+	}
+
+	public void setEgunAccountBook(EgunAccountBook egunAccountBook) {
+		this.egunAccountBook = egunAccountBook;
 	}
 
 }
