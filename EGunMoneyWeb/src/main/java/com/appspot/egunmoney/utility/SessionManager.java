@@ -2,8 +2,6 @@ package com.appspot.egunmoney.utility;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts2.ServletActionContext;
-
 import com.appspot.egunmoney.domain.EgunUser;
 
 public class SessionManager {
@@ -14,7 +12,7 @@ public class SessionManager {
 
 	private static void newInstance() {
 		if (session == null) {
-			session = ServletActionContext.getRequest().getSession();
+//			session = ServletActionContext.getRequest().getSession();
 		}
 	}
 	

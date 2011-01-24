@@ -13,7 +13,6 @@ import com.appspot.egunmoney.service.EgunAccountBookService;
 import com.appspot.egunmoney.service.EgunUserService;
 import com.appspot.egunmoney.utility.SessionManager;
 import com.google.appengine.api.datastore.Key;
-import com.opensymphony.xwork2.Action;
  
 /**
  * 사용자 Controller
@@ -48,7 +47,7 @@ public class EgunUserController {
 			errorMessage = e.getMessage();
 		}
 		
-		return Action.SUCCESS;
+		return "";
 	}
 	
 	/**
@@ -56,7 +55,7 @@ public class EgunUserController {
 	 */
 	public String view() {
 		logger.log(Level.FINE, "로그인 화면 조회");
-		return Action.SUCCESS;
+		return "";
 	}
 	
 	/**
@@ -70,7 +69,7 @@ public class EgunUserController {
 		logger.log(Level.FINE, "로그인");
 		if ( loginSuccess(inputEmail) ) {
 			logger.log(Level.ALL, "로그인 성공");
-			nextPage = Action.SUCCESS;
+			nextPage = "";
 		} else {
 			logger.log(Level.ALL, "로그인 실패");
 			errorMessage = "존재하지 않는 아이디 입니다. 입력하신 아이디는 : " + inputEmail + "입니다."; 
@@ -124,7 +123,7 @@ public class EgunUserController {
 		} else {
 			// TODO 이동규 실패했을 경우 경로이동
 		}
-		return Action.SUCCESS;
+		return "";
 	}
 
 	public EgunUser getUser() {

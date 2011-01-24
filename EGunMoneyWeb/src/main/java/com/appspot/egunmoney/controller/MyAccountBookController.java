@@ -11,7 +11,6 @@ import com.appspot.egunmoney.domain.EgunUser;
 import com.appspot.egunmoney.service.AccountBookItemService;
 import com.appspot.egunmoney.utility.SessionManager;
 import com.google.appengine.api.datastore.Key;
-import com.opensymphony.xwork2.Action;
 
 /**
  * MyAccountBook ∆‰¿Ã¡ˆ Controller
@@ -35,7 +34,7 @@ public class MyAccountBookController {
 	public String registerAccountBookItem() {
 		Key oid = bookItemService.registerAccountBookItem(accountBookItem);
 		accountBookItem.setOid(oid);
-		return Action.SUCCESS;
+		return "";
 	}
 	
 	/**
@@ -45,7 +44,7 @@ public class MyAccountBookController {
 		EgunUser user = SessionManager.getUser();
 		String myId = user.getUserEmail(); 
 		bookItemService.findMyAccountBookItemByEMail(myId);
-		return Action.SUCCESS;
+		return "";
 	}
 
 	public AccountBookItem getAccountBookItem() {
