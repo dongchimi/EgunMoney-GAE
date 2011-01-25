@@ -8,8 +8,8 @@
 			  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 			  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	 
-	<context:component-scan base-package="com.appspot.egunmoney.resources" />
-	<context:component-scan base-package="com.appspot.egunmoney.service.logic" />
+	<context:component-scan base-package="com.appspot.egun.money.app" />
+	<context:component-scan base-package="com.appspot.egun.money.service.logic" />
 	
 	<bean id="persistenceManagerFactory" class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
 		<property name="persistenceManagerFactoryName" value="EGUNMONEY-DATASTORE" />
@@ -40,7 +40,7 @@
 	</tx:advice>
 	
 	<aop:config>
-		<aop:pointcut id="serviceOperation" expression="execution(* com.appspot.egunmoney.service.*Service.*(..))" />
+		<aop:pointcut id="serviceOperation" expression="execution(* com.appspot.egun.money.service.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
 	</aop:config>
 </beans>

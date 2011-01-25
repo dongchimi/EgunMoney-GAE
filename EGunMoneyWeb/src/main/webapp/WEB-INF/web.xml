@@ -13,12 +13,16 @@
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>com.appspot.egunmoney</param-value>
+			<param-value>com.appspot.egun.money</param-value>
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.config.feature.Redirect</param-name>
 			<param-value>true</param-value>
 		</init-param>
+		<init-param>
+            <param-name>com.sun.jersey.config.feature.ImplicitViewables</param-name>
+            <param-value>true</param-value>
+        </init-param>
 		<!-- 
 		<init-param>
 			<param-name>com.sun.jersey.config.property.WebPageContentRegex</param-name>
@@ -42,5 +46,4 @@
 	<listener>
           <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
    </listener>
-
 </web-app>

@@ -5,12 +5,12 @@
 
 	<!-- The Basics -->
 	<groupId>net.egunmoney</groupId>
-	<artifactId>EGunMoneyWeb</artifactId>
+	<artifactId>EGunMoneyApp</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>EGunMoneyWeb</name>
-	<description>e-gun money 웹 프로젝트</description>
+	<name>EGunMoneyApp</name>
+	<description>e-gun money 애플리케이션 프로젝트</description>
 
 	<dependencies>
 		<dependency>
@@ -110,12 +110,6 @@
 		<!-- <dependency> <artifactId>standard</artifactId> <groupId>taglibs</groupId> 
 			<version>1.1.2</version> <type>jar</type> </dependency> <dependency> <groupId>javax.servlet</groupId> 
 			<artifactId>jstl</artifactId> <version>1.2</version> <type>jar</type> </dependency> -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
-			<type>jar</type>
-		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
