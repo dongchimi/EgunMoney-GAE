@@ -1,8 +1,5 @@
 package com.appspot.egun.money.ws.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,14 +10,12 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.appspot.egun.money.domain.EgunUser;
 import com.appspot.egun.money.service.EgunUserService;
 import com.appspot.egun.money.utility.Response;
 import com.appspot.egun.money.utility.ResponseBuilder;
 import com.appspot.egun.money.utility.SessionManager;
-import com.sun.jersey.api.view.Viewable;
 import com.sun.jersey.spi.resource.Singleton;
 
 /**
@@ -47,11 +42,11 @@ public class SignInResource {
 
 		EgunUser foundUser = egunUserService.getUserByEmail(userEmail);
 		if (foundUser == null) {
-			ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
+			return ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
 		}
 		
 		if ( !foundUser.samePassword(password) ) {
-			ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
+			return ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
 		}
 		
 		// 로그인 처리
