@@ -54,7 +54,7 @@ public class EgunUserLogic implements EgunUserService {
 			Query getUserQuery = pm.newQuery( EgunUser.class, "userEmail == emailParam" );
 			getUserQuery.declareParameters("String emailParam");
 			
-			List<EgunUser> foundUsers = (List<EgunUser>)getUserQuery.execute(email);
+			List<EgunUser> foundUsers = (List<EgunUser>) getUserQuery.execute(email);
 			
 			if (!foundUsers.isEmpty()) {
 				user = foundUsers.get(0);

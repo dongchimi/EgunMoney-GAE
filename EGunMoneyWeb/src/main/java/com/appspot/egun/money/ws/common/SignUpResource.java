@@ -1,4 +1,4 @@
-package com.appspot.egun.money.app.common;
+package com.appspot.egun.money.ws.common;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;

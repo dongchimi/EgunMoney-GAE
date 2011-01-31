@@ -1,4 +1,4 @@
-package com.appspot.egun.money.app.common;
+package com.appspot.egun.money.ws.common;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,12 +9,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.appspot.egun.money.domain.EgunUser;
 import com.appspot.egun.money.service.EgunUserService;
+import com.appspot.egun.money.utility.Response;
+import com.appspot.egun.money.utility.ResponseBuilder;
 import com.appspot.egun.money.utility.SessionManager;
 import com.sun.jersey.api.view.Viewable;
 import com.sun.jersey.spi.resource.Singleton;
@@ -28,7 +32,6 @@ import com.sun.jersey.spi.resource.Singleton;
 @Component
 @Singleton
 @Path("/auth")
-@Produces("text/html")
 public class SignInResource {
 	
 	@Autowired
@@ -38,35 +41,23 @@ public class SignInResource {
 	private HttpServletRequest request;
 	
 	@GET
-	@Path("/form")
-	public Viewable viewForm() {
-		return new Viewable("signin", null);
-	}
-	
-	@GET
 	@Path("/signin")
-	public Viewable signIn(@QueryParam("user.userEmail") String userEmail, @QueryParam("user.password") String password) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response signIn(@QueryParam("userEmail") String userEmail, @QueryParam("password") String password) {
 
 		EgunUser foundUser = egunUserService.getUserByEmail(userEmail);
 		if (foundUser == null) {
-			return buildViewable("signin", "입력하신 정보에 해당하는 사용자는 존재하지 않습니다.");
+			ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
 		}
 		
 		if ( !foundUser.samePassword(password) ) {
-			return buildViewable("signin", "입력하신 패스워드가 일치하지 않습니다.");
-		} 
+			ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
+		}
 		
 		// 로그인 처리
 		SessionManager.setLoginUser(request, foundUser);
-
 		
-		return null;
-	}
-	
-	private Viewable buildViewable(String target, String message) {
-		Map<String, String> returnParamMap = new HashMap<String, String>();
-		returnParamMap.put("msg", message);
-		
-		return new Viewable(target, message);
+		return ResponseBuilder.buildSuccessResponse(foundUser);
 	}
 }
+
