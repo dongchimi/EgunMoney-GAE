@@ -2,14 +2,14 @@ package com.appspot.egun.money.utility;
 
 public class ResponseBuilder {
 
-	public static Response buildSuccessResponse(Object obj) {
-		Response res = new Response( Response.STATUS_SUCCESS );
+	public static JSONResponse buildSuccessResponse(Object obj) {
+		JSONResponse res = new JSONResponse( JSONResponse.STATUS_SUCCESS );
 		res.setResObj(obj);
 		return res;
 	}
 	
-	public static Response buildEmptyResponse(String message) {
-		Response res = new Response( Response.STATUS_FAIL );
+	public static JSONResponse buildEmptyResponse(String message) {
+		JSONResponse res = new JSONResponse( JSONResponse.STATUS_FAIL );
 		res.setMessage1(message);
 		return res;
 	}

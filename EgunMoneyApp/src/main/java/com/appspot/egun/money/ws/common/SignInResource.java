@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.appspot.egun.money.domain.EgunUser;
 import com.appspot.egun.money.service.EgunUserService;
-import com.appspot.egun.money.utility.Response;
+import com.appspot.egun.money.utility.JSONResponse;
 import com.appspot.egun.money.utility.ResponseBuilder;
 import com.appspot.egun.money.utility.SessionManager;
 import com.sun.jersey.spi.resource.Singleton;
@@ -38,7 +38,7 @@ public class SignInResource {
 	@GET
 	@Path("/signin")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response signIn(@QueryParam("userEmail") String userEmail, @QueryParam("password") String password) {
+	public JSONResponse signIn(@QueryParam("userEmail") String userEmail, @QueryParam("password") String password) {
 
 		EgunUser foundUser = egunUserService.getUserByEmail(userEmail);
 		if (foundUser == null) {

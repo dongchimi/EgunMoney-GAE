@@ -2,7 +2,7 @@ package com.appspot.egun.money.utility;
 
 import java.io.Serializable;
 
-public class Response implements Serializable{
+public class JSONResponse implements Serializable{
 
 	/** Á¤»ó */
 	public static final String STATUS_SUCCESS = "00";
@@ -22,7 +22,7 @@ public class Response implements Serializable{
 	
 	private Object resObj;
 	
-	public Response(String statusCode) {
+	public JSONResponse(String statusCode) {
 		this.statusCode = statusCode;
 	}
 
