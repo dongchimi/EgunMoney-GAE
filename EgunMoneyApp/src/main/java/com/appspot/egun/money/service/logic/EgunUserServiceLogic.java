@@ -17,10 +17,10 @@ import com.appspot.egun.money.utility.PMFProvider;
 import com.google.appengine.api.datastore.Key;
 
 @Component
-public class EgunUserLogic implements EgunUserService {
+public class EgunUserServiceLogic implements EgunUserService {
 	
 	/** ·Î°Å */
-	private static final Logger logger = Logger.getLogger(EgunUserLogic.class.getSimpleName());
+	private static final Logger logger = Logger.getLogger(EgunUserServiceLogic.class.getSimpleName());
 	
 	private PersistenceManager pm = null;
 	
@@ -45,6 +45,7 @@ public class EgunUserLogic implements EgunUserService {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public EgunUser getUserByEmail(String email) throws RuntimeException {
 		EgunUser user = null;
 		

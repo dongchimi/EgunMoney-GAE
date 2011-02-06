@@ -1,6 +1,6 @@
 package com.appspot.egun.money.service;
 
-import com.appspot.egun.money.domain.EgunAccountBook;
+import com.appspot.egun.money.domain.AccountBook;
 import com.google.appengine.api.datastore.Key;
 
 /**
@@ -15,5 +15,5 @@ public interface EgunAccountBookService {
 	 * @param accountBook °¡°èºÎ
 	 * @return
 	 */
-	public Key createEgunAccountBook(EgunAccountBook accountBook);
+	public Key createEgunAccountBook(AccountBook accountBook) throws RuntimeException;
 }

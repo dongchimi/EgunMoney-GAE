@@ -3,21 +3,22 @@ package com.appspot.egun.money.service.logic;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.domain.AccountBookItem;
-import com.appspot.egun.money.service.AccountBookItemService;
+import com.appspot.egun.money.domain.AccountItem;
+import com.appspot.egun.money.service.AccountItemService;
 import com.appspot.egun.money.utility.PMFProvider;
 import com.google.appengine.api.datastore.Key;
 
 @Component
-public class AccountBookItemLogic implements AccountBookItemService {
+public class AccountItemServiceLogic implements AccountItemService {
 	
 	private PersistenceManager pm = null;
 	
 	@Override
-	public Key registerAccountBookItem(AccountBookItem item) {
+	public Key registerAccountBookItem(AccountItem item) {
 		try {
 			pm = PMFProvider.get().getPersistenceManager();
 			pm.makePersistent(item);
@@ -30,8 +31,12 @@ public class AccountBookItemLogic implements AccountBookItemService {
 	}
 
 	@Override
-	public List<AccountBookItem> findMyAccountBookItemByEMail(String email) {
-		// TODO Auto-generated method stub
+	public List<AccountItem> findMyAccountBookItemByEMail(String email) {
+		pm = PMFProvider.getPersistenceManager();
+		
+		Query findQuery = pm.newQuery( AccountItem.class, "" );
+		
+		
 		return null;
 	}
 }

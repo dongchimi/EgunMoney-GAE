@@ -3,6 +3,7 @@ package com.appspot.egun.money.domain;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -14,15 +15,15 @@ import com.google.appengine.api.datastore.Key;
  * @author dklee
  * @since 2010.09.01
  */
-@PersistenceCapable
-public class AccountBookItem {
+@PersistenceCapable(identityType=IdentityType.DATASTORE)
+public class AccountItem {
 	
 	/** id*/
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key oid;
 	
-	/** 날짜 */
+	/** 지출/수입 날짜 */
 	@Persistent
 	private String useDate;
 
@@ -30,20 +31,37 @@ public class AccountBookItem {
 	@Persistent
 	private long amount;
 	
-	/** 비고 */
-	@Persistent
-	private String description;
-	
 	/** 카테고리 */
 	@Persistent
 	private Key categoryOid;
 	
+	/** 거래처 */
+	@Persistent
+	private Key targetOid; 
+	
+	/** 자산 */
+	@Persistent
+	private Key assetOid;
+
+	/** 메모 */
+	@Persistent
+	private String description;
+	
 	/** 태그목록 */
-	@Persistent(mappedBy="accountBookItem")
+	@Persistent(mappedBy="accountItem")
 	private List<ContentTag> tags;
 	
+	/** 사진  */
+	@Persistent
+	private byte[] photo;
+
+	/** 카드 할부 */
+	@Persistent
+	private int installmentPlan;
+	
 	@Persistent(defaultFetchGroup="false")
-	private EgunAccountBook egunAccountBook;
+	private AccountBook egunAccountBook;
+	
 	
 	// method ------------------------------------------------------------------
 	public void setTagString(String tagString) {
@@ -107,11 +125,11 @@ public class AccountBookItem {
 		this.oid = oid;
 	}
 
-	public EgunAccountBook getEgunAccountBook() {
+	public AccountBook getEgunAccountBook() {
 		return egunAccountBook;
 	}
 
-	public void setEgunAccountBook(EgunAccountBook egunAccountBook) {
+	public void setEgunAccountBook(AccountBook egunAccountBook) {
 		this.egunAccountBook = egunAccountBook;
 	}
 
@@ -121,5 +139,37 @@ public class AccountBookItem {
 
 	public void setCategoryOid(Key categoryOid) {
 		this.categoryOid = categoryOid;
+	}
+	
+	public Key getTargetOid() {
+		return targetOid;
+	}
+
+	public void setTargetOid(Key targetOid) {
+		this.targetOid = targetOid;
+	}
+
+	public Key getAssetOid() {
+		return assetOid;
+	}
+
+	public void setAssetOid(Key assetOid) {
+		this.assetOid = assetOid;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
+	}
+
+	public int getInstallmentPlan() {
+		return installmentPlan;
+	}
+
+	public void setInstallmentPlan(int installmentPlan) {
+		this.installmentPlan = installmentPlan;
 	}
 }

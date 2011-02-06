@@ -16,7 +16,7 @@ public class AccountBookCategoryGroup{
 
 	/** 가계부 */
 	@Persistent(defaultFetchGroup = "false")
-	private EgunAccountBook egunAccountBook;
+	private AccountBook egunAccountBook;
 	
 	
 	/** 정렬된 카테고리 조회 */
@@ -41,11 +41,11 @@ public class AccountBookCategoryGroup{
 		this.categories = categories;
 	}
 
-	public EgunAccountBook getEgunAccountBook() {
+	public AccountBook getEgunAccountBook() {
 		return egunAccountBook;
 	}
 
-	public void setEgunAccountBook(EgunAccountBook egunAccountBook) {
+	public void setEgunAccountBook(AccountBook egunAccountBook) {
 		this.egunAccountBook = egunAccountBook;
 	}
 

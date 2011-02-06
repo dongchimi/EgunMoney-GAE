@@ -1,7 +1,12 @@
 package com.appspot.egun.money.domain;
 
 import java.io.Serializable;
-import java.util.List;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
 
 /**
  * 가계부 권한
@@ -12,10 +17,12 @@ public class AccountBookAuthorize implements Serializable{
 	
 	/** UID */
 	private static final long serialVersionUID = 3826375588748184957L;
-
-	/** 권한 id */
-	private long authorizeId;
 	
+	/** 오브젝트 id */
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key oid;
+
 	/** 가계부 id */
 	private long accountBookId;
 	
@@ -23,18 +30,9 @@ public class AccountBookAuthorize implements Serializable{
 	private String userEmail;
 	
 	/** 가계부 권한 */
-	private List<EgunAuthorize> authorizes;
+	private EgunAuthorize authorize;
 	
 	// method ------------------------------------------------------------------
-	
-	public long getAuthorizeId() {
-		return authorizeId;
-	}
-
-	public void setAuthorizeId(long authorizeId) {
-		this.authorizeId = authorizeId;
-	}
-
 	public long getAccountBookId() {
 		return accountBookId;
 	}
@@ -51,11 +49,19 @@ public class AccountBookAuthorize implements Serializable{
 		this.userEmail = userEmail;
 	}
 
-	public List<EgunAuthorize> getAuthorizes() {
-		return authorizes;
+	public Key getOid() {
+		return oid;
 	}
 
-	public void setAuthorizes(List<EgunAuthorize> authorizes) {
-		this.authorizes = authorizes;
+	public void setOid(Key oid) {
+		this.oid = oid;
+	}
+
+	public EgunAuthorize getAuthorize() {
+		return authorize;
+	}
+
+	public void setAuthorize(EgunAuthorize authorize) {
+		this.authorize = authorize;
 	}
 }

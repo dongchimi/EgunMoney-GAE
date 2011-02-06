@@ -1,17 +1,19 @@
 package com.appspot.egun.money.ws.common;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.appspot.egun.money.domain.EgunUser;
 import com.appspot.egun.money.service.EgunUserService;
-import com.sun.jersey.api.view.Viewable;
+import com.appspot.egun.money.utility.JSONResponse;
+import com.appspot.egun.money.utility.ResponseBuilder;
+import com.google.appengine.api.datastore.Key;
 import com.sun.jersey.spi.resource.Singleton;
 
 /**
@@ -20,35 +22,28 @@ import com.sun.jersey.spi.resource.Singleton;
  * @since 2011.1.25
  */
 @Component
-
 @Singleton
 @Path("/signup")
-@Produces("text/html")
 public class SignUpResource {
 	
 	@Autowired
 	private EgunUserService egunUserService;
 	
-	@GET
-	@Path("/form")
-	public Viewable viewForm() {
-		return new Viewable("signUpForm");
-	}
-	
 	@POST
 	@Path("/register")
-//	@Consumes("application/x-www-form-urlencoded")
-	public Viewable register(@FormParam("user.userEmail") String userEmail,
-							  @FormParam("user.password") String password,
-							  @FormParam("user.nickName") String nickName) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONResponse register(@FormParam("userEmail") String userEmail,
+							  @FormParam("password") String password,
+							  @FormParam("nickName") String nickName) {
 		
 		EgunUser user = new EgunUser();
 		user.setUserEmail(userEmail);
 		user.setNickName(nickName);
 		user.setPassword(password);
 		
-		egunUserService.registerUser(user);
+		Key oid = egunUserService.registerUser(user);
+		user.setOid(oid);
 		
-		return null;
+		return ResponseBuilder.buildSuccessResponse(user);
 	}
 }

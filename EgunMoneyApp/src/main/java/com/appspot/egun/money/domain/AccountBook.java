@@ -9,6 +9,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.appspot.egun.money.constant.EgunMoneyConstant;
+import com.appspot.egun.money.utility.SU;
 import com.google.appengine.api.datastore.Key;
 
 /**
@@ -17,7 +18,7 @@ import com.google.appengine.api.datastore.Key;
  * @since 2010.09.01
  */
 @PersistenceCapable(identityType=IdentityType.DATASTORE)
-public class EgunAccountBook {
+public class AccountBook {
 	
 	/** 오브젝트 id */
 	@PrimaryKey
@@ -32,29 +33,25 @@ public class EgunAccountBook {
 	@Persistent
 	private String baseDay;
 	
-	/** 장부 내역목록 */
-//	@Persistent(mappedBy="egunAccountBook")
-//	private List<AccountBookItem> accountBookItems;
-	
 	/** 예산부 */
-	@Persistent(mappedBy="egunAccountBook")
-	private BudgetBook budgetBook;
-	
-	/** 가계부 분류 */
 //	@Persistent(mappedBy="egunAccountBook")
-//	private AccountBookCategoryGroup categoryGroup;
+//	private BudgetBook budgetBook;
 	
 	@Persistent
 	private String ownerId;
 	
 	// method ------------------------------------------------------------------
-	public EgunAccountBook(EgunUser user) {
+	public AccountBook(EgunUser user, String bookName) {
 		ownerId = user.getUserEmail();
-		accountBookName = user.getNickName() + "님의 가계부";
+		if (SU.isEmptyAndNull(bookName)) {
+			accountBookName = user.getNickName() + "님의 가계부";
+		} else {
+			accountBookName = bookName;
+		}
  		baseDay = EgunMoneyConstant.INITIAL_BASE_DATE;
 		
 		// 이번달 예산을 만듦
-		budgetBook = new BudgetBook(baseDay);
+		//budgetBook = new BudgetBook(baseDay);
 	}
 	
 	public String getBaseDay() {
@@ -88,14 +85,6 @@ public class EgunAccountBook {
 //	public void setAccountBookItems(List<AccountBookItem> accountBookItems) {
 //		this.accountBookItems = accountBookItems;
 //	}
-
-	public BudgetBook getBudgetBook() {
-		return budgetBook;
-	}
-
-	public void setBudgetBook(BudgetBook budgetBook) {
-		this.budgetBook = budgetBook;
-	}
 
 	public String getAccountBookName() {
 		return accountBookName;

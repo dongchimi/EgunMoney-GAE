@@ -30,7 +30,7 @@ public class BudgetBook {
 	private List<BudgetBookItem> budgetBookItems;
 
 	@Persistent(defaultFetchGroup="false")
-	private EgunAccountBook egunAccountBook;
+	private AccountBook egunAccountBook;
 
 	@Persistent
 	private String startDate;
@@ -74,11 +74,11 @@ public class BudgetBook {
 		this.budgetBookItems = budgetBookItems;
 	}
 
-	public EgunAccountBook getEgunAccountBook() {
+	public AccountBook getEgunAccountBook() {
 		return egunAccountBook;
 	}
 
-	public void setEgunAccountBook(EgunAccountBook egunAccountBook) {
+	public void setEgunAccountBook(AccountBook egunAccountBook) {
 		this.egunAccountBook = egunAccountBook;
 	}
 

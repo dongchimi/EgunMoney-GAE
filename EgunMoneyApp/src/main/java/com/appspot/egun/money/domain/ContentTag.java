@@ -24,7 +24,7 @@ public class ContentTag {
 	private String name;
 	
 	@Persistent
-	private AccountBookItem accountBookItem;
+	private AccountItem accountBookItem;
 
 	// method ------------------------------------------------------------------
 	public ContentTag(String tagName) {
@@ -45,10 +45,10 @@ public class ContentTag {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public AccountBookItem getAccountBookItem() {
+	public AccountItem getAccountBookItem() {
 		return accountBookItem;
 	}
-	public void setAccountBookItem(AccountBookItem accountBookItem) {
+	public void setAccountBookItem(AccountItem accountBookItem) {
 		this.accountBookItem = accountBookItem;
 	}
 }

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.appspot.egun.money.domain.EgunUser;
-import com.appspot.egun.money.service.EgunUserService;
+import com.appspot.egun.money.process.EgunUserProcess;
 import com.appspot.egun.money.utility.JSONResponse;
 import com.appspot.egun.money.utility.ResponseBuilder;
 import com.appspot.egun.money.utility.SessionManager;
@@ -30,7 +30,7 @@ import com.sun.jersey.spi.resource.Singleton;
 public class SignInResource {
 	
 	@Autowired
-	private EgunUserService egunUserService;
+	private EgunUserProcess egunUserProcess;
 	
 	@Context
 	private HttpServletRequest request;
@@ -40,7 +40,7 @@ public class SignInResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONResponse signIn(@QueryParam("userEmail") String userEmail, @QueryParam("password") String password) {
 
-		EgunUser foundUser = egunUserService.getUserByEmail(userEmail);
+		EgunUser foundUser = egunUserProcess.getUserByEmail(userEmail);
 		if (foundUser == null) {
 			return ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
 		}
