@@ -162,15 +162,17 @@
 			<version>${gae.version}</version>
 		</dependency>
 
+		
 		<dependency>
-			<groupId>com.google.appengine</groupId>
+			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
-			<version>1.1.1</version>
+			<version>1.1</version>
+			<type>jar</type>
 			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>com.google.appengine</groupId>
+			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jpa_3.0_spec</artifactId>
 			<version>1.1.1</version>
 			<scope>runtime</scope>
@@ -187,26 +189,20 @@
 			<artifactId>datanucleus-enhancer</artifactId>
 			<version>1.1.4</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>datanucleus-jpa</artifactId>
-			<version>1.1.5</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.appengine</groupId>
-			<artifactId>appengine-tools-api</artifactId>
-			<version>${gae.version}</version>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
 			<version>${gae.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.datanucleus</groupId>
+			<artifactId>datanucleus-jpa</artifactId>
+			<version>1.1.5</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -321,8 +317,8 @@
 	<properties>
 		<downloadSources>true</downloadSources>
 
-		<maven.gae.plugin.version>0.8.0</maven.gae.plugin.version>
-		<gae.version>1.4.0</gae.version>
+		<maven.gae.plugin.version>0.8.2</maven.gae.plugin.version>
+		<gae.version>1.4.2</gae.version>
 		<gae.application.version>test</gae.application.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<jersey.version>1.5-ea08</jersey.version>
