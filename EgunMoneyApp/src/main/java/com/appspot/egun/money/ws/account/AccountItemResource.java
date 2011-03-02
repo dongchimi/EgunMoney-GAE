@@ -9,10 +9,10 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.domain.AccountItem;
-import com.appspot.egun.money.process.AccountItemProcess;
-import com.appspot.egun.money.utility.JSONResponse;
-import com.appspot.egun.money.utility.ResponseBuilder;
+import com.appspot.egun.money.comp.domain.AccountItem;
+import com.appspot.egun.money.comp.process.AccountItemProcess;
+import com.appspot.egun.money.comp.utility.JSONResponse;
+import com.appspot.egun.money.comp.utility.ResponseBuilder;
 import com.google.appengine.api.datastore.Key;
 import com.sun.jersey.spi.resource.Singleton;
 

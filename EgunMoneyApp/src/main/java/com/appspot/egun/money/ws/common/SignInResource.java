@@ -11,11 +11,11 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.domain.EgunUser;
-import com.appspot.egun.money.process.EgunUserProcess;
-import com.appspot.egun.money.utility.JSONResponse;
-import com.appspot.egun.money.utility.ResponseBuilder;
-import com.appspot.egun.money.utility.SessionManager;
+import com.appspot.egun.money.comp.domain.EgunUser;
+import com.appspot.egun.money.comp.process.EgunUserProcess;
+import com.appspot.egun.money.comp.utility.JSONResponse;
+import com.appspot.egun.money.comp.utility.ResponseBuilder;
+import com.appspot.egun.money.comp.utility.SessionManager;
 import com.sun.jersey.spi.resource.Singleton;
 
 /**

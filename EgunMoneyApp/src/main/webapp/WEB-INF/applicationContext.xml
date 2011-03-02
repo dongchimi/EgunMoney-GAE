@@ -9,8 +9,8 @@
 			  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	 
 	<context:component-scan base-package="com.appspot.egun.money.ws" />
-	<context:component-scan base-package="com.appspot.egun.money.process.logic" />
-	<context:component-scan base-package="com.appspot.egun.money.service.logic" />
+	<context:component-scan base-package="com.appspot.egun.money.comp.process.logic" />
+	<context:component-scan base-package="com.appspot.egun.money.comp.service.logic" />
 	
 	<bean id="persistenceManagerFactory" class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
 		<property name="persistenceManagerFactoryName" value="EGUNMONEY-DATASTORE" />
