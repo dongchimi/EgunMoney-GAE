@@ -2,25 +2,36 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>jQuery Mobile</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
-    <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+    <title>이건머니 로그인</title>
+    <link rel="stylesheet" href="/style/framework/css/jquery.mobile-1.0a3.min.css" />
+    <script src="/style/framework/jquery-1.5.1.min.js"></script>
+    <script src="/style/framework/jquery.mobile-1.0a3.min.js"></script>
+    <script src="/style/js/index.js"></script>
 </head>
 <body>
-<div id="home" data-role="page">
+<div id="login" data-role="page">
 	<div data-role="header">
-	    <h1>jQueryMobile 시작</h1>
+	    <h1>로그인</h1>
 	</div>
 	
 	<div data-role="content">
-	    <a href="#about" data-role="button">About jQueryMobile</a>
+		<div data-role="fieldcontain">
+			<label for="userEmail">이름 또는 이메일 </label>
+			<input type="text" id="userEmail" />
+			<label for="password">비밀번호</label>
+			<input type="password" id="password" />
+			<br />
+			<div data-role="true">
+		    	<a href="javascript:signin()" data-role="button" data-theme="b">로그인</a>
+		    	<a href="#register" data-role="button">회원가입</a>
+		    </div>
+	    </div>
 	</div>
 </div>
 
-<div id="about" data-role="page">
+<div id="register" data-role="page">
 	<div data-role="header">
-    	<h1>About jQueryMobile</h1>
+    	<h1>회원가입</h1>
     </div>
     <div data-role="content">
 	    <h2>jQueryMobile 샘플입니다.</h2>
@@ -28,5 +39,6 @@
 	    <p>쉽고 재미있는 jQueryMobile의 사용방법에 대해서 단계별로 학습해봅시다.</p>
     </div>
 </div>
+
 </body>
 </html>

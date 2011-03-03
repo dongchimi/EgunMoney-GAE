@@ -10,7 +10,7 @@ import com.sun.jersey.spi.resource.Singleton;
 
 @Component
 @Singleton
-@Path("/{userEmail}/accountItem")
+@Path("/ws/{userEmail}/accountItem")
 public class AccountItemResource {
 	
 	@Autowired

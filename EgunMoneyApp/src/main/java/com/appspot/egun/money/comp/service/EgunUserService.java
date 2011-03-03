@@ -15,4 +15,6 @@ public interface EgunUserService {
 	public boolean hasEgunUser(EgunUser user);
 
 	public EgunUser getUserByEmail(String email) throws RuntimeException;
+	
+	public EgunUser getUserByNickName(String nickName) throws RuntimeException;
 }

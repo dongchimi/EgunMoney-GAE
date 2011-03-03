@@ -25,7 +25,11 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 	}
 
 	@Override
-	public EgunUser getUserByEmail(String email) throws RuntimeException {
-		return egunUserService.getUserByEmail(email);
+	public EgunUser getUserByEmailOrNickName(String nickNameOrEmail) throws RuntimeException {
+		EgunUser user = egunUserService.getUserByEmail(nickNameOrEmail);
+		if (user == null) {
+			user = egunUserService.getUserByNickName(nickNameOrEmail);
+		}
+		return user;
 	}
 }

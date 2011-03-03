@@ -9,5 +9,5 @@ public interface EgunUserProcess {
 	
 	public boolean hasEgunUser(EgunUser user);
 
-	public EgunUser getUserByEmail(String email) throws RuntimeException;
+	public EgunUser getUserByEmailOrNickName(String email) throws RuntimeException;
 }

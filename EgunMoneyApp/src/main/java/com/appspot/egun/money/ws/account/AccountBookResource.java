@@ -24,7 +24,7 @@ import com.sun.jersey.spi.resource.Singleton;
 
 @Component
 @Singleton
-@Path("/{userEmail}/accountBook")
+@Path("/ws/{userEmail}/accountBook")
 public class AccountBookResource {
 	
 	@Autowired

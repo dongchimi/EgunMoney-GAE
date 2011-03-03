@@ -1,10 +1,10 @@
 package com.appspot.egun.money.ws.common;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.GET;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -16,6 +16,7 @@ import com.appspot.egun.money.comp.process.EgunUserProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
 import com.appspot.egun.money.comp.utility.SessionManager;
+import com.appspot.egun.money.ws.validator.SignInValidator;
 import com.sun.jersey.spi.resource.Singleton;
 
 /**
@@ -26,7 +27,7 @@ import com.sun.jersey.spi.resource.Singleton;
 
 @Component
 @Singleton
-@Path("/auth")
+@Path("/ws/auth")
 public class SignInResource {
 	
 	@Autowired
@@ -35,18 +36,21 @@ public class SignInResource {
 	@Context
 	private HttpServletRequest request;
 	
-	@GET
+	@POST
 	@Path("/signin")
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse signIn(@QueryParam("userEmail") String userEmail, @QueryParam("password") String password) {
-
-		EgunUser foundUser = egunUserProcess.getUserByEmail(userEmail);
+	public JSONResponse signIn(@FormParam("userEmail") String userNameOrEmail, @FormParam("password") String password) {
+		if (SignInValidator.validSigninParams(userNameOrEmail, password)) {
+			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 입력되지 않았습니다. userEmail : " + userNameOrEmail + ", " + "password : " + password);
+		}
+		
+		EgunUser foundUser = egunUserProcess.getUserByEmailOrNickName(userNameOrEmail);
 		if (foundUser == null) {
-			return ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
+			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 옳지 않습니다.");
 		}
 		
 		if ( !foundUser.samePassword(password) ) {
-			return ResponseBuilder.buildEmptyResponse("아이디 또는 비밀번호가 옳지 않습니다.");
+			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 옳지 않습니다.");
 		}
 		
 		// 로그인 처리

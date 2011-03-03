@@ -71,4 +71,32 @@ public class EgunUserServiceLogic implements EgunUserService {
 		
 		return user;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public EgunUser getUserByNickName(String nickName) throws RuntimeException {
+		EgunUser user = null;
+		
+		pm = PMFProvider.getPersistenceManager();
+		
+		try {
+			Query getUserQuery = pm.newQuery( EgunUser.class, "nickName == nickNameParam" );
+			getUserQuery.declareParameters("String nickNameParam");
+			
+			List<EgunUser> foundUsers = (List<EgunUser>) getUserQuery.execute(nickName);
+			
+			if (!foundUsers.isEmpty()) {
+				user = foundUsers.get(0);
+			} else {
+				logger.log(Level.ALL, "조회한 사용자가 존재하지 않습니다.");
+			}
+		} catch (JDOObjectNotFoundException e) {
+			throw new RuntimeException(nickName + "에 해당하는 사용자가 존재하지 않습니다.");
+		}
+		finally {
+			pm.close();
+		}
+		
+		return user;
+	}
 }

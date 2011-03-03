@@ -23,7 +23,7 @@ import com.sun.jersey.spi.resource.Singleton;
  */
 @Component
 @Singleton
-@Path("/signup")
+@Path("/ws/signup")
 public class SignUpResource {
 	
 	@Autowired
