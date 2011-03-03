@@ -3,6 +3,7 @@ package com.appspot.egun.money.comp.process.logic;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
@@ -11,6 +12,7 @@ import com.appspot.egun.money.comp.process.AccountBookProcess;
 import com.appspot.egun.money.comp.service.AccountBookService;
 import com.google.appengine.api.datastore.Key;
 
+@Component
 public class AccountBookProcessLogic implements AccountBookProcess {
 
 	@Autowired

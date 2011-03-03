@@ -22,8 +22,8 @@
 		<init-param>
             <param-name>com.sun.jersey.config.feature.ImplicitViewables</param-name>
             <param-value>true</param-value>
-        </init-param>
-		<!-- 
+        </init-param>	
+        <!-- 
 		<init-param>
 			<param-name>com.sun.jersey.config.property.WebPageContentRegex</param-name>
 			<param-value>/(style|common)/.*</param-value>

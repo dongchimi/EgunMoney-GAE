@@ -1,5 +1,6 @@
 package com.appspot.egun.money.comp.utility;
 
+
 public class ResponseBuilder {
 
 	public static JSONResponse buildFailResponse(Exception obj) {

@@ -321,7 +321,7 @@
 		<gae.version>1.4.2</gae.version>
 		<gae.application.version>test</gae.application.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<jersey.version>1.5-ea08</jersey.version>
+		<jersey.version>1.6-ea05</jersey.version>
 	</properties>
 
 	<profiles>
