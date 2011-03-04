@@ -11,7 +11,6 @@ import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.service.AccountBookService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
-import com.google.appengine.api.datastore.Key;
 
 @Component
 public class AccountBookServiceLogic implements AccountBookService {
@@ -19,8 +18,16 @@ public class AccountBookServiceLogic implements AccountBookService {
 	private PersistenceManager pm = null;
 
 	@Override
-	public Key reigsterAccountBook(AccountBook book) {
-		return null;
+	public Long reigsterAccountBook(AccountBook book) {
+		try {
+			pm = PMFProvider.get().getPersistenceManager();
+			pm.makePersistent(book);
+		} finally {
+			if(!pm.isClosed()) {
+				pm.close();
+			}
+		}
+		return book.getOid();
 	}
 
 	@Override
@@ -34,7 +41,7 @@ public class AccountBookServiceLogic implements AccountBookService {
 	}
 
 	@Override
-	public Key registerAccountBookAuthorize(AccountBookAuthorize authorize) {
+	public Long registerAccountBookAuthorize(AccountBookAuthorize authorize) {
 		try {
 			pm = PMFProvider.get().getPersistenceManager();
 			pm.makePersistent(authorize);

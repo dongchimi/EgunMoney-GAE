@@ -1,5 +1,8 @@
 package com.appspot.egun.money.ws.common;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -30,6 +33,9 @@ import com.sun.jersey.spi.resource.Singleton;
 @Path("/ws/auth")
 public class SignInResource {
 	
+	/** 로거 */
+	private static final Logger logger = Logger.getLogger(SignInResource.class.getSimpleName());
+	
 	@Autowired
 	private EgunUserProcess egunUserProcess;
 	
@@ -39,18 +45,23 @@ public class SignInResource {
 	@POST
 	@Path("/signin")
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse signIn(@FormParam("userEmail") String userNameOrEmail, @FormParam("password") String password) {
-		if (SignInValidator.validSigninParams(userNameOrEmail, password)) {
+	public JSONResponse signIn(@FormParam("userEmail") String userNameOrEmail, 
+							   @FormParam("password") String password) {
+		if ( !SignInValidator.requeredSigninParams(userNameOrEmail, password)) {
 			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 입력되지 않았습니다. userEmail : " + userNameOrEmail + ", " + "password : " + password);
 		}
 		
 		EgunUser foundUser = egunUserProcess.getUserByEmailOrNickName(userNameOrEmail);
 		if (foundUser == null) {
-			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 옳지 않습니다.");
+			return ResponseBuilder.buildEmptyResponse("해당하는 사용자가 없습니다.");
 		}
 		
 		if ( !foundUser.samePassword(password) ) {
-			return ResponseBuilder.buildEmptyResponse("사용자 이름 또는 비밀번호가 옳지 않습니다.");
+			logger.log(Level.WARNING, "foundUser.getNickName : " + foundUser.getNickName());
+			logger.log(Level.WARNING, "foundUser.getPassword : " + foundUser.getPassword());
+			logger.log(Level.WARNING, "foundUser.getUserEmail : " + foundUser.getUserEmail());
+			
+			return ResponseBuilder.buildEmptyResponse("비밀번호가 옳지 않습니다.");
 		}
 		
 		// 로그인 처리

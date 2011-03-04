@@ -5,7 +5,6 @@ import java.util.List;
 import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
-import com.google.appengine.api.datastore.Key;
 
 public interface AccountBookProcess {
 	
@@ -14,7 +13,7 @@ public interface AccountBookProcess {
 	 * @param book
 	 * @return
 	 */
-	public Key reigsterAccountBook(AccountBook book);
+	public Long reigsterAccountBook(AccountBook book);
 	
 	/**
 	 * 사용자의 장부 목록 조회
@@ -35,7 +34,7 @@ public interface AccountBookProcess {
 	 * @param authorize
 	 * @return
 	 */
-	public Key registerAccountBookAuthorize(AccountBookAuthorize authorize);
+	public Long registerAccountBookAuthorize(AccountBookAuthorize authorize);
 	
 	/**
 	 * 가계부 권한 확인

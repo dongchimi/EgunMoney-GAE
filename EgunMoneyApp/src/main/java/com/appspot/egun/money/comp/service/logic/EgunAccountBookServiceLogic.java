@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.service.EgunAccountBookService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
-import com.google.appengine.api.datastore.Key;
 
 @Component
 public class EgunAccountBookServiceLogic implements EgunAccountBookService {
@@ -20,7 +19,7 @@ public class EgunAccountBookServiceLogic implements EgunAccountBookService {
 	private PersistenceManager pm = null;
 	
 	@Override
-	public Key createEgunAccountBook(AccountBook accountBook) throws RuntimeException {
+	public Long createEgunAccountBook(AccountBook accountBook) throws RuntimeException {
 		
 		pm = PMFProvider.getPersistenceManager();
 		

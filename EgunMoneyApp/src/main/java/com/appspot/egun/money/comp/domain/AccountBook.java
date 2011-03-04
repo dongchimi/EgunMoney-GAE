@@ -10,20 +10,19 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.appspot.egun.money.comp.constant.EgunMoneyConstant;
 import com.appspot.egun.money.comp.utility.SU;
-import com.google.appengine.api.datastore.Key;
 
 /**
  * 이건머니 가계부
  * @author dklee
  * @since 2010.09.01
  */
-@PersistenceCapable(identityType=IdentityType.DATASTORE)
+@PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class AccountBook {
 	
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key oid;
+	private Long oid;
 
 	/** 가계부 명 */
 	@Persistent
@@ -41,9 +40,17 @@ public class AccountBook {
 	private String ownerId;
 	
 	// method ------------------------------------------------------------------
+	public AccountBook(EgunUser user) {
+		initialize(user, null);
+	}
+	
 	public AccountBook(EgunUser user, String bookName) {
+		initialize(user, bookName);
+	}
+	
+	private void initialize(EgunUser user, String bookName) {
 		ownerId = user.getUserEmail();
-		if (SU.isEmptyAndNull(bookName)) {
+		if (SU.isEmptyOrNull(bookName)) {
 			accountBookName = user.getNickName() + "님의 가계부";
 		} else {
 			accountBookName = bookName;
@@ -63,11 +70,11 @@ public class AccountBook {
 		this.baseDay = df.format(baseDay);
 	}
 
-	public Key getOid() {
+	public Long getOid() {
 		return oid;
 	}
 
-	public void setOid(Key oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
 	}
 //	public AccountBookCategoryGroup getCategoryGroup() {

@@ -11,7 +11,7 @@ public class SU {
 	 * @param target 문자열
 	 * @return 문자열이 Null 또는 공백문자인지 여부`
 	 */
-	public static boolean isEmptyAndNull(String target) {
+	public static boolean isEmptyOrNull(String target) {
 		return target == null || target.trim().length() < 1;
 	}
 }

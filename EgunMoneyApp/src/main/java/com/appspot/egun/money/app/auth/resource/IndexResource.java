@@ -1,4 +1,4 @@
-package com.appspot.egun.money.app.resource;
+package com.appspot.egun.money.app.auth.resource;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import com.sun.jersey.api.view.Viewable;
 import com.sun.jersey.spi.resource.Singleton;
-
 
 @Component
 @Singleton
@@ -27,7 +26,7 @@ public class IndexResource {
 	@Path("/index")
 	public Viewable index() {
 		logger.log(Level.WARNING, "call IndexResource");
-		return new Viewable("/index.html");
+		return new Viewable("/auth/signin.html");
 	}
 
 }

@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.service.EgunUserService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
-import com.google.appengine.api.datastore.Key;
 
 @Component
 public class EgunUserServiceLogic implements EgunUserService {
@@ -25,7 +24,7 @@ public class EgunUserServiceLogic implements EgunUserService {
 	private PersistenceManager pm = null;
 	
 	@Override
-	public Key registerUser(EgunUser user) {
+	public Long registerUser(EgunUser user) {
 		pm = PMFProvider.getPersistenceManager();
 		try {
 			pm.makePersistent(user);

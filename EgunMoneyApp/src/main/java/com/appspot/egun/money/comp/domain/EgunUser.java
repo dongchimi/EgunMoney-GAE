@@ -1,7 +1,6 @@
 package com.appspot.egun.money.comp.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -10,14 +9,13 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.appspot.egun.money.comp.utility.SU;
-import com.google.appengine.api.datastore.Key;
 
 /**
  * 이건머니 사용자
  * @author dklee
  * @since 2010.08.31
  */
-@PersistenceCapable(identityType=IdentityType.DATASTORE)
+@PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class EgunUser implements Serializable {
 	
 	/** UID */
@@ -26,7 +24,7 @@ public class EgunUser implements Serializable {
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key oid;
+	private Long oid;
 	
 	/** 비밀번호 */
 	@Persistent
@@ -41,16 +39,24 @@ public class EgunUser implements Serializable {
 	private String nickName;
 	
 	/** 가계부 사용 권한 */
-	private List<AccountBookAuthorize> bookAuthorizes;
+	//private List<AccountBookAuthorize> bookAuthorizes;
 	
 	// method ------------------------------------------------------------------
-	public List<AccountBookAuthorize> getBookAuthorizes() {
-		return bookAuthorizes;
-	}
-
-	public void setBookAuthorizes(List<AccountBookAuthorize> bookAuthorizes) {
-		this.bookAuthorizes = bookAuthorizes;
-	}
+//	public List<AccountBookAuthorize> getBookAuthorizes() {
+//		return bookAuthorizes;
+//	}
+//
+//	public void setBookAuthorizes(List<AccountBookAuthorize> bookAuthorizes) {
+//		this.bookAuthorizes = bookAuthorizes;
+//	}
+//	
+//	public void addBookAuthorize(AccountBookAuthorize bookAuthorize) {
+//		if (this.bookAuthorizes == null) {
+//			bookAuthorizes = new ArrayList<AccountBookAuthorize>();
+//		}
+//		
+//		bookAuthorizes.add(bookAuthorize);
+//	}
 
 	public String getNickName() {
 		return nickName;
@@ -71,17 +77,17 @@ public class EgunUser implements Serializable {
 	public boolean samePassword(String sourcePassword) {
 		boolean same = false;
 		
-		if ( !SU.isEmptyAndNull(sourcePassword) ) {
+		if ( !SU.isEmptyOrNull(sourcePassword) ) {
 			same = sourcePassword.equals(password);
 		}
 		return same;
 	}
 	
-	public Key getOid() {
+	public Long getOid() {
 		return oid;
 	}
 
-	public void setOid(Key oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
 	}
 

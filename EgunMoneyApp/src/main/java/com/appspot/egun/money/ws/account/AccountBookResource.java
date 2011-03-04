@@ -19,12 +19,11 @@ import com.appspot.egun.money.comp.process.AccountBookProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
 import com.appspot.egun.money.comp.utility.SessionManager;
-import com.google.appengine.api.datastore.Key;
 import com.sun.jersey.spi.resource.Singleton;
 
-@Component
+@Component("AccountBookResourceWS")
 @Singleton
-@Path("/ws/{userEmail}/accountBook")
+@Path("/ws/accountBook")
 public class AccountBookResource {
 	
 	@Autowired
@@ -42,7 +41,7 @@ public class AccountBookResource {
 		EgunUser loginUser = SessionManager.getLoginUser(request);
 		
 		AccountBook book = new AccountBook(loginUser, accountBookName);
-		Key oid = null;
+		Long oid = null;
 		try {
 			oid = accountItemProcess.reigsterAccountBook(book);
 			
@@ -58,10 +57,13 @@ public class AccountBookResource {
 	
 	@GET
 	@Path("/getAccountBooks")
-	@Produces()
+	@Produces(MediaType.APPLICATION_JSON)
 	public JSONResponse getAccountBooks() {
 		EgunUser loginUser = SessionManager.getLoginUser(request);
-
+		if (loginUser == null) {
+			return ResponseBuilder.buildEmptyResponse("로그인을 먼저 해야 합니다.");
+		}
+		
 		List<AccountBook> foundBooks = accountItemProcess.findAccountBookByUserEmail(loginUser.getUserEmail());
 		return ResponseBuilder.buildSuccessResponse(foundBooks);
 	}

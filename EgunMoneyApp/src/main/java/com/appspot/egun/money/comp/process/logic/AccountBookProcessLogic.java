@@ -10,7 +10,6 @@ import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.process.AccountBookProcess;
 import com.appspot.egun.money.comp.service.AccountBookService;
-import com.google.appengine.api.datastore.Key;
 
 @Component
 public class AccountBookProcessLogic implements AccountBookProcess {
@@ -19,12 +18,16 @@ public class AccountBookProcessLogic implements AccountBookProcess {
 	private AccountBookService bookService;
 	
 	@Override
-	public Key reigsterAccountBook(AccountBook book) {
+	public Long reigsterAccountBook(AccountBook book) {
 		return null;
 	}
 
 	@Override
 	public List<AccountBook> findAccountBookByUserEmail(String userEmail) {
+		// 권한 - 전체, 보기
+
+		// 해당하는 장부
+		
 		return null;
 	}
 
@@ -34,7 +37,7 @@ public class AccountBookProcessLogic implements AccountBookProcess {
 	}
 
 	@Override
-	public Key registerAccountBookAuthorize(AccountBookAuthorize authorize) {
+	public Long registerAccountBookAuthorize(AccountBookAuthorize authorize) {
 		
 		
 		return null;
