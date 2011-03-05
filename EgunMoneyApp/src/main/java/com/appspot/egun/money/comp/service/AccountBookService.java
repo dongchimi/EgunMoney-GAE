@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
+import com.appspot.egun.money.comp.domain.EgunAuthorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
 
 /**
@@ -20,13 +21,6 @@ public interface AccountBookService {
 	 * @return
 	 */
 	public Long reigsterAccountBook(AccountBook book);
-	
-	/**
-	 * 사용자의 장부 목록 조회
-	 * @param userEmail 사용자 이메일
-	 * @return 장부 목록
-	 */
-	public List<AccountBook> findAccountBookByUserEmail(String userEmail);
 	
 	/**
 	 * 사용자의 기본 장부 조회
@@ -49,4 +43,19 @@ public interface AccountBookService {
 	 * @return
 	 */
 	public boolean hasAccountBookAuthorize(EgunUser user, AccountBook book);
+
+	/**
+	 * 해당하는 권한 목록 조회
+	 * @param userEmail 사용자 email
+	 * @param authorizes 권한목록
+	 * @return 사용자 email과 필요한 권한에 해당하는 목록 조회
+	 */
+	public List<AccountBookAuthorize> findAccountBookAuthorizeByUserEmail(String userEmail, List<EgunAuthorize> authorizes);
+	
+	/**
+	 * id에 해당하는 가계부 조회
+	 * @param bookId
+	 * @return 가계부
+	 */
+	public AccountBook getAccountBook(long bookId);
 }

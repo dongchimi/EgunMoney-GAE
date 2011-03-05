@@ -21,9 +21,9 @@ public class AccountItem {
 	/** id*/
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key oid;
+	private Long oid;
 	
-	/** 지출/수입 날짜 */
+	/** 지출/수입 날짜 yyyyMMdd */
 	@Persistent
 	private String useDate;
 
@@ -59,8 +59,9 @@ public class AccountItem {
 	@Persistent
 	private int installmentPlan;
 	
-	@Persistent(defaultFetchGroup="false")
-	private AccountBook egunAccountBook;
+	/** 가계부 id */
+	@Persistent
+	private long accountBookId;
 	
 	
 	// method ------------------------------------------------------------------
@@ -117,20 +118,12 @@ public class AccountItem {
 		this.useDate = useDate;
 	}
 
-	public Key getOid() {
+	public Long getOid() {
 		return oid;
 	}
 
-	public void setOid(Key oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
-	}
-
-	public AccountBook getEgunAccountBook() {
-		return egunAccountBook;
-	}
-
-	public void setEgunAccountBook(AccountBook egunAccountBook) {
-		this.egunAccountBook = egunAccountBook;
 	}
 
 	public Key getCategoryOid() {
@@ -171,5 +164,13 @@ public class AccountItem {
 
 	public void setInstallmentPlan(int installmentPlan) {
 		this.installmentPlan = installmentPlan;
+	}
+
+	public long getAccountBookId() {
+		return accountBookId;
+	}
+
+	public void setAccountBookId(long accountBookId) {
+		this.accountBookId = accountBookId;
 	}
 }

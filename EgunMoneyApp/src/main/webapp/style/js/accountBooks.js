@@ -3,31 +3,19 @@ $(document).ready(function() {
 });
 
 /**
- * ∞°∞Ë∫Œ ∏Ò∑œ ¡∂»∏
+ * Í∞ÄÍ≥ÑÎ∂Ä Î™©Î°ù Ï°∞Ìöå
  */
 function getAccountBooks() {
-	$.mobile.pageLoading();
-	
 	var url = "/ws/accountBook/getAccountBooks";
-	$.get(url, null, getAccountBooksCallback);
+	get(url, null, getAccountBooksCallback);
 }
 
 function getAccountBooksCallback(response) {
-	$.mobile.pageLoading( true );
-	
-	var jsonResponse = response[0];
-	var statusCode = jsonResponse.statusCode;
-	if (statusCode == "99") {
-		var errorMessage = jsonResponse.message1;
-		alert(errorMessage);
-		return;
-	}
-	
 	var accountBooks = response.resObj;
-
 	for (var idx = 0; idx < accountBooks.length; idx++) {
 		var book = accountBooks[idx];
-		$("#accountBooks").append("<li>" + book.accountBookName +
-								  "</li>");
+		$("#accountBooks").append("<li><h3><a href=\"/accountItem/findAccountItems?bookId=" + book.oid + "\" >" + book.accountBookName + "</a></h3><p>Í∏∞Ï§ÄÏùº : " + book.baseDay + "</p></li>");
 	}
+	
+	$("#accountBooks").listview("refresh");
 }

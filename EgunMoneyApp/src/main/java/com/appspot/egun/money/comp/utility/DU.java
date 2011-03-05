@@ -56,6 +56,28 @@ public class DU {
     private DU() {
     }
 
+    public static String getThisMonthStartDayByBaseDate(String baseDate) {
+//    	String currentYyyyMM = getCurrentDateString("yyyyMM");
+//    	String currentDd = getCurrentDateString("dd");
+//    	
+//    	int baseDateI = NU.getInt( baseDate );
+//    	int todayI = NU.getInt( currentDd );
+//    	
+//    	String startDay = "";
+//    	if (baseDateI > todayI) {
+//    		startDay = currentYyyyMM + currentDd; 
+//    	} else if (baseDateI == todayI) {
+//    		
+//    	}
+    	
+    	return "20110301";
+    }
+    
+    public static String getThisMonthEndDayByBaseDate(String baseDate) {
+    	return "20110331";
+    }
+    
+    
     /**
      * 기본 포멧(yyyyMMdd)으로 된 현재 날짜를 <code>java.lang.String</code>으로 조회한다.
      * <p>수정전 : currentDateString(), getToday()

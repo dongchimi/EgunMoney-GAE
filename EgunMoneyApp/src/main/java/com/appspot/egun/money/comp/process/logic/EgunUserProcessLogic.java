@@ -28,12 +28,13 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 		
 		//기본 가계부 등록
 		AccountBook defaultBook = new AccountBook(user);
+		defaultBook.setDefaultBook(true);
 		Long bookOid = accountBookService.reigsterAccountBook(defaultBook);
 		defaultBook.setOid(bookOid);
 		
 		// 가계부 권한 등록
 		AccountBookAuthorize bookAuthorize = new AccountBookAuthorize(user.getUserEmail(), bookOid);
-		Long authorizeOid = accountBookService.registerAccountBookAuthorize(bookAuthorize);
+		accountBookService.registerAccountBookAuthorize(bookAuthorize);
 		
 		return userOid;
 	}

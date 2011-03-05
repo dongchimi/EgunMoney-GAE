@@ -1,10 +1,11 @@
-package com.appspot.egun.money.ws.account;
+package com.appspot.egun.money.ws.accountbook;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -32,7 +33,7 @@ public class AccountBookResource {
 	@Context
 	private HttpServletRequest request;
 	
-	@GET
+	@POST
 	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONResponse register(@FormParam("accountBookName") String accountBookName,

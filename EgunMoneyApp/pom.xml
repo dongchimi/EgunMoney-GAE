@@ -317,7 +317,7 @@
 	<properties>
 		<downloadSources>true</downloadSources>
 
-		<maven.gae.plugin.version>0.8.2</maven.gae.plugin.version>
+		<maven.gae.plugin.version>0.8.0</maven.gae.plugin.version>
 		<gae.version>1.4.2</gae.version>
 		<gae.application.version>test</gae.application.version>
 		<spring.version>3.0.5.RELEASE</spring.version>

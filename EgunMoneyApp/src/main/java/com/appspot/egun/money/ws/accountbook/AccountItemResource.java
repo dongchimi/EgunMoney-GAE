@@ -1,20 +1,45 @@
-package com.appspot.egun.money.ws.account;
+package com.appspot.egun.money.ws.accountbook;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.appspot.egun.money.comp.domain.AccountItem;
 import com.appspot.egun.money.comp.process.AccountItemProcess;
+import com.appspot.egun.money.comp.utility.JSONResponse;
+import com.appspot.egun.money.comp.utility.ResponseBuilder;
+import com.appspot.egun.money.comp.utility.SessionManager;
 import com.sun.jersey.spi.resource.Singleton;
 
-@Component
+@Component("AccountItemResourcWS")
 @Singleton
-@Path("/ws/{userEmail}/accountItem")
+@Path("/ws/accountItem")
 public class AccountItemResource {
 	
 	@Autowired
 	private AccountItemProcess accountItemProcess;
+	
+	@Context
+	private HttpServletRequest request;
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/findThisMonthAccountItems")
+	public JSONResponse findThisMonthAccountItems() {
+		long currentBookId = SessionManager.getCurrentAccountBookId(request);
+		
+		List<AccountItem> foundItems = accountItemProcess.findThisMonthAccountItems(currentBookId);
+		
+		return ResponseBuilder.buildSuccessResponse(foundItems);
+	}
 	
 //	@GET
 //	@Path("/register")

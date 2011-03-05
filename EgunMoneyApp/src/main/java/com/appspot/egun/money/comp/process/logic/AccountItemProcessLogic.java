@@ -5,34 +5,38 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.domain.AccountItem;
 import com.appspot.egun.money.comp.process.AccountItemProcess;
 import com.appspot.egun.money.comp.service.AccountBookService;
 import com.appspot.egun.money.comp.service.AccountItemService;
-import com.google.appengine.api.datastore.Key;
+import com.appspot.egun.money.comp.utility.DU;
 
 @Component
 public class AccountItemProcessLogic implements AccountItemProcess {
 
 	@Autowired
-	private AccountItemService itemService;
-	
-	@Autowired
 	private AccountBookService bookService;
 	
+	@Autowired
+	private AccountItemService itemService;
+	
 	@Override
-	public Key registerAccountBookItem(AccountItem item) {
+	public Long registerAccountBookItem(AccountItem item) {
 		return itemService.registerAccountBookItem(item);
 	}
 
 	@Override
-	public List<AccountItem> findMyAccountItemByEMail(String userEmail) {
+	public List<AccountItem> findThisMonthAccountItems(long bookId) {
 		
-		// 가계부 권한 조회
-		bookService.findAccountBookByUserEmail(userEmail);
+		AccountBook accountBook = bookService.getAccountBook(bookId);
+		String baseDate = accountBook.getBaseDay();
 		
+		// 기준일 기준으로 한달을 가져옴.
+		String startDay = DU.getThisMonthStartDayByBaseDate(baseDate);
+		String endDay = DU.getThisMonthEndDayByBaseDate(baseDate);
 		
-		return itemService.findMyAccountBookItemByEMail(userEmail);
+		List<AccountItem> foundAccountItems = itemService.findAccountItemsByTerm(bookId, startDay, endDay);
+		return foundAccountItems;
 	}
-
 }

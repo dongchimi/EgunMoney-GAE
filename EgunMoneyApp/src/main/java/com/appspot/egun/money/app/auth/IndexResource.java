@@ -1,4 +1,4 @@
-package com.appspot.egun.money.app.auth.resource;
+package com.appspot.egun.money.app.auth;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

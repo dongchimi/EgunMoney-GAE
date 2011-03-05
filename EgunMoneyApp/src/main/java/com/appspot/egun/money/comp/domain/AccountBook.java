@@ -39,6 +39,10 @@ public class AccountBook {
 	@Persistent
 	private String ownerId;
 	
+	/** ±âº» ºÏ ¿©ºÎ */
+	@Persistent
+	private boolean defaultBook;
+
 	// method ------------------------------------------------------------------
 	public AccountBook(EgunUser user) {
 		initialize(user, null);
@@ -107,5 +111,13 @@ public class AccountBook {
 
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
+	}
+	
+	public boolean isDefaultBook() {
+		return defaultBook;
+	}
+
+	public void setDefaultBook(boolean defaultBook) {
+		this.defaultBook = defaultBook;
 	}
 }
