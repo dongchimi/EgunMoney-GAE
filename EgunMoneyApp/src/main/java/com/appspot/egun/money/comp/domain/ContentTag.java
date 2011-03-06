@@ -1,5 +1,8 @@
 package com.appspot.egun.money.comp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -17,24 +20,34 @@ public class ContentTag {
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private int oid;
+	private Long oid;
 
 	/** 태그명 */
 	@Persistent
 	private String name;
 	
-	@Persistent
-	private AccountItem accountBookItem;
-
 	// method ------------------------------------------------------------------
+	public static List<ContentTag> getTagString(String tagString) {
+		List<ContentTag> tags = new ArrayList<ContentTag>();
+		if (tagString == null || tagString.length() < 1) return tags;
+		
+		String[] tagStrings = tagString.split("/,");
+		for(String tag : tagStrings) {
+			ContentTag contentTag = new ContentTag(tag);
+			tags.add(contentTag);
+		}
+		
+		return tags;
+	}
+	
 	public ContentTag(String tagName) {
 		this.name = tagName;
 	}
-	public int getOid() {
+	public Long getOid() {
 		return oid;
 	}
 
-	public void setOid(int oid) {
+	public void setOid(Long oid) {
 		this.oid = oid;
 	}
 
@@ -44,11 +57,5 @@ public class ContentTag {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-	public AccountItem getAccountBookItem() {
-		return accountBookItem;
-	}
-	public void setAccountBookItem(AccountItem accountBookItem) {
-		this.accountBookItem = accountBookItem;
 	}
 }

@@ -2,5 +2,11 @@
 <datastore-indexes autoGenerate="true">
     <datastore-index kind="EgunUser" ancestor="true">
         <property name="userEmail" direction="asc" />
+        <property name="nickName" direction="asc" />
+    </datastore-index>
+    
+	<datastore-index kind="ACCOUNTITEM" ancestor="false" source="manual">
+        <property name="ACCOUNT_BOOK_ID" direction="asc"/>
+        <property name="USE_DATE" direction="asc"/>
     </datastore-index>
 </datastore-indexes>

@@ -8,8 +8,6 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.google.appengine.api.datastore.Key;
-
 /**
  * 가계부 item
  * @author dklee
@@ -23,9 +21,15 @@ public class AccountItem {
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
 	
+	/** 수입/지출 구분 */
+	private AccountItemDivistion moneyDivsition;
+	
 	/** 지출/수입 날짜 yyyyMMdd */
 	@Persistent
 	private String useDate;
+	
+	/** 내용 */
+	private String because;
 
 	/** 금액 */
 	@Persistent
@@ -33,29 +37,27 @@ public class AccountItem {
 	
 	/** 카테고리 */
 	@Persistent
-	private Key categoryOid;
+	private Long categoryOid;
 	
 	/** 거래처 */
 	@Persistent
-	private Key targetOid; 
+	private Long targetOid; 
 	
 	/** 자산 */
 	@Persistent
-	private Key assetOid;
+	private Long assetOid;
 
 	/** 메모 */
 	@Persistent
 	private String description;
-	
-	/** 태그목록 */
-	@Persistent(mappedBy="accountItem")
-	private List<ContentTag> tags;
-	
+
 	/** 사진  */
 	@Persistent
 	private byte[] photo;
 
-	/** 카드 할부 */
+	/** 
+	 * 할부 
+	 * */
 	@Persistent
 	private int installmentPlan;
 	
@@ -63,29 +65,10 @@ public class AccountItem {
 	@Persistent
 	private long accountBookId;
 	
+	@Persistent
+	private List<Long> tagOids;
 	
 	// method ------------------------------------------------------------------
-	public void setTagString(String tagString) {
-		if (tagString == null || tagString.length() < 1) return;
-		
-		String[] tagStrings = tagString.split("/,");
-		for(String tag : tagStrings) {
-			ContentTag contentTag = new ContentTag(tag);
-			tags.add(contentTag);
-		}
-	}
-	
-	public String getTagString() {
-		if (tags == null || tags.size() == 0) return "";
-		
-		StringBuilder tagBuilder = new StringBuilder();
-		for(ContentTag tag : tags) {
-			tagBuilder.append(tag.getName()).append(", ");
-		}
-		
-		return tagBuilder.toString();
-	}
-	
 	public long getAmount() {
 		return amount;
 	}
@@ -102,14 +85,6 @@ public class AccountItem {
 		this.description = description;
 	}
 
-	public List<ContentTag> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<ContentTag> tags) {
-		this.tags = tags;
-	}
-	
 	public String getUseDate() {
 		return useDate;
 	}
@@ -126,27 +101,27 @@ public class AccountItem {
 		this.oid = oid;
 	}
 
-	public Key getCategoryOid() {
+	public Long getCategoryOid() {
 		return categoryOid;
 	}
 
-	public void setCategoryOid(Key categoryOid) {
+	public void setCategoryOid(Long categoryOid) {
 		this.categoryOid = categoryOid;
 	}
 	
-	public Key getTargetOid() {
+	public Long getTargetOid() {
 		return targetOid;
 	}
 
-	public void setTargetOid(Key targetOid) {
+	public void setTargetOid(Long targetOid) {
 		this.targetOid = targetOid;
 	}
 
-	public Key getAssetOid() {
+	public Long getAssetOid() {
 		return assetOid;
 	}
 
-	public void setAssetOid(Key assetOid) {
+	public void setAssetOid(Long assetOid) {
 		this.assetOid = assetOid;
 	}
 
@@ -172,5 +147,29 @@ public class AccountItem {
 
 	public void setAccountBookId(long accountBookId) {
 		this.accountBookId = accountBookId;
+	}
+
+	public String getBecause() {
+		return because;
+	}
+
+	public void setBecause(String because) {
+		this.because = because;
+	}
+
+	public AccountItemDivistion getMoneyDivsition() {
+		return moneyDivsition;
+	}
+
+	public void setMoneyDivsition(AccountItemDivistion moneyDivsition) {
+		this.moneyDivsition = moneyDivsition;
+	}
+
+	public List<Long> getTagOids() {
+		return tagOids;
+	}
+
+	public void setTagOids(List<Long> tagOids) {
+		this.tagOids = tagOids;
 	}
 }

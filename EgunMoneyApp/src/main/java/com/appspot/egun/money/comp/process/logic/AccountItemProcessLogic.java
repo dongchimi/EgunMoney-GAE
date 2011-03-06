@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.appspot.egun.money.comp.domain.AccountBook;
 import com.appspot.egun.money.comp.domain.AccountItem;
+import com.appspot.egun.money.comp.domain.ContentTag;
 import com.appspot.egun.money.comp.process.AccountItemProcess;
 import com.appspot.egun.money.comp.service.AccountBookService;
 import com.appspot.egun.money.comp.service.AccountItemService;
+import com.appspot.egun.money.comp.service.ContentTagService;
 import com.appspot.egun.money.comp.utility.DU;
 
 @Component
@@ -21,9 +23,20 @@ public class AccountItemProcessLogic implements AccountItemProcess {
 	@Autowired
 	private AccountItemService itemService;
 	
+	@Autowired
+	private ContentTagService tagService;
+	
 	@Override
-	public Long registerAccountBookItem(AccountItem item) {
-		return itemService.registerAccountBookItem(item);
+	public Long registerAccountBookItem(AccountItem item, List<ContentTag> tags) {
+		List<Long> tagOids = null;
+		if (tags != null && !tags.isEmpty()) {
+			tagOids = tagService.registerContentTags(tags);
+			item.setTagOids(tagOids);
+		}
+		
+		Long itemOid = itemService.registerAccountBookItem(item);
+		
+		return itemOid;
 	}
 
 	@Override

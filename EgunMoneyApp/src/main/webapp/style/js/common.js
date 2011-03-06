@@ -17,7 +17,7 @@ function post(url, params, cb) {
 function postGetCallback(response) {
 	$.mobile.pageLoading( true );
 	
-	var jsonResponse = response[0];
+	var jsonResponse = response;
 	var statusCode = jsonResponse.statusCode;
 	if (statusCode == "99") {
 		var errorMessage = jsonResponse.message1;
@@ -25,5 +25,5 @@ function postGetCallback(response) {
 		return;
 	}
 	
-	callback(jsonResponse);
+	callback(jsonResponse.resObj);
 }

@@ -21,6 +21,13 @@ public class SessionManager {
 		
 		return user.getUserEmail();
 	}
+	
+	public static boolean isLogin(HttpServletRequest request) {
+		EgunUser user = getLoginUser(request);
+		if (user == null) return false;
+		
+		return true;
+	}
 
 	public static void setLoginUser(HttpServletRequest request, EgunUser egunUser) {
 		request.getSession().setAttribute(LOGIN_USER, egunUser);

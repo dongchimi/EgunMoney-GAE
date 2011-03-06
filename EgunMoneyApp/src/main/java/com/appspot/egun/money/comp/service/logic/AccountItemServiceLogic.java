@@ -38,17 +38,19 @@ public class AccountItemServiceLogic implements AccountItemService {
 		pm = PMFProvider.getPersistenceManager();
 		
 		try {
-			Query getUserQuery = pm.newQuery( AccountItem.class, "accountBookId == bookIdParam && useDate <= startDayParam && useDate >= endDayParam" );
-			getUserQuery.declareParameters("String bookIdParam");
-			getUserQuery.declareParameters("String startDayParam");
-			getUserQuery.declareParameters("String endDayParam");
+			Query getUserQuery = pm.newQuery( AccountItem.class, "accountBookId == " + bookId + " && useDate <= " + startDay  + " && useDate >= " + endDay );
+			foundItems = (List<AccountItem>) getUserQuery.execute();
+//			Query getUserQuery = pm.newQuery( AccountItem.class, "accountBookId == bookIdParam");
+//			getUserQuery.declareParameters("Long bookIdParam");
 			
-			foundItems = (List<AccountItem>) getUserQuery.execute(bookId, startDay, endDay);
+			foundItems = (List<AccountItem>) getUserQuery.execute(bookId);
 		} catch (JDOObjectNotFoundException e) {
 			throw e;
 		}
 		finally {
-			pm.close();
+			if(!pm.isClosed()) {
+				pm.close();
+			}
 		}
 		
 		return foundItems;

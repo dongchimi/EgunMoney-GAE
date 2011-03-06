@@ -11,4 +11,19 @@ public class NU {
 		
 		return i;
 	}
+	
+	public static int getInt(Long l) {
+		if (l == null) return 0;
+		
+		return l.intValue();
+	}
+	
+	public static Long getLong(String str) {
+		long l = 0;
+		try {
+			l = Long.valueOf(str);
+		} catch (NumberFormatException e) {
+		}
+		return l;
+	}
 }

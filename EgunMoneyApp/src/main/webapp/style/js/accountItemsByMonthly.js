@@ -7,6 +7,7 @@ function getAccountItems() {
 	get(url, null, getAccountItemsCallback);
 }
 
-function getAccountItemsCallback(respose) {
+function getAccountItemsCallback(accountItems) {
 	
+	alert(accountItems);
 }

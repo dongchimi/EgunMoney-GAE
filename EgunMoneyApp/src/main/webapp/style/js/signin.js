@@ -9,8 +9,7 @@ function signin() {
 }
 
 function signInCallback(jsonResponse) {
-	var userEmail = jsonResponse.resObj.userEmail;
-	location.href="/accountBook/" + userEmail + "/getAccountBooks";
+	location.href="/accountBook/getAccountBooks";
 }
 
 function signup() {
@@ -26,7 +25,6 @@ function signup() {
 
 function signupCallback(response) {
 	var goLogin = confirm("회원가입이 완료되었습니다. 바로 로그인 할까요?"); 
-	var resObj = response.resObj;
 	if (goLogin) {
 		signupAfterSignin();
 	} else {
