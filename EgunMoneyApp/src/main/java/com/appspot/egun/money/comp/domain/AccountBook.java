@@ -1,5 +1,6 @@
 package com.appspot.egun.money.comp.domain;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -16,108 +17,129 @@ import com.appspot.egun.money.comp.utility.SU;
  * @author dklee
  * @since 2010.09.01
  */
-@PersistenceCapable(identityType=IdentityType.APPLICATION)
-public class AccountBook {
-	
-	/** 오브젝트 id */
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long oid;
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class AccountBook implements Serializable
+{
 
-	/** 가계부 명 */
-	@Persistent
-	private String accountBookName;
-	
-	/** 기준일 */
-	@Persistent
-	private String baseDay;
-	
-	/** 예산부 */
-//	@Persistent(mappedBy="egunAccountBook")
-//	private BudgetBook budgetBook;
-	
-	@Persistent
-	private String ownerId;
-	
-	/** 기본 북 여부 */
-	@Persistent
-	private boolean defaultBook;
+    /** UID */
+    private static final long serialVersionUID = 1760777222231794180L;
 
-	// method ------------------------------------------------------------------
-	public AccountBook(EgunUser user) {
-		initialize(user, null);
-	}
-	
-	public AccountBook(EgunUser user, String bookName) {
-		initialize(user, bookName);
-	}
-	
-	private void initialize(EgunUser user, String bookName) {
-		ownerId = user.getUserEmail();
-		if (SU.isEmptyOrNull(bookName)) {
-			accountBookName = user.getNickName() + "님의 가계부";
-		} else {
-			accountBookName = bookName;
-		}
- 		baseDay = EgunMoneyConstant.INITIAL_BASE_DATE;
-		
-		// 이번달 예산을 만듦
-		//budgetBook = new BudgetBook(baseDay);
-	}
-	
-	public String getBaseDay() {
-		return baseDay;
-	}
+    /** 오브젝트 id */
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Long oid;
 
-	public void setBaseDay(String baseDay) {
-		DecimalFormat df = new DecimalFormat("00");
-		this.baseDay = df.format(baseDay);
-	}
+    /** 가계부 명 */
+    @Persistent
+    private String accountBookName;
 
-	public Long getOid() {
-		return oid;
-	}
+    /** 기준일 */
+    @Persistent
+    private String baseDay;
 
-	public void setOid(Long oid) {
-		this.oid = oid;
-	}
-//	public AccountBookCategoryGroup getCategoryGroup() {
-//	return categoryGroup;
-//}
-//
-//public void setCategoryGroup(AccountBookCategoryGroup categoryGroup) {
-//	this.categoryGroup = categoryGroup;
-//}
-	
-//	public List<AccountBookItem> getAccountBookItems() {
-//		return accountBookItems;
-//	}
-//
-//	public void setAccountBookItems(List<AccountBookItem> accountBookItems) {
-//		this.accountBookItems = accountBookItems;
-//	}
+    /** 예산부 */
+    //	@Persistent(mappedBy="egunAccountBook")
+    //	private BudgetBook budgetBook;
 
-	public String getAccountBookName() {
-		return accountBookName;
-	}
+    @Persistent
+    private String ownerId;
 
-	public void setAccountBookName(String accountBookName) {
-		this.accountBookName = accountBookName;
-	}
+    /** 기본 북 여부 */
+    @Persistent
+    private boolean defaultBook;
 
-	public String getOwnerId() {
-		return ownerId;
-	}
+    // method ------------------------------------------------------------------
+    public AccountBook( EgunUser user )
+    {
+        initialize( user, null );
+    }
 
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
-	
-	public boolean isDefaultBook() {
-		return defaultBook;
-	}
+    public AccountBook( EgunUser user, String bookName )
+    {
+        initialize( user, bookName );
+    }
 
-	public void setDefaultBook(boolean defaultBook) {
-		this.defaultBook = defaultBook;
-	}
+    private void initialize( EgunUser user, String bookName )
+    {
+        ownerId = user.getUserEmail();
+        if ( SU.isEmptyOrNull( bookName ) )
+        {
+            accountBookName = user.getNickName() + "님의 가계부";
+        }
+        else
+        {
+            accountBookName = bookName;
+        }
+        baseDay = EgunMoneyConstant.INITIAL_BASE_DATE;
+
+        // 이번달 예산을 만듦
+        //budgetBook = new BudgetBook(baseDay);
+    }
+
+    public String getBaseDay()
+    {
+        return baseDay;
+    }
+
+    public void setBaseDay( String baseDay )
+    {
+        DecimalFormat df = new DecimalFormat( "00" );
+        this.baseDay = df.format( baseDay );
+    }
+
+    public Long getOid()
+    {
+        return oid;
+    }
+
+    public void setOid( Long oid )
+    {
+        this.oid = oid;
+    }
+
+    //	public AccountBookCategoryGroup getCategoryGroup() {
+    //	return categoryGroup;
+    //}
+    //
+    //public void setCategoryGroup(AccountBookCategoryGroup categoryGroup) {
+    //	this.categoryGroup = categoryGroup;
+    //}
+
+    //	public List<AccountBookItem> getAccountBookItems() {
+    //		return accountBookItems;
+    //	}
+    //
+    //	public void setAccountBookItems(List<AccountBookItem> accountBookItems) {
+    //		this.accountBookItems = accountBookItems;
+    //	}
+
+    public String getAccountBookName()
+    {
+        return accountBookName;
+    }
+
+    public void setAccountBookName( String accountBookName )
+    {
+        this.accountBookName = accountBookName;
+    }
+
+    public String getOwnerId()
+    {
+        return ownerId;
+    }
+
+    public void setOwnerId( String ownerId )
+    {
+        this.ownerId = ownerId;
+    }
+
+    public boolean isDefaultBook()
+    {
+        return defaultBook;
+    }
+
+    public void setDefaultBook( boolean defaultBook )
+    {
+        this.defaultBook = defaultBook;
+    }
 }

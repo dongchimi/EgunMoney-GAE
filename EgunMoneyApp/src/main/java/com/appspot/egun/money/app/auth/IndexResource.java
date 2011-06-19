@@ -14,19 +14,20 @@ import com.sun.jersey.spi.resource.Singleton;
 
 @Component
 @Singleton
-
 @Produces("text/html")
 @Path("/")
-public class IndexResource {
- 
-	/** 로거 */
-	private static final Logger logger = Logger.getLogger(IndexResource.class.getSimpleName());
-	
-	@GET
-	@Path("/index")
-	public Viewable index() {
-		logger.log(Level.WARNING, "call IndexResource");
-		return new Viewable("/auth/signin.html");
-	}
+public class IndexResource
+{
+
+    /** 로거 */
+    private static final Logger logger = Logger.getLogger( IndexResource.class.getSimpleName() );
+
+    @GET
+    @Path("/index")
+    public Viewable index()
+    {
+        logger.log( Level.WARNING, "call IndexResource" );
+        return new Viewable( "/auth/signin.html" );
+    }
 
 }

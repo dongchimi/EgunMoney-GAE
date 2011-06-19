@@ -15,87 +15,98 @@ import com.appspot.egun.money.comp.utility.SU;
  * @author dklee
  * @since 2010.08.31
  */
-@PersistenceCapable(identityType=IdentityType.APPLICATION)
-public class EgunUser implements Serializable {
-	
-	/** UID */
-	private static final long serialVersionUID = 924101381822315782L;
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class EgunUser implements Serializable
+{
 
-	/** 오브젝트 id */
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long oid;
-	
-	/** 비밀번호 */
-	@Persistent
-	private String password;
-	
-	/** 이메일 */
-	@Persistent
-	private String userEmail;
-	
-	/** 별명 */
-	@Persistent
-	private String nickName;
-	
-	/** 가계부 사용 권한 */
-	//private List<AccountBookAuthorize> bookAuthorizes;
-	
-	// method ------------------------------------------------------------------
-//	public List<AccountBookAuthorize> getBookAuthorizes() {
-//		return bookAuthorizes;
-//	}
-//
-//	public void setBookAuthorizes(List<AccountBookAuthorize> bookAuthorizes) {
-//		this.bookAuthorizes = bookAuthorizes;
-//	}
-//	
-//	public void addBookAuthorize(AccountBookAuthorize bookAuthorize) {
-//		if (this.bookAuthorizes == null) {
-//			bookAuthorizes = new ArrayList<AccountBookAuthorize>();
-//		}
-//		
-//		bookAuthorizes.add(bookAuthorize);
-//	}
+    /** UID */
+    private static final long serialVersionUID = -8986058610180702616L;
 
-	public String getNickName() {
-		return nickName;
-	}
+    /** 오브젝트 id */
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Long oid;
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
+    /** 비밀번호 */
+    @Persistent
+    private String password;
 
-	public String getPassword() {
-		return password;
-	}
+    /** 이메일 */
+    @Persistent
+    private String userEmail;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public boolean samePassword(String sourcePassword) {
-		boolean same = false;
-		
-		if ( !SU.isEmptyOrNull(sourcePassword) ) {
-			same = sourcePassword.equals(password);
-		}
-		return same;
-	}
-	
-	public Long getOid() {
-		return oid;
-	}
+    /** 별명 */
+    @Persistent
+    private String nickName;
 
-	public void setOid(Long oid) {
-		this.oid = oid;
-	}
+    /** 가계부 사용 권한 */
+    //private List<AccountBookAuthorize> bookAuthorizes;
 
-	public String getUserEmail() {
-		return userEmail;
-	}
+    // method ------------------------------------------------------------------
+    //	public List<AccountBookAuthorize> getBookAuthorizes() {
+    //		return bookAuthorizes;
+    //	}
+    //
+    //	public void setBookAuthorizes(List<AccountBookAuthorize> bookAuthorizes) {
+    //		this.bookAuthorizes = bookAuthorizes;
+    //	}
+    //	
+    //	public void addBookAuthorize(AccountBookAuthorize bookAuthorize) {
+    //		if (this.bookAuthorizes == null) {
+    //			bookAuthorizes = new ArrayList<AccountBookAuthorize>();
+    //		}
+    //		
+    //		bookAuthorizes.add(bookAuthorize);
+    //	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+    public String getNickName()
+    {
+        return nickName;
+    }
+
+    public void setNickName( String nickName )
+    {
+        this.nickName = nickName;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword( String password )
+    {
+        this.password = password;
+    }
+
+    public boolean samePassword( String sourcePassword )
+    {
+        boolean same = false;
+
+        if ( !SU.isEmptyOrNull( sourcePassword ) )
+        {
+            same = sourcePassword.equals( password );
+        }
+        return same;
+    }
+
+    public Long getOid()
+    {
+        return oid;
+    }
+
+    public void setOid( Long oid )
+    {
+        this.oid = oid;
+    }
+
+    public String getUserEmail()
+    {
+        return userEmail;
+    }
+
+    public void setUserEmail( String userEmail )
+    {
+        this.userEmail = userEmail;
+    }
 }

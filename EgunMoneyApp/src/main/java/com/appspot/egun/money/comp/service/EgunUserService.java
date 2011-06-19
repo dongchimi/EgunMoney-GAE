@@ -7,13 +7,15 @@ import com.appspot.egun.money.comp.domain.EgunUser;
  * @author dklee
  * @since 2010.09.03
  */
-public interface EgunUserService {
-	
-	public Long registerUser(EgunUser user);
-	
-	public boolean hasEgunUser(EgunUser user);
+public interface EgunUserService
+{
+    public Long registerUser( EgunUser user );
 
-	public EgunUser getUserByEmail(String email) throws RuntimeException;
-	
-	public EgunUser getUserByNickName(String nickName) throws RuntimeException;
+    public boolean hasEgunUser( EgunUser user );
+
+    public EgunUser getUserByEmail( String email )
+        throws RuntimeException;
+
+    public EgunUser getUserByNickName( String nickName )
+        throws RuntimeException;
 }

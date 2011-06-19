@@ -11,27 +11,36 @@ import com.appspot.egun.money.comp.service.EgunAccountBookService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
 @Component
-public class EgunAccountBookServiceLogic implements EgunAccountBookService {
+public class EgunAccountBookServiceLogic
+    implements EgunAccountBookService
+{
+    /** 로거 */
+    private static final Logger logger = Logger.getLogger( EgunAccountBookServiceLogic.class.getSimpleName() );
 
-	/** 로거 */
-	private static final Logger logger = Logger.getLogger(EgunAccountBookServiceLogic.class.getSimpleName());
-	
-	private PersistenceManager pm = null;
-	
-	@Override
-	public Long createEgunAccountBook(AccountBook accountBook) throws RuntimeException {
-		
-		pm = PMFProvider.getPersistenceManager();
-		
-		try {
-			pm.makePersistent(accountBook);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		} finally {
-			if(!pm.isClosed()) {
-				pm.close();
-			}
-		}
-		return accountBook.getOid();
-	}
+    private PersistenceManager pm = null;
+
+    @Override
+    public Long createEgunAccountBook( AccountBook accountBook )
+        throws RuntimeException
+    {
+
+        pm = PMFProvider.getPersistenceManager();
+
+        try
+        {
+            pm.makePersistent( accountBook );
+        }
+        catch ( Exception e )
+        {
+            throw new RuntimeException( e );
+        }
+        finally
+        {
+            if ( !pm.isClosed() )
+            {
+                pm.close();
+            }
+        }
+        return accountBook.getOid();
+    }
 }

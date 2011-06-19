@@ -5,20 +5,22 @@ package com.appspot.egun.money.comp.domain;
  * @author dongchimi
  */
 public enum AccountItemDivistion {
-	IN("수입"),
-	OUT("지출");
-	
-	private String korean;
-	
-	private AccountItemDivistion(String korean) {
-		this.korean = korean;
-	}
+    IN("수입"), OUT("지출");
 
-	public String getKorean() {
-		return korean;
-	}
+    private String korean;
 
-	public void setKorean(String korean) {
-		this.korean = korean;
-	}
+    private AccountItemDivistion( String korean )
+    {
+        this.korean = korean;
+    }
+
+    public String getKorean()
+    {
+        return korean;
+    }
+
+    public void setKorean( String korean )
+    {
+        this.korean = korean;
+    }
 }

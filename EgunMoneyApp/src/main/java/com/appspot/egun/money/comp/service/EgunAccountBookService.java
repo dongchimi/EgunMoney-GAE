@@ -7,12 +7,13 @@ import com.appspot.egun.money.comp.domain.AccountBook;
  * @author dklee
  * @since 2010.09.03
  */
-public interface EgunAccountBookService {
-	
-	/**
-	 * 啊拌何 积己
-	 * @param accountBook 啊拌何
-	 * @return
-	 */
-	public Long createEgunAccountBook(AccountBook accountBook) throws RuntimeException;
+public interface EgunAccountBookService
+{
+    /**
+     * 啊拌何 积己
+     * @param accountBook 啊拌何
+     * @return
+     */
+    public Long createEgunAccountBook( AccountBook accountBook )
+        throws RuntimeException;
 }

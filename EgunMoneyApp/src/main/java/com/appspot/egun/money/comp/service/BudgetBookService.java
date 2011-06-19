@@ -6,6 +6,7 @@ package com.appspot.egun.money.comp.service;
  * @since 2010.09.03
  *
  */
-public interface BudgetBookService {
+public interface BudgetBookService
+{
 
 }

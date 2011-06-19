@@ -23,57 +23,37 @@ import com.sun.jersey.spi.resource.Singleton;
 @Component("AccountBookResourceWS")
 @Singleton
 @Path("/ws/accountBook")
-public class AccountBookResource {
-	
-	@Autowired
-	private AccountBookProcess accountItemProcess;
+public class AccountBookResource
+{
+    @Autowired
+    private AccountBookProcess accountItemProcess;
 
-	@Context
-	private HttpServletRequest request;
-	
-//	@POST
-//	@Path("/register")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public JSONResponse register(@FormParam("accountBookName") String accountBookName,
-//								 @FormParam("baseDay") String baseDay ) {
-//		
-//		EgunUser loginUser = SessionManager.getLoginUser(request);
-//		
-//		AccountBook book = new AccountBook(loginUser, accountBookName);
-//		Long oid = null;
-//		try {
-//			oid = accountItemProcess.reigsterAccountBook(book);
-//			
-//			// 권한처리
-//			
-//		} catch (Exception e) {
-//			return ResponseBuilder.buildFailResponse(e);
-//		}
-//		
-//		book.setOid(oid);
-//		return ResponseBuilder.buildSuccessResponse(book);
-//	}
-	
-	@GET
-	@Path("/getAccountBooks")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse getAccountBooks() {
-		EgunUser loginUser = SessionManager.getLoginUser(request);
-		if (loginUser == null) {
-			return ResponseBuilder.buildEmptyResponse("로그인을 먼저 해야 합니다.");
-		}
-		
-		List<AccountBook> foundBooks = accountItemProcess.findAccountBookByUserEmail(loginUser.getUserEmail());
-		return ResponseBuilder.buildSuccessResponse(foundBooks);
-	}
-	
-	@GET
-	@Path("/getDefaultAccountBook")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse getDefaultAccountBook() {
-		EgunUser loginUser = SessionManager.getLoginUser(request);
-		
-		AccountBook foundBook = accountItemProcess.findDefaultAccountBookByUserEmail(loginUser.getUserEmail());
-		return ResponseBuilder.buildSuccessResponse(foundBook);
-	}
+    @Context
+    private HttpServletRequest request;
+
+    @GET
+    @Path("/getAccountBooks")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONResponse getAccountBooks()
+    {
+        EgunUser loginUser = SessionManager.getLoginUser( request );
+        if ( loginUser == null )
+        {
+            return ResponseBuilder.buildEmptyResponse( "로그인을 먼저 해야 합니다." );
+        }
+
+        List<AccountBook> foundBooks = accountItemProcess.findAccountBookByUserEmail( loginUser.getUserEmail() );
+        return ResponseBuilder.buildSuccessResponse( foundBooks );
+    }
+
+    @GET
+    @Path("/getDefaultAccountBook")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONResponse getDefaultAccountBook()
+    {
+        EgunUser loginUser = SessionManager.getLoginUser( request );
+
+        AccountBook foundBook = accountItemProcess.findDefaultAccountBookByUserEmail( loginUser.getUserEmail() );
+        return ResponseBuilder.buildSuccessResponse( foundBook );
+    }
 }

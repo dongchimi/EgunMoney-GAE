@@ -9,21 +9,24 @@ import com.appspot.egun.money.comp.process.TargetProcess;
 import com.google.appengine.api.datastore.Key;
 
 @Component
-public class TargetProcessLogic implements TargetProcess {
+public class TargetProcessLogic
+    implements TargetProcess
+{
+    @Override
+    public Long registerTarget( Target target )
+    {
+        return null;
+    }
 
-	@Override
-	public Key registerTarget(Target target) {
-		return null;
-	}
+    @Override
+    public List<Target> findTargetByUserEmail( String userEmail )
+    {
+        return null;
+    }
 
-	@Override
-	public List<Target> findTargetByUserEmail(String userEmail) {
-		return null;
-	}
-
-	@Override
-	public Target getTargetByKey(Key key) {
-		return null;
-	}
-
+    @Override
+    public Target getTargetByKey( Key key )
+    {
+        return null;
+    }
 }

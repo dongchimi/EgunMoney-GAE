@@ -5,7 +5,7 @@ package com.appspot.egun.money.comp.constant;
  * @author dklee
  *
  */
-public class EgunMoneyConstant {
+public class EgunMoneyConstant { 
 	
 	/** 가계부 기본 기준 날짜*/
 	public static final String INITIAL_BASE_DATE = "25";
