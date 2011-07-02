@@ -8,23 +8,28 @@ import net.sf.json.JSONSerializer;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
-public class JSONResponseValueProcessor implements JsonValueProcessor {
+public class JSONResponseValueProcessor
+    implements JsonValueProcessor
+{
 
-	/** 로거 */
-	private static final Logger logger = Logger.getLogger(JSONResponseValueProcessor.class.getSimpleName());
-	
-	@Override
-	public Object processArrayValue(Object value, JsonConfig jsonConfig) {
-		return process( value, jsonConfig);
-	}
+    /** 로거 */
+    private static final Logger logger = Logger.getLogger( JSONResponseValueProcessor.class.getSimpleName() );
 
-	@Override
-	public Object processObjectValue(String key, Object value, JsonConfig jsonConfig) {
-		return process (value, jsonConfig);
-	}
-	
-	private Object process(Object value, JsonConfig jsonConfig) {
-		logger.log(Level.WARNING, "JSONResponseValueProcessor call " + value);
-		return JSONObject.fromObject( JSONSerializer.toJSON(value));
-	}
+    @Override
+    public Object processArrayValue( Object value, JsonConfig jsonConfig )
+    {
+        return process( value, jsonConfig );
+    }
+
+    @Override
+    public Object processObjectValue( String key, Object value, JsonConfig jsonConfig )
+    {
+        return process( value, jsonConfig );
+    }
+
+    private Object process( Object value, JsonConfig jsonConfig )
+    {
+        logger.log( Level.WARNING, "JSONResponseValueProcessor call " + value );
+        return JSONObject.fromObject( JSONSerializer.toJSON( value ) );
+    }
 }

@@ -1,43 +1,32 @@
-function signin() {
+function SignIn() {}
+
+SignIn.userEmail_Click = function() {
+	if (event.keyCode != 13) return;
+	
+	SignIn.signin_Click();
+};
+
+SignIn.password_Click = function() {
+	if (event.keyCode != 13) return;
+	
+	SignIn.signin_Click();
+};
+
+SignIn.signin_Click = function(){
+	var userEmail = $("#signin_userEmail").val();
+	var password = $("#signin_password").val();
+	if (StringUtil.isEmpty( userEmail )) return alert("이름 또는 이메일을 입력해주세요.");
+	if (StringUtil.isEmpty( password )) return alert("비밀번호를 입력해주세요.");
+		
 	var url = "/ws/auth/signin";
 	var params = {
-			userEmail : $("#signin_userEmail").val(), 
-			password : $("#signin_password").val()
-	};	
+			"userEmail" : userEmail, 
+			"password" : password
+	};
 	
 	post(url, params, signInCallback);
 }
 
 function signInCallback(jsonResponse) {
 	location.href="/accountBook/getAccountBooks";
-}
-
-function signup() {
-	var url = "/ws/signup/register";
-	var params = {
-			nickName : $("#signup_nickName").val(),
-			userEmail : $("#signup_userEmail").val(),
-			password : $("#signup_password").val()
-	};
-	
-	post(url, params, signupCallback);
-}
-
-function signupCallback(response) {
-	var goLogin = confirm("회원가입이 완료되었습니다. 바로 로그인 할까요?"); 
-	if (goLogin) {
-		signupAfterSignin();
-	} else {
-		location.href="/index";
-	}
-}
-
-function signupAfterSignin() {
-	var url = "/ws/auth/signin";
-	var params = {
-			userEmail : $("#signup_userEmail").val(), 
-			password : $("#signup_password").val()
-	};	
-	
-	post(url, params, signInCallback);
 }

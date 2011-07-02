@@ -12,32 +12,40 @@ import com.appspot.egun.money.comp.service.ContentTagService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
 @Component
-public class ContentTagServiceLogic implements ContentTagService {
-	
-	private PersistenceManager pm = null;
-	
-	@Override
-	public Long registerContentTag(ContentTag tag) {
-		try {
-			pm = PMFProvider.get().getPersistenceManager();
-			pm.makePersistent(tag);
-		} finally {
-			if(!pm.isClosed()) {
-				pm.close();
-			}
-		}
-		return tag.getOid();
-	}
+public class ContentTagServiceLogic
+    implements ContentTagService
+{
+    private PersistenceManager pm = null;
 
-	@Override
-	public List<Long> registerContentTags(List<ContentTag> tags) {
-		List<Long> oids = new ArrayList<Long>();
-		
-		for (ContentTag tag : tags) {
-			Long oid = registerContentTag(tag);
-			oids.add( oid );
-		}
-		
-		return oids;
-	}
+    @Override
+    public Long registerContentTag( ContentTag tag )
+    {
+        try
+        {
+            pm = PMFProvider.get().getPersistenceManager();
+            pm.makePersistent( tag );
+        }
+        finally
+        {
+            if ( !pm.isClosed() )
+            {
+                pm.close();
+            }
+        }
+        return tag.getOid();
+    }
+
+    @Override
+    public List<Long> registerContentTags( List<ContentTag> tags )
+    {
+        List<Long> oids = new ArrayList<Long>();
+
+        for ( ContentTag tag : tags )
+        {
+            Long oid = registerContentTag( tag );
+            oids.add( oid );
+        }
+
+        return oids;
+    }
 }

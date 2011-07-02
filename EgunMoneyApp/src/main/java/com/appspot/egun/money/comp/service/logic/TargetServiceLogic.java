@@ -9,24 +9,28 @@ import com.appspot.egun.money.comp.service.TargetService;
 import com.google.appengine.api.datastore.Key;
 
 @Component
-public class TargetServiceLogic implements TargetService {
+public class TargetServiceLogic
+    implements TargetService
+{
+    @Override
+    public Key registerTarget( Target target )
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public Key registerTarget(Target target) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Target> findTargetByUserEmail( String userEmail )
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public List<Target> findTargetByUserEmail(String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Target getTargetByKey(Key key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Target getTargetByKey( Key key )
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

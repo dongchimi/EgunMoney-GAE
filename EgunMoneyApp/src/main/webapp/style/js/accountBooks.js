@@ -10,10 +10,14 @@ function getAccountBooks() {
 	get(url, null, getAccountBooksCallback);
 }
 
+/**
+ * 가계부 목록 조회 콜
+ * @param accountBooks
+ */
 function getAccountBooksCallback(accountBooks) {
 	for (var idx = 0; idx < accountBooks.length; idx++) {
 		var book = accountBooks[idx];
-		$("#accountBooks").append("<li><h3><a href=\"/accountItem/findAccountItems?bookId=" + book.oid + "\" >" + book.accountBookName + "</a></h3><p>기준일 : " + book.baseDay + "</p></li>");
+		$("#accountBooks").append("<li><h3><a href='/accountItem/findAccountItems?bookId=" + book.oid + "' >" + book.accountBookName + "</a></h3><p>기준일 : " + book.baseDay + "</p></li>");
 	}
 	
 	$("#accountBooks").listview("refresh");
@@ -48,7 +52,9 @@ function registerAccountItem() {
 	};
 	post(url, params, registerAccountItemCallback);
 }
-
-function registerAccountItemCallback(response) {
+/**
+ * 가계부 등록 후 콜백
+ */
+function registerAccountItemCallback() {
 	location.href="/accountItem/findAccountItems";
 }

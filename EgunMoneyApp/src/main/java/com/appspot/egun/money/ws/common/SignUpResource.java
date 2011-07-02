@@ -24,39 +24,43 @@ import com.sun.jersey.spi.resource.Singleton;
 @Component
 @Singleton
 @Path("/ws/signup")
-public class SignUpResource {
-	
-	@Autowired
-	private EgunUserProcess egunUserProcess;
-	
-	@POST
-	@Path("/register")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse register(@FormParam("userEmail") String userEmail,
-							  @FormParam("password") String password,
-							  @FormParam("nickName") String nickName) {
-		if ( !SignUpValidator.hasRequiredSingupParams(nickName, userEmail, password)) {
-			return ResponseBuilder.buildEmptyResponse("회원 가입에 필요한 항목이 없습니다.");
-		}
+public class SignUpResource
+{
 
-		boolean existUserEmail = egunUserProcess.existEmail(userEmail);
-		if (existUserEmail) {
-			return ResponseBuilder.buildEmptyResponse("이미 존재하는 이메일입니다.");
-		}
-		
-		boolean existNickName = egunUserProcess.existNickName(nickName);
-		if (existNickName) {
-			return ResponseBuilder.buildEmptyResponse("이미 존재하는 이름입니다.");
-		}
-		
-		EgunUser user = new EgunUser();
-		user.setUserEmail(userEmail);
-		user.setNickName(nickName);
-		user.setPassword(password);
-		
-		Long oid = egunUserProcess.registerUser(user);
-		user.setOid(oid);
-		
-		return ResponseBuilder.buildSuccessResponse(user);
-	}
+    @Autowired
+    private EgunUserProcess egunUserProcess;
+
+    @POST
+    @Path("/register")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONResponse register( @FormParam("userEmail") String userEmail, @FormParam("password") String password,
+                                  @FormParam("nickName") String nickName )
+    {
+        if ( !SignUpValidator.hasRequiredSingupParams( nickName, userEmail, password ) )
+        {
+            return ResponseBuilder.buildEmptyResponse( "회원 가입에 필요한 항목이 없습니다." );
+        }
+
+        boolean existUserEmail = egunUserProcess.existEmail( userEmail );
+        if ( existUserEmail )
+        {
+            return ResponseBuilder.buildEmptyResponse( "이미 존재하는 이메일입니다." );
+        }
+
+        boolean existNickName = egunUserProcess.existNickName( nickName );
+        if ( existNickName )
+        {
+            return ResponseBuilder.buildEmptyResponse( "이미 존재하는 이름입니다." );
+        }
+
+        EgunUser user = new EgunUser();
+        user.setUserEmail( userEmail );
+        user.setNickName( nickName );
+        user.setPassword( password );
+
+        Long oid = egunUserProcess.registerUser( user );
+        user.setOid( oid );
+
+        return ResponseBuilder.buildSuccessResponse( user );
+    }
 }

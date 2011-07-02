@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 	http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-	<localRepository>D:\PRIVATE_WORK\repo</localRepository>
+	<localRepository>/Users/dongchimi/dev_workspace/Egun/repo</localRepository>
 
 	<servers>
 		<server>
@@ -32,12 +32,16 @@
 					<name>Java.net Maven 1 Repository (legacy)</name>
 					<url>http://download.java.net/maven/1</url>
 				</repository>
+				<repository>
+					<id>maven-gae-plugin-repo</id>
+					<name>maven-gae-plugin repo</name>
+					<url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
+				</repository>
 			</repositories>
 
-			<!-- 
 			<pluginRepositories>
 				<pluginRepository>
-					<id>maven-gae-plugin-repo</id>
+					<id>maven-gae-plugin-repo-plugin</id>
 					<name>maven-gae-plugin repository</name>
 					<url>http://maven-gae-plugin.googlecode.com/svn/repository</url>
 				</pluginRepository>
@@ -46,7 +50,6 @@
 					<url>http://www.datanucleus.org/downloads/maven2/</url>
 				</pluginRepository>
 			</pluginRepositories>
-			 -->
 		</profile>
 	</profiles>
 
