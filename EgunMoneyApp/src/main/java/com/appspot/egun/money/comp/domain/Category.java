@@ -3,9 +3,11 @@ package com.appspot.egun.money.comp.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 /**
  * 분류 예) 식비, 주거통신...
@@ -20,7 +22,8 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 78595356383234132L;
 
 	/** 오브젝트 id */
-	@Persistent
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
 
 	/** 분류 명 */

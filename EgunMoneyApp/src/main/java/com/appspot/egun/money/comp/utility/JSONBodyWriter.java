@@ -25,73 +25,54 @@ import com.appspot.egun.money.utility.json.JSONResponseValueProcessor;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
-public class JSONBodyWriter
-    implements MessageBodyWriter<Object>
-{
+public class JSONBodyWriter implements MessageBodyWriter<Object> {
 
-    /** 로거 */
-    private static final Logger logger = Logger.getLogger( JSONBodyWriter.class.getSimpleName() );
+	/** 로거 */
+	private static final Logger logger = Logger.getLogger(JSONBodyWriter.class.getSimpleName());
 
-    private JsonConfig jsonConfig;
+	private JsonConfig jsonConfig;
 
-    public JSONBodyWriter()
-    {
-        this.jsonConfig = new JsonConfig();
-        this.jsonConfig.registerJsonValueProcessor( java.util.Date.class, new DateJsonValuerocessor() );
-        this.jsonConfig.registerJsonValueProcessor( com.appspot.egun.money.comp.utility.JSONResponse.class,
-                                                    new JSONResponseValueProcessor() );
-    }
+	public JSONBodyWriter() {
+		this.jsonConfig = new JsonConfig();
+		this.jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValuerocessor());
+		this.jsonConfig.registerJsonValueProcessor(com.appspot.egun.money.comp.utility.JSONResponse.class,
+				new JSONResponseValueProcessor());
+	}
 
-    @Override
-    public boolean isWriteable( Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType )
-    {
-        return true;
-    }
+	@Override
+	public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return true;
+	}
 
-    @Override
-    public long getSize( Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType )
-    {
-        return -1;
-    }
+	@Override
+	public long getSize(Object t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+		return -1;
+	}
 
-    @Override
-    public void writeTo( Object object, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
-                         MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream )
-        throws IOException, WebApplicationException
-    {
+	@Override
+	public void writeTo(Object object, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+			MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException,
+			WebApplicationException {
 
-        String result;
-        if ( object == null )
-        {
-            result = "";
-        }
-        else if ( object instanceof String )
-        {
-            result = (String) object;
-        }
-        else if ( object instanceof JSONObject )
-        {
-            result = ( (JSONObject) object ).toString();
-        }
-        else if ( object instanceof List )
-        {
-            result = ( JSONArray.fromObject( object, jsonConfig ) ).toString();
-        }
-        else if ( object.getClass().isArray() )
-        {
-            result = ( JSONArray.fromObject( object, jsonConfig ) ).toString();
-        }
-        else if ( object instanceof JSONResponse )
-        {
-            logger.log( Level.WARNING, "result type is JSONResponse " );
-            logger.log( Level.WARNING, "json " + ( JSONSerializer.toJSON( object ) ).toString() );
-            result = ( JSONSerializer.toJSON( object ) ).toString();
-        }
-        else
-        {
-            result = ( JSONArray.fromObject( object, jsonConfig ) ).toString();
-        }
+		String result;
+		if (object == null) {
+			result = "";
+		} else if (object instanceof String) {
+			result = (String) object;
+		} else if (object instanceof JSONObject) {
+			result = ((JSONObject) object).toString();
+		} else if (object instanceof List) {
+			result = (JSONArray.fromObject(object, jsonConfig)).toString();
+		} else if (object.getClass().isArray()) {
+			result = (JSONArray.fromObject(object, jsonConfig)).toString();
+		} else if (object instanceof JSONResponse) {
+			logger.log(Level.WARNING, "result type is JSONResponse ");
+			logger.log(Level.WARNING, "json " + (JSONSerializer.toJSON(object)).toString());
+			result = (JSONSerializer.toJSON(object)).toString();
+		} else {
+			result = (JSONArray.fromObject(object, jsonConfig)).toString();
+		}
 
-        entityStream.write( result.getBytes( "UTF-8" ) );
-    }
+		entityStream.write(result.getBytes("UTF-8"));
+	}
 }

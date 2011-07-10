@@ -9,27 +9,25 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- * 분류 예) 식비, 주거통신...
+ * 이건머니 설정
  * 
- * @author dklee
- * @since 2011.07.10
+ * @author 이동규
+ * @since 2011.02.04
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class DetailCategory implements Serializable {
+public class EgunMoneyPreference implements Serializable {
 
 	/** UID */
-	private static final long serialVersionUID = 78595356383234132L;
+	private static final long serialVersionUID = -3143617958793225304L;
 
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
-
-	/** 카테고리 명 */
+	
+	/** 자동 로그인 여부*/
 	@Persistent
-	private String name;
-
-	// method ------------------------------------------------------------------
+	private boolean autoSignin = false;
 
 	public Long getOid() {
 		return oid;
@@ -39,11 +37,11 @@ public class DetailCategory implements Serializable {
 		this.oid = oid;
 	}
 
-	public String getName() {
-		return name;
+	public boolean isAutoSignin() {
+		return autoSignin;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAutoSignin(boolean autoSignin) {
+		this.autoSignin = autoSignin;
 	}
 }

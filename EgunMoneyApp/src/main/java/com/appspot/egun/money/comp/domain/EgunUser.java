@@ -38,6 +38,10 @@ public class EgunUser implements Serializable {
 	/** 별명 */
 	@Persistent
 	private String nickName;
+	
+	/** 인증 토큰 */
+	@Persistent
+	private String authToken;
 
 	public boolean samePassword(String sourcePassword) {
 		boolean same = false;
@@ -78,5 +82,13 @@ public class EgunUser implements Serializable {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+
+	public String getAuthToken() {
+		return authToken;
+	}
+
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
 	}
 }

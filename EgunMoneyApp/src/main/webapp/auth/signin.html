@@ -2,30 +2,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>이건머니 로그인</title>
-    <!-- 
-    <link rel="stylesheet" href="/style/framework/css/jquery.mobile-1.0a3.min.css" />
-    <script src="/style/framework/jquery.mobile-1.0a3.min.js"></script>
-    -->
-    <script src="/style/framework/jquery-1.5.1.min.js"></script>
-    <script src="/style/js/common.js"></script>
-    <script src="/style/js/signin.js"></script>
+    <title>로그인 : 이건머니</title>
+	<script src="../script/EgunCommon.js"></script>
+	<script src="../script/auth/Signin.js"></script>
 </head>
 <body>
-<div>
+<div data-role="page">
 	<div>
 	    <h1>로그인</h1>
 	</div>
-	
 	<div>
-		<div>
-			<label for="userEmail">이름 또는 이메일 </label>
-			<input type="email" id="signin_userEmail" onclick="SignIn.userEmail_Click()"/><br />
-			<label for="password">비밀번호</label>
-			<input type="password" id="signin_password" onclick="SignIn.password_Click()" /><br />
+		<div data-role="fieldcontain">
+			<label for="userEmail">이름 또는 이메일 </label><input type="email" id="signin_userEmail" /><br />
+			<label for="password">비밀번호</label><input type="password" id="signin_password" /><br />
+			<label for="autoSignin">자동 로그인</label>
+			<select name="autoSignin" id="autoSignin" data-role="slider">
+				<option value="off">안한다</option>
+				<option value="on">한다</option>
+			</select>
 			<div>
-		    	<a href="javascript:;" data-role="button" data-theme="b" onclick="SingIn.signin_Click()">로그인</a>
-		    	<a href="/signup">회원가입</a>
+		    	<a href="javascript:;"  onclick="Signin.signin_Click()" data-role="button" data-theme="b">로그인</a>
+		    	<a href="./signup.html" data-role="button">회원가입</a>
 		    </div>
 	    </div>
 	</div>
