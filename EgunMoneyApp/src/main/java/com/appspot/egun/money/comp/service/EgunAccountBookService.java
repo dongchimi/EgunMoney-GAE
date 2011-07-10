@@ -1,6 +1,6 @@
 package com.appspot.egun.money.comp.service;
 
-import com.appspot.egun.money.comp.domain.AccountBook;
+import com.appspot.egun.money.comp.domain.MoneyBook;
 
 /**
  * 이건머니 가계부 서비스
@@ -14,6 +14,6 @@ public interface EgunAccountBookService
      * @param accountBook 가계부
      * @return
      */
-    public Long createEgunAccountBook( AccountBook accountBook )
+    public Long createEgunAccountBook( MoneyBook accountBook )
         throws RuntimeException;
 }

@@ -9,26 +9,27 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 /**
- * 타입
+ * 추가 필드
+ * 
  * @author dklee
- * @since 2011.06.12
+ * @since 2011.07.10
  */
-@PersistenceCapable(identityType=IdentityType.APPLICATION)
-public class Type implements Serializable {
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class Field implements Serializable{
 
-	/** uid */
-	private static final long serialVersionUID = 4733209849148186224L;
+	/** UID */
+	private static final long serialVersionUID = -3285435722401723395L;
 
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
-	
-	/** 코드 */
-	private String code;
-	
-	/** 명 */
+
+	/** 필드 명 */
 	private String name;
+	
+	/** 필드 값 */
+	private String value;
 	
 	public Long getOid() {
 		return oid;
@@ -38,14 +39,6 @@ public class Type implements Serializable {
 		this.oid = oid;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -53,5 +46,12 @@ public class Type implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 }

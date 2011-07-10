@@ -1,7 +1,6 @@
 package com.appspot.egun.money.comp.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -14,7 +13,7 @@ import javax.jdo.annotations.Persistent;
  * @since 2011.07.10
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Category implements Serializable {
+public class DetailCategory implements Serializable {
 
 	/** UID */
 	private static final long serialVersionUID = 78595356383234132L;
@@ -23,13 +22,10 @@ public class Category implements Serializable {
 	@Persistent
 	private Long oid;
 
-	/** 분류 명 */
+	/** 카테고리 명 */
 	@Persistent
 	private String name;
-	
-	/** 분류 상세 */
-	@Persistent
-	private List<DetailCategory> detailCategries;
+
 	// method ------------------------------------------------------------------
 
 	public Long getOid() {
@@ -46,13 +42,5 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<DetailCategory> getDetailCategries() {
-		return detailCategries;
-	}
-
-	public void setDetailCategries(List<DetailCategory> detailCategries) {
-		this.detailCategries = detailCategries;
 	}
 }

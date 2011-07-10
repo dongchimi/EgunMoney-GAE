@@ -3,80 +3,69 @@ package com.appspot.egun.money.comp.process.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.AccountBook;
-import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
+import com.appspot.egun.money.comp.domain.MoneyBook;
+import com.appspot.egun.money.comp.domain.MoneyBookAuthorize;
 import com.appspot.egun.money.comp.process.EgunUserProcess;
-import com.appspot.egun.money.comp.service.AccountBookService;
 import com.appspot.egun.money.comp.service.EgunUserService;
+import com.appspot.egun.money.comp.service.MoneyBookService;
 
 @Component
-public class EgunUserProcessLogic
-    implements EgunUserProcess
-{
-    @Autowired
-    private EgunUserService egunUserService;
+public class EgunUserProcessLogic implements EgunUserProcess {
+	@Autowired
+	private EgunUserService egunUserService;
 
-    @Autowired
-    private AccountBookService accountBookService;
+	@Autowired
+	private MoneyBookService moneyBookService;
 
-    @Override
-    public Long registerUser( EgunUser user )
-    {
-        // 사용자 등록
-        Long userOid = egunUserService.registerUser( user );
-        user.setOid( userOid );
+	@Override
+	public Long registerUser(EgunUser user) {
+		// 사용자 등록
+		Long userOid = egunUserService.registerUser(user);
+		user.setOid(userOid);
 
-        //기본 가계부 등록
-        AccountBook defaultBook = new AccountBook( user );
-        defaultBook.setDefaultBook( true );
-        Long bookOid = accountBookService.reigsterAccountBook( defaultBook );
-        defaultBook.setOid( bookOid );
+		// 기본 가계부 등록
+		MoneyBook defaultBook = new MoneyBook(user);
+		defaultBook.setDefaultBook(true);
+		Long bookOid = moneyBookService.reigsterAccountBook(defaultBook);
+		defaultBook.setOid(bookOid);
 
-        // 가계부 권한 등록
-        AccountBookAuthorize bookAuthorize = new AccountBookAuthorize( user.getUserEmail(), bookOid );
-        accountBookService.registerAccountBookAuthorize( bookAuthorize );
+		// 가계부 권한 등록
+		MoneyBookAuthorize bookAuthorize = new MoneyBookAuthorize(user.getUserEmail(), bookOid);
+		moneyBookService.registerAccountBookAuthorize(bookAuthorize);
 
-        return userOid;
-    }
+		return userOid;
+	}
 
-    @Override
-    public boolean hasEgunUser( EgunUser user )
-    {
-        return egunUserService.hasEgunUser( user );
-    }
+	@Override
+	public boolean hasEgunUser(EgunUser user) {
+		return egunUserService.hasEgunUser(user);
+	}
 
-    @Override
-    public EgunUser getUserByEmailOrNickName( String nickNameOrEmail )
-        throws RuntimeException
-    {
-        EgunUser user = egunUserService.getUserByEmail( nickNameOrEmail );
-        if ( user == null )
-        {
-            user = egunUserService.getUserByNickName( nickNameOrEmail );
-        }
-        return user;
-    }
+	@Override
+	public EgunUser getUserByEmailOrNickName(String nickNameOrEmail){
+		EgunUser user = egunUserService.getUserByEmail(nickNameOrEmail);
+		if (user == null) {
+			user = egunUserService.getUserByNickName(nickNameOrEmail);
+		}
+		return user;
+	}
 
-    @Override
-    public boolean existEmail( String email )
-    {
-        EgunUser user = egunUserService.getUserByEmail( email );
-        if ( user != null )
-        {
-            return true;
-        }
-        return false;
-    }
+	@Override
+	public boolean existEmail(String email) {
+		EgunUser user = egunUserService.getUserByEmail(email);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
 
-    @Override
-    public boolean existNickName( String nickName )
-    {
-        EgunUser user = egunUserService.getUserByNickName( nickName );
-        if ( user != null )
-        {
-            return true;
-        }
-        return false;
-    }
+	@Override
+	public boolean existNickName(String nickName) {
+		EgunUser user = egunUserService.getUserByNickName(nickName);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
 }

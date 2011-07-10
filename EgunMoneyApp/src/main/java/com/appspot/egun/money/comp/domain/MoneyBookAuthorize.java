@@ -14,7 +14,7 @@ import javax.jdo.annotations.PrimaryKey;
  *
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class AccountBookAuthorize implements Serializable
+public class MoneyBookAuthorize implements Serializable
 {
 
     /** UID */
@@ -27,7 +27,7 @@ public class AccountBookAuthorize implements Serializable
 
     /** 가계부 id */
     @Persistent
-    private Long accountBookOid;
+    private Long moneyBookOid;
 
     /** 사용자 e-메일 */
     @Persistent
@@ -35,21 +35,21 @@ public class AccountBookAuthorize implements Serializable
 
     /** 가계부 권한 */
     @Persistent
-    private EgunAuthorize authorize;
+    private Authorize authorize;
 
     // method ------------------------------------------------------------------
-    public AccountBookAuthorize( String userEmail, Long accountBookOid )
+    public MoneyBookAuthorize( String userEmail, Long accountBookOid )
     {
         this.userEmail = userEmail;
-        this.accountBookOid = accountBookOid;
+        this.moneyBookOid = accountBookOid;
 
-        authorize = EgunAuthorize.READ_WRITE;
+        authorize = Authorize.READ_WRITE;
     }
 
-    public AccountBookAuthorize( String userEmail, Long accountBookOid, EgunAuthorize authorize )
+    public MoneyBookAuthorize( String userEmail, Long accountBookOid, Authorize authorize )
     {
         this.userEmail = userEmail;
-        this.accountBookOid = accountBookOid;
+        this.moneyBookOid = accountBookOid;
         this.authorize = authorize;
     }
 
@@ -73,24 +73,22 @@ public class AccountBookAuthorize implements Serializable
         this.oid = oid;
     }
 
-    public Long getAccountBookOid()
-    {
-        return accountBookOid;
-    }
-
-    public void setAccountBookOid( Long accountBookOid )
-    {
-        this.accountBookOid = accountBookOid;
-    }
-
-    public EgunAuthorize getAuthorize()
+    public Authorize getAuthorize()
     {
         return authorize;
     }
 
-    public void setAuthorize( EgunAuthorize authorize )
+    public void setAuthorize( Authorize authorize )
     {
         this.authorize = authorize;
     }
+
+	public Long getMoneyBookOid() {
+		return moneyBookOid;
+	}
+
+	public void setMoneyBookOid(Long moneyBookOid) {
+		this.moneyBookOid = moneyBookOid;
+	}
 
 }

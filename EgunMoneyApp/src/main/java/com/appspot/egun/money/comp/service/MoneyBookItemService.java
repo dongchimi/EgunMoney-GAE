@@ -2,7 +2,7 @@ package com.appspot.egun.money.comp.service;
 
 import java.util.List;
 
-import com.appspot.egun.money.comp.domain.AccountItem;
+import com.appspot.egun.money.comp.domain.MoneyBookItem;
 
 /**
  * 가계부 Item 서비스
@@ -10,14 +10,14 @@ import com.appspot.egun.money.comp.domain.AccountItem;
  * @since 2010.09.03
  *
  */
-public interface AccountItemService
+public interface MoneyBookItemService
 {
     /**
      * 장부 item 등록
      * @param item 장부 item
      * @return item 키
      */
-    public Long registerAccountBookItem( AccountItem item );
+    public Long registerAccountBookItem( MoneyBookItem item );
 
     /**
      * 기간내의 장부 목록을 조회
@@ -26,5 +26,5 @@ public interface AccountItemService
      * @param endDay 종ㄹ일자 
      * @return
      */
-    public List<AccountItem> findAccountItemsByTerm( long bookId, String startDay, String endDay );
+    public List<MoneyBookItem> findAccountItemsByTerm( long bookId, String startDay, String endDay );
 }

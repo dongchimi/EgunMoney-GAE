@@ -8,18 +8,18 @@ import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.AccountItem;
-import com.appspot.egun.money.comp.service.AccountItemService;
+import com.appspot.egun.money.comp.domain.MoneyBookItem;
+import com.appspot.egun.money.comp.service.MoneyBookItemService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
 @Component
 public class AccountItemServiceLogic
-    implements AccountItemService
+    implements MoneyBookItemService
 {
     private PersistenceManager pm = null;
 
     @Override
-    public Long registerAccountBookItem( AccountItem item )
+    public Long registerAccountBookItem( MoneyBookItem item )
     {
         try
         {
@@ -38,21 +38,21 @@ public class AccountItemServiceLogic
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<AccountItem> findAccountItemsByTerm( long bookId, String startDay, String endDay )
+    public List<MoneyBookItem> findAccountItemsByTerm( long bookId, String startDay, String endDay )
     {
-        List<AccountItem> foundItems = null;
+        List<MoneyBookItem> foundItems = null;
 
         pm = PMFProvider.getPersistenceManager();
 
         try
         {
-            Query getUserQuery = pm.newQuery( AccountItem.class, "accountBookId == " + bookId + " && useDate <= "
+            Query getUserQuery = pm.newQuery( MoneyBookItem.class, "accountBookId == " + bookId + " && useDate <= "
                 + startDay + " && useDate >= " + endDay );
-            foundItems = (List<AccountItem>) getUserQuery.execute();
+            foundItems = (List<MoneyBookItem>) getUserQuery.execute();
             //			Query getUserQuery = pm.newQuery( AccountItem.class, "accountBookId == bookIdParam");
             //			getUserQuery.declareParameters("Long bookIdParam");
 
-            foundItems = (List<AccountItem>) getUserQuery.execute( bookId );
+            foundItems = (List<MoneyBookItem>) getUserQuery.execute( bookId );
         }
         catch ( JDOObjectNotFoundException e )
         {

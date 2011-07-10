@@ -6,7 +6,7 @@ import javax.jdo.PersistenceManager;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.AccountBook;
+import com.appspot.egun.money.comp.domain.MoneyBook;
 import com.appspot.egun.money.comp.service.EgunAccountBookService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
@@ -20,7 +20,7 @@ public class EgunAccountBookServiceLogic
     private PersistenceManager pm = null;
 
     @Override
-    public Long createEgunAccountBook( AccountBook accountBook )
+    public Long createEgunAccountBook( MoneyBook accountBook )
         throws RuntimeException
     {
 

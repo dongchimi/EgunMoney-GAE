@@ -7,7 +7,7 @@ import javax.jdo.PersistenceManager;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.ContentTag;
+import com.appspot.egun.money.comp.domain.EgunTag;
 import com.appspot.egun.money.comp.service.ContentTagService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
@@ -18,7 +18,7 @@ public class ContentTagServiceLogic
     private PersistenceManager pm = null;
 
     @Override
-    public Long registerContentTag( ContentTag tag )
+    public Long registerContentTag( EgunTag tag )
     {
         try
         {
@@ -36,11 +36,11 @@ public class ContentTagServiceLogic
     }
 
     @Override
-    public List<Long> registerContentTags( List<ContentTag> tags )
+    public List<Long> registerContentTags( List<EgunTag> tags )
     {
         List<Long> oids = new ArrayList<Long>();
 
-        for ( ContentTag tag : tags )
+        for ( EgunTag tag : tags )
         {
             Long oid = registerContentTag( tag );
             oids.add( oid );

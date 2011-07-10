@@ -1,6 +1,7 @@
 package com.appspot.egun.money.comp.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -10,145 +11,61 @@ import javax.jdo.annotations.PrimaryKey;
 
 /**
  * 자산
+ * 
  * @author 이동규
  * @since 2011.02.04
  */
-@PersistenceCapable(identityType = IdentityType.DATASTORE)
-public class Asset implements Serializable
-{
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class Asset implements Serializable {
 
-    /** UID */
-    private static final long serialVersionUID = -6709003541622818799L;
+	/** UID */
+	private static final long serialVersionUID = -6709003541622818799L;
 
-    /** 오브젝트 id */
-    @PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Long oid;
+	/** 오브젝트 id */
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long oid;
 
-    /** 명칭 */
-    private String name;
+	/** 이름 */
+	@Persistent
+	private String name;
 
-    /** 종류 */
-    private AssetType type;
+	/** 종류 */
+	@Persistent
+	private AssetType type;
 
-    /** 메모 */
-    private String description;
+	/** 추가 필드들.. 타입에 따라 변경됨 */
+	private List<Field> fields;
+	
+	public Long getOid() {
+		return oid;
+	}
 
-    /** 은행명 */
-    private String bank;
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
 
-    /** 계좌번호 */
-    private String accountNumber;
+	public String getName() {
+		return name;
+	}
 
-    /** 카드회사명 */
-    private String cardCompanyName;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /** 결제일 */
-    private String paymentDay;
+	public AssetType getType() {
+		return type;
+	}
 
-    /** 전화번호 */
-    private String phoneNumber;
+	public void setType(AssetType type) {
+		this.type = type;
+	}
 
-    /** 색상 */
-    private String color;
+	public List<Field> getFields() {
+		return fields;
+	}
 
-    public Long getOid()
-    {
-        return oid;
-    }
-
-    public void setOid( Long oid )
-    {
-        this.oid = oid;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName( String name )
-    {
-        this.name = name;
-    }
-
-    public AssetType getType()
-    {
-        return type;
-    }
-
-    public void setType( AssetType type )
-    {
-        this.type = type;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription( String description )
-    {
-        this.description = description;
-    }
-
-    public String getBank()
-    {
-        return bank;
-    }
-
-    public void setBank( String bank )
-    {
-        this.bank = bank;
-    }
-
-    public String getAccountNumber()
-    {
-        return accountNumber;
-    }
-
-    public void setAccountNumber( String accountNumber )
-    {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getCardCompanyName()
-    {
-        return cardCompanyName;
-    }
-
-    public void setCardCompanyName( String cardCompanyName )
-    {
-        this.cardCompanyName = cardCompanyName;
-    }
-
-    public String getPaymentDay()
-    {
-        return paymentDay;
-    }
-
-    public void setPaymentDay( String paymentDay )
-    {
-        this.paymentDay = paymentDay;
-    }
-
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber( String phoneNumber )
-    {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getColor()
-    {
-        return color;
-    }
-
-    public void setColor( String color )
-    {
-        this.color = color;
-    }
+	public void setFields(List<Field> fields) {
+		this.fields = fields;
+	}
 }

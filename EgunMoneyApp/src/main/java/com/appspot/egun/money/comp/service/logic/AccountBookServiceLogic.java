@@ -9,21 +9,21 @@ import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.AccountBook;
-import com.appspot.egun.money.comp.domain.AccountBookAuthorize;
-import com.appspot.egun.money.comp.domain.EgunAuthorize;
+import com.appspot.egun.money.comp.domain.MoneyBook;
+import com.appspot.egun.money.comp.domain.MoneyBookAuthorize;
+import com.appspot.egun.money.comp.domain.Authorize;
 import com.appspot.egun.money.comp.domain.EgunUser;
-import com.appspot.egun.money.comp.service.AccountBookService;
+import com.appspot.egun.money.comp.service.MoneyBookService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
 @Component
 public class AccountBookServiceLogic
-    implements AccountBookService
+    implements MoneyBookService
 {
     private PersistenceManager pm = null;
 
     @Override
-    public Long reigsterAccountBook( AccountBook book )
+    public Long reigsterAccountBook( MoneyBook book )
     {
         try
         {
@@ -41,13 +41,13 @@ public class AccountBookServiceLogic
     }
 
     @Override
-    public AccountBook findDefaultAccountBookByUserEmail( String userEmail )
+    public MoneyBook findDefaultAccountBookByUserEmail( String userEmail )
     {
         return null;
     }
 
     @Override
-    public Long registerAccountBookAuthorize( AccountBookAuthorize authorize )
+    public Long registerAccountBookAuthorize( MoneyBookAuthorize authorize )
     {
         try
         {
@@ -65,7 +65,7 @@ public class AccountBookServiceLogic
     }
 
     @Override
-    public boolean hasAccountBookAuthorize( EgunUser user, AccountBook book )
+    public boolean hasAccountBookAuthorize( EgunUser user, MoneyBook book )
     {
 
         return false;
@@ -73,21 +73,21 @@ public class AccountBookServiceLogic
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<AccountBookAuthorize> findAccountBookAuthorizeByUserEmail( String userEmail,
-                                                                           List<EgunAuthorize> authorizes )
+    public List<MoneyBookAuthorize> findAccountBookAuthorizeByUserEmail( String userEmail,
+                                                                           List<Authorize> authorizes )
     {
 
-        List<AccountBookAuthorize> filteredAuthorizes = new ArrayList<AccountBookAuthorize>();
+        List<MoneyBookAuthorize> filteredAuthorizes = new ArrayList<MoneyBookAuthorize>();
 
         pm = PMFProvider.getPersistenceManager();
 
         try
         {
-            Query getUserQuery = pm.newQuery( AccountBookAuthorize.class, "userEmail == emailParam" );
+            Query getUserQuery = pm.newQuery( MoneyBookAuthorize.class, "userEmail == emailParam" );
             getUserQuery.declareParameters( "String emailParam" );
 
-            List<AccountBookAuthorize> foundAuthorizes = (List<AccountBookAuthorize>) getUserQuery.execute( userEmail );
-            for ( AccountBookAuthorize authorize : foundAuthorizes )
+            List<MoneyBookAuthorize> foundAuthorizes = (List<MoneyBookAuthorize>) getUserQuery.execute( userEmail );
+            for ( MoneyBookAuthorize authorize : foundAuthorizes )
             {
                 boolean itsMine = hasAuthorize( authorize.getAuthorize(), authorizes );
                 if ( itsMine )
@@ -108,9 +108,9 @@ public class AccountBookServiceLogic
         return filteredAuthorizes;
     }
 
-    private boolean hasAuthorize( EgunAuthorize source, List<EgunAuthorize> authorizes )
+    private boolean hasAuthorize( Authorize source, List<Authorize> authorizes )
     {
-        for ( EgunAuthorize target : authorizes )
+        for ( Authorize target : authorizes )
         {
             if ( source == target )
             {
@@ -122,14 +122,14 @@ public class AccountBookServiceLogic
     }
 
     @Override
-    public AccountBook getAccountBook( long bookId )
+    public MoneyBook getAccountBook( long bookId )
     {
-        AccountBook foundBook = null;
+        MoneyBook foundBook = null;
 
         pm = PMFProvider.getPersistenceManager();
         try
         {
-            foundBook = pm.getObjectById( AccountBook.class, bookId );
+            foundBook = pm.getObjectById( MoneyBook.class, bookId );
         }
         catch ( JDOObjectNotFoundException e )
         {

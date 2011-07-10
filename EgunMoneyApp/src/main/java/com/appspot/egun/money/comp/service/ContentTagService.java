@@ -2,7 +2,7 @@ package com.appspot.egun.money.comp.service;
 
 import java.util.List;
 
-import com.appspot.egun.money.comp.domain.ContentTag;
+import com.appspot.egun.money.comp.domain.EgunTag;
 
 /**
  * 태그 서비스 
@@ -17,11 +17,11 @@ public interface ContentTagService
      * @param tag
      * @return
      */
-    public Long registerContentTag( ContentTag tag );
+    public Long registerContentTag( EgunTag tag );
 
     /**
      * 태그 목록 등록
      * @param tags
      */
-    public List<Long> registerContentTags( List<ContentTag> tags );
+    public List<Long> registerContentTags( List<EgunTag> tags );
 }

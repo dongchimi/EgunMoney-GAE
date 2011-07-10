@@ -1,0 +1,145 @@
+package com.appspot.egun.money.comp.domain;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+/**
+ * 가계부 item
+ * 
+ * @author dklee
+ * @since 2010.09.01
+ */
+@PersistenceCapable(identityType = IdentityType.DATASTORE)
+public class MoneyBookItem implements Serializable {
+
+	/** UID */
+	private static final long serialVersionUID = 8590762381001509903L;
+
+	/** id */
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long oid;
+
+	/** 수입/지출 구분 */
+	@Persistent
+	private InOut inOut;
+
+	/** 지출/수입 날짜 yyyyMMdd */
+	@Persistent
+	private String useDate;
+
+	/** 내용 */
+	@Persistent
+	private String content;
+
+	/** 금액 */
+	@Persistent
+	private long amount;
+
+	/** 분류 */
+	@Persistent
+	private Long categoryOid;
+
+	/** 자산 */
+	@Persistent
+	private Asset relatedAsset;
+
+	/** 메모 */
+	@Persistent
+	private String description;
+
+	/** 가계부 id */
+	@Persistent
+	private long accountBookId;
+
+	/** 관련어 */
+	@Persistent
+	private List<EgunTag> relatedTags;
+
+	// method ------------------------------------------------------------------
+	public long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(long amount) {
+		this.amount = amount;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUseDate() {
+		return useDate;
+	}
+
+	public void setUseDate(String useDate) {
+		this.useDate = useDate;
+	}
+
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
+
+	public Long getCategoryOid() {
+		return categoryOid;
+	}
+
+	public void setCategoryOid(Long categoryOid) {
+		this.categoryOid = categoryOid;
+	}
+
+	public long getAccountBookId() {
+		return accountBookId;
+	}
+
+	public void setAccountBookId(long accountBookId) {
+		this.accountBookId = accountBookId;
+	}
+
+	public InOut getInOut() {
+		return inOut;
+	}
+
+	public void setInOut(InOut inOut) {
+		this.inOut = inOut;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Asset getRelatedAsset() {
+		return relatedAsset;
+	}
+
+	public void setRelatedAsset(Asset relatedAsset) {
+		this.relatedAsset = relatedAsset;
+	}
+
+	public List<EgunTag> getRelatedTags() {
+		return relatedTags;
+	}
+
+	public void setRelatedTags(List<EgunTag> relatedTags) {
+		this.relatedTags = relatedTags;
+	}
+}

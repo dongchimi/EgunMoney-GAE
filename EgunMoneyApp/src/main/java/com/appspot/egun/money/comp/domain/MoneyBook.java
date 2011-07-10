@@ -10,7 +10,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.appspot.egun.money.comp.constant.EgunMoneyConstant;
-import com.appspot.egun.money.comp.utility.SU;
+import com.appspot.egun.money.comp.utility.StringU;
 
 /**
  * 이건머니 가계부
@@ -18,7 +18,7 @@ import com.appspot.egun.money.comp.utility.SU;
  * @since 2010.09.01
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class AccountBook implements Serializable
+public class MoneyBook implements Serializable
 {
 
     /** UID */
@@ -31,15 +31,11 @@ public class AccountBook implements Serializable
 
     /** 가계부 명 */
     @Persistent
-    private String accountBookName;
+    private String moneyBookName;
 
     /** 기준일 */
     @Persistent
     private String baseDay;
-
-    /** 예산부 */
-    //	@Persistent(mappedBy="egunAccountBook")
-    //	private BudgetBook budgetBook;
 
     @Persistent
     private String ownerId;
@@ -49,12 +45,12 @@ public class AccountBook implements Serializable
     private boolean defaultBook;
 
     // method ------------------------------------------------------------------
-    public AccountBook( EgunUser user )
+    public MoneyBook( EgunUser user )
     {
         initialize( user, null );
     }
 
-    public AccountBook( EgunUser user, String bookName )
+    public MoneyBook( EgunUser user, String bookName )
     {
         initialize( user, bookName );
     }
@@ -62,13 +58,13 @@ public class AccountBook implements Serializable
     private void initialize( EgunUser user, String bookName )
     {
         ownerId = user.getUserEmail();
-        if ( SU.isEmptyOrNull( bookName ) )
+        if ( StringU.isEmptyOrNull( bookName ) )
         {
-            accountBookName = user.getNickName() + "님의 가계부";
+            moneyBookName = user.getNickName() + "님의 가계부";
         }
         else
         {
-            accountBookName = bookName;
+        	moneyBookName = bookName;
         }
         baseDay = EgunMoneyConstant.INITIAL_BASE_DATE;
 
@@ -97,32 +93,6 @@ public class AccountBook implements Serializable
         this.oid = oid;
     }
 
-    //	public AccountBookCategoryGroup getCategoryGroup() {
-    //	return categoryGroup;
-    //}
-    //
-    //public void setCategoryGroup(AccountBookCategoryGroup categoryGroup) {
-    //	this.categoryGroup = categoryGroup;
-    //}
-
-    //	public List<AccountBookItem> getAccountBookItems() {
-    //		return accountBookItems;
-    //	}
-    //
-    //	public void setAccountBookItems(List<AccountBookItem> accountBookItems) {
-    //		this.accountBookItems = accountBookItems;
-    //	}
-
-    public String getAccountBookName()
-    {
-        return accountBookName;
-    }
-
-    public void setAccountBookName( String accountBookName )
-    {
-        this.accountBookName = accountBookName;
-    }
-
     public String getOwnerId()
     {
         return ownerId;
@@ -142,4 +112,12 @@ public class AccountBook implements Serializable
     {
         this.defaultBook = defaultBook;
     }
+
+	public String getMoneyBookName() {
+		return moneyBookName;
+	}
+
+	public void setMoneyBookName(String moneyBookName) {
+		this.moneyBookName = moneyBookName;
+	}
 }

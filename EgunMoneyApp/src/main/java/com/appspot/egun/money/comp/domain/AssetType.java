@@ -1,27 +1,45 @@
 package com.appspot.egun.money.comp.domain;
 
+import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 /**
- * 자산종류
+ * 자산종류 (현금, 은행계좌, 카드, 대출원금, 대출원금, 대출이자, 적금, 보험) 등등
  * @author 이동규
+ * @since 2011.07.10
  */
-public enum AssetType {
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class AssetType implements Serializable {
 
-    CASH("현금"), CARD("카드"), LOAN("대출원금/이자"), LOANPRICIPAL("대출원금"), LOANRATE("대출이자"), SAVING("적금"), INSURANCE("보험");
+	/** UID */
+	private static final long serialVersionUID = 2214946206362484951L;
 
-    private String name;
+	/** 오브젝트 id */
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Long oid;
 
-    private AssetType( String name )
-    {
-        this.name = name;
-    }
+	/** 자산 종류 명 */
+	private String name;
+	
+	public Long getOid() {
+		return oid;
+	}
 
-    public String getName()
-    {
-        return name;
-    }
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
 
-    public void setName( String name )
-    {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

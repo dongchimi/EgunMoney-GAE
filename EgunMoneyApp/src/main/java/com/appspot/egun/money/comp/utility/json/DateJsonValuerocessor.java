@@ -5,7 +5,7 @@ import java.util.Date;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
-import com.appspot.egun.money.comp.utility.DU;
+import com.appspot.egun.money.comp.utility.DateU;
 
 public class DateJsonValuerocessor
     implements JsonValueProcessor
@@ -28,6 +28,6 @@ public class DateJsonValuerocessor
         if ( !( value instanceof Date ) )
             return null;
 
-        return DU.convertFormat( (Date) value );
+        return DateU.convertFormat( (Date) value );
     }
 }
