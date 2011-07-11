@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <title>회원가입 : 이건머니</title>
 	<script src="../script/EgunCommon.js"></script>
+	<script src="../script/auth/Signup.js"></script>
 </head>
 <body>
 <div data-role="page">
 	<div>
 	    <h1>회원가입</h1>
 	</div>
-	<div>
+	<div id="registerForm">
 		<div data-role="fieldcontain">
-			<label for="userEmail">이메일</label><input type="email" id="signin_userEmail" /><br />
-			<label for="password">비밀번호</label><input type="password" id="signin_password" /><br />
-			<label for="userEmail">이름(한글 또는 영문)</label><input type="text" id="signin_nickName" /><br />
+			<label for="userEmail">이메일</label><input type="email" id="signup_userEmail" name="userEmail" /><br />
+			<label for="password">비밀번호</label><input type="password" id="signup_password" name="password" /><br />
+			<label for="nickName">이름(한글 또는 영문)</label><input type="text" id="signup_nickName" name="nickName" /><br />
 			<div>
-		    	<a href="javascript:;"  onclick="" data-role="button" data-theme="b">회원가입</a>
+		    	<a href="javascript:;"  onclick="Signup.register()" data-role="button" data-theme="b">회원가입</a>
 		    </div>
 	    </div>
 	</div>

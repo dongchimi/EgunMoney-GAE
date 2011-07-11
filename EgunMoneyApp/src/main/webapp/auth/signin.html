@@ -13,8 +13,8 @@
 	</div>
 	<div>
 		<div data-role="fieldcontain">
-			<label for="userEmail">이름 또는 이메일 </label><input type="email" id="signin_userEmail" /><br />
-			<label for="password">비밀번호</label><input type="password" id="signin_password" /><br />
+			<label for="userEmail">이름 또는 이메일 </label><input type="email" id="signin_userEmail" name="userEmail"/><br />
+			<label for="password">비밀번호</label><input type="password" id="signin_password" name="password" /><br />
 			<label for="autoSignin">자동 로그인</label>
 			<select name="autoSignin" id="autoSignin" data-role="slider">
 				<option value="off">안한다</option>
@@ -22,7 +22,7 @@
 			</select>
 			<div>
 		    	<a href="javascript:;"  onclick="Signin.signin_Click()" data-role="button" data-theme="b">로그인</a>
-		    	<a href="./signup.html" data-role="button">회원가입</a>
+		    	<a href="./signup.html" data-ajax="false" data-role="button">회원가입</a>
 		    </div>
 	    </div>
 	</div>

@@ -27,15 +27,15 @@ Signin.signin_Click = function(){
 		return $("#signin_password").focus();
 	}
 	
-	var url = "/ws/auth/signin";
+	var url = "/ws/auth/signin/signin";
 	var params = {
 			"userEmail" : userEmail, 
 			"password" : password
 	};
 	
-	egun.httpClient.post(url, params, signInCallback);
+	egun.httpClient.post(url, params, Signin.signin_Callback);
 };
 
-function signInCallback(jsonResponse) {
-	location.href="/accountBook/getAccountBooks";
+Signin.signin_Callback = function(jsonResponse) {
+	location.href="/moneyBook/moneyBooks.html";
 };

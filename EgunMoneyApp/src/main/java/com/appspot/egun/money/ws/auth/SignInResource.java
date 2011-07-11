@@ -3,12 +3,10 @@ package com.appspot.egun.money.ws.auth;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.process.EgunUserProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
-import com.appspot.egun.money.comp.utility.SessionManager;
 import com.appspot.egun.money.ws.validator.SignInValidator;
 import com.sun.jersey.spi.resource.Singleton;
 
@@ -38,9 +35,6 @@ public class SignInResource {
 
 	@Autowired
 	private EgunUserProcess egunUserProcess;
-
-	@Context
-	private HttpServletRequest request;
 
 	@POST
 	@Path("/signin")
@@ -65,7 +59,7 @@ public class SignInResource {
 		}
 
 		// 로그인 처리
-		SessionManager.setLoginUser(request, foundUser);
+		// SessionManager.setLoginUser(request, foundUser);
 
 		return ResponseBuilder.buildSuccessResponse(foundUser);
 	}

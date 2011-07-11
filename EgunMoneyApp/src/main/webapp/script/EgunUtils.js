@@ -1,34 +1,29 @@
 /**
- * @class	HttpClient ¼­¹ö¿Í Åë½ÅÀÚ
+ * @class	HttpClient ì„œë²„ì™€ í†µì‹ ì
  * @since	2011.07.10
  * @author dongchimi
  */
 function HttpClient() {
-	this.callbackFunction = null; // »ç¿ëÀÚ°¡ »ç¿ëÇÏ´Â Äİ¹é ÇÔ¼ö
+	this.callbackFunction = null; // ì‚¬ìš©ìê°€ ì‚¬ìš©í•˜ëŠ” ì½œë°± í•¨ìˆ˜
 };
 HttpClient.prototype = new Object();
 
-HttpClient.prototype.get = function(url, params, callback) {
-	this.callbackFunction = callback;
-	
-	// TODO ÀÌµ¿±Ô ÅäÅ«À» Á¶È¸ÇÔ
-	
-	$.get(url, params, this.responseHandler, "json");
-};
 HttpClient.prototype.post = function(url, params, callback) {
-	this.callbackFunction = callback;
+	$.mobile.pageLoading();
+	// TODO ì´ë™ê·œ í† í°ì„ ì¡°íšŒí•¨
 	
-	$.post(url, params, this.responseHandler, "json");
+	$.post(url, params, function(response){
+		if (HttpClient.isErrorMessage(response.statusCode)) {
+			var errorMessage = response.message1;
+			return alert(errorMessage);
+		}
+		
+		callback(response.resObj);
+		$.mobile.pageLoading(true);
+	}, "json");
 };
-HttpClient.prototype.responseHandler = function(response) {
-	if (this.isErrorMessage(response.statusCode)) {
-		var errorMessage = response.message1;
-		return alert(errorMessage);
-	}
-	
-	this.callbackFunction(response.resObj);
-};
-HttpClient.prototype.isErrorMessage = function(statusCode) {
+
+HttpClient.isErrorMessage = function(statusCode) {
 	return "99" == statusCode;
 };
 
@@ -37,14 +32,14 @@ HttpClient.prototype.isErrorMessage = function(statusCode) {
 
 
 /**
- * @class	StringUtil	¹®ÀÚ¿­ À¯Æ¿¸®Æ¼
+ * @class	StringUtil	ë¬¸ìì—´ ìœ í‹¸ë¦¬í‹°
  */
 function StringUtil() {}
 
 /**
- * ¹®ÀÚ¿­ÀÇ °ø¹é ¹®ÀÚ ¿©ºÎ È®ÀÎ
- * @param	{String}	str	´ë»ó ¹®ÀÚ¿­
- * @return	{Boolean}	°ø¹é¹®ÀÚ ¿©ºÎ È®ÀÎ °á°ú
+ * ë¬¸ìì—´ì˜ ê³µë°± ë¬¸ì ì—¬ë¶€ í™•ì¸
+ * @param	{String}	str	ëŒ€ìƒ ë¬¸ìì—´
+ * @return	{Boolean}	ê³µë°±ë¬¸ì ì—¬ë¶€ í™•ì¸ ê²°ê³¼
  */
 StringUtil.isEmpty = function(str) {
 	if (str == undefined) return true;
@@ -52,8 +47,6 @@ StringUtil.isEmpty = function(str) {
 	if (str == null) return true;
 	if (str.trim().length < 1) return true;
 };
-
-
 
 
 
