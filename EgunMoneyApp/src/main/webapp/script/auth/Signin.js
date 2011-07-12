@@ -3,19 +3,13 @@
  */
 function Signin() {}
 
-Signin.userEmail_Click = function() {
+Signin.pressUserEmailPassword_Click = function() {
 	if (event.keyCode != 13) return;
 	
 	Signin.signin_Click();
 };
 
-Signin.password_Click = function() {
-	if (event.keyCode != 13) return;
-	
-	SignIn.signin_Click();
-};
-
-Signin.signin_Click = function(){
+Signin.signin_Click = function() {
 	var userEmail = $("#signin_userEmail").val();
 	var password = $("#signin_password").val();
 	if (StringUtil.isEmpty( userEmail )) {
@@ -38,4 +32,7 @@ Signin.signin_Click = function(){
 
 Signin.signin_Callback = function(jsonResponse) {
 	location.href="/moneyBook/moneyBooks.html";
+};
+// TODO 이동규 로컬스토리지 추가
+var Storage = function() {
 };

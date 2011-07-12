@@ -13,8 +13,8 @@
 	</div>
 	<div>
 		<div data-role="fieldcontain">
-			<label for="userEmail">이름 또는 이메일 </label><input type="email" id="signin_userEmail" name="userEmail"/><br />
-			<label for="password">비밀번호</label><input type="password" id="signin_password" name="password" /><br />
+			<label for="userEmail">이름 또는 이메일 </label><input type="email" id="signin_userEmail" name="userEmail" onkeypress="Signin.pressUserEmailPassword_Click()"/><br />
+			<label for="password">비밀번호</label><input type="password" id="signin_password" name="password" onkeypress="Signin.pressUserEmailPassword_Click()" /><br />
 			<label for="autoSignin">자동 로그인</label>
 			<select name="autoSignin" id="autoSignin" data-role="slider">
 				<option value="off">안한다</option>
