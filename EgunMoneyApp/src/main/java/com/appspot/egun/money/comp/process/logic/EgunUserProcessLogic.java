@@ -27,12 +27,12 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 		// 기본 가계부 등록
 		MoneyBook defaultBook = new MoneyBook(user);
 		defaultBook.setDefaultBook(true);
-		Long bookOid = moneyBookService.reigsterAccountBook(defaultBook);
+		Long bookOid = moneyBookService.reigsterMoneyBook(defaultBook);
 		defaultBook.setOid(bookOid);
 
 		// 가계부 권한 등록
 		MoneyBookAuthorize bookAuthorize = new MoneyBookAuthorize(user.getUserEmail(), bookOid);
-		moneyBookService.registerAccountBookAuthorize(bookAuthorize);
+		moneyBookService.registerMoneyBookAuthorize(bookAuthorize);
 
 		return userOid;
 	}
@@ -48,6 +48,12 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 		if (user == null) {
 			user = egunUserService.getUserByNickName(nickNameOrEmail);
 		}
+		return user;
+	}
+
+	@Override
+	public EgunUser getUserByAuthToken(String authToken) {
+		EgunUser user = egunUserService.getUserByAuthToken(authToken);
 		return user;
 	}
 

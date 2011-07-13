@@ -26,5 +26,5 @@ public interface MoneyBookItemService
      * @param endDay ¡æ§©¿œ¿⁄ 
      * @return
      */
-    public List<MoneyBookItem> findAccountItemsByTerm( long bookId, String startDay, String endDay );
+    public List<MoneyBookItem> findMoneyBookItemsByTerm( long bookId, String startDay, String endDay );
 }

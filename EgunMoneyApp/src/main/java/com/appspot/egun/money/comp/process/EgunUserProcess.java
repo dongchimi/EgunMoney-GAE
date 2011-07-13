@@ -23,4 +23,11 @@ public interface EgunUserProcess {
 	 * @throws RuntimeException
 	 */
 	public EgunUser getUserByEmailOrNickName(String email);
+	
+	/**
+	 * 사용자의 인증 토큰으로 조회
+	 * @param authToken 인증토큰
+	 * @return 조회한 사용자
+	 */
+	public EgunUser getUserByAuthToken(String authToken);
 }

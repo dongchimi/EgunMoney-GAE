@@ -96,4 +96,31 @@ public class EgunUserServiceLogic implements EgunUserService {
 
 		return user;
 	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public EgunUser getUserByAuthToken(String authToken) {
+		EgunUser user = null;
+		
+		pm = PMFProvider.getPersistenceManager();
+		
+		try {
+			Query getUserQuery = pm.newQuery(EgunUser.class, "authToken == authTokenParam");
+			getUserQuery.declareParameters("String authTokenParam");
+			
+			List<EgunUser> foundUsers = (List<EgunUser>) getUserQuery.execute(authToken);
+			
+			if (!foundUsers.isEmpty()) {
+				user = foundUsers.get(0);
+			} else {
+				logger.log(Level.ALL, "조회한 사용자가 존재하지 않습니다.");
+			}
+		} catch (JDOObjectNotFoundException e) {
+			throw new RuntimeException(authToken + "에 해당하는 사용자가 존재하지 않습니다.");
+		} finally {
+			pm.close();
+		}
+		
+		return user;
+	}
 }

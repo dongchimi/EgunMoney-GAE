@@ -31,8 +31,9 @@ Signin.signin_Click = function() {
 };
 
 Signin.signin_Callback = function(jsonResponse) {
+	
+	SigninUtil.setSiginId( jsonResponse.userEmail );
+	SigninUtil.setAuthToken( jsonResponse.authToken );
+	
 	location.href="/moneyBook/moneyBooks.html";
-};
-// TODO 이동규 로컬스토리지 추가
-var Storage = function() {
 };
