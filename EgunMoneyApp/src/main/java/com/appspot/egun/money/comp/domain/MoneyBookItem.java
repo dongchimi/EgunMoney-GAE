@@ -26,9 +26,9 @@ public class MoneyBookItem implements Serializable {
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
 
-	/** 수입/지출 구분 */
+	/** 수입/지출/이체 구분 */
 	@Persistent
-	private InOut inOut;
+	private InOutTransfer inOutTransfer;
 
 	/** 지출/수입 날짜 yyyyMMdd */
 	@Persistent
@@ -111,14 +111,6 @@ public class MoneyBookItem implements Serializable {
 		this.accountBookId = accountBookId;
 	}
 
-	public InOut getInOut() {
-		return inOut;
-	}
-
-	public void setInOut(InOut inOut) {
-		this.inOut = inOut;
-	}
-
 	public String getContent() {
 		return content;
 	}
@@ -141,5 +133,13 @@ public class MoneyBookItem implements Serializable {
 
 	public void setRelatedTags(List<EgunTag> relatedTags) {
 		this.relatedTags = relatedTags;
+	}
+
+	public InOutTransfer getInOutTransfer() {
+		return inOutTransfer;
+	}
+
+	public void setInOutTransfer(InOutTransfer inOutTransfer) {
+		this.inOutTransfer = inOutTransfer;
 	}
 }

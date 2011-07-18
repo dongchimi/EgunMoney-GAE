@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>지출/수입 등록 : 이건머니</title>
+	<script src="../script/EgunCommon.js"></script>
+	<script src="../script/moneyBook/MoneyBooks.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+	<div data-role="header" data-position="fixed">
+		<a href="javascript:;" onclick="EgunLocationUtil.gotoPrev()" data-icon="check" class="ui-btn-left">이전</a>
+		<h1>지출/수입 등록</h1>
+	    <a href="javascript:registerAccountItem()" data-theme="b" data-icon="check" class="ui-btn-right">저장</a>
+	</div>
+	
+	<div data-role="content">
+		
+		<fieldset data-role="controlgroup" data-type="horizontal" >
+			<input type="radio" name="inOutTransfer" id="out" value="OUT" checked="checked" /><label for="out">지출</label>
+			<input type="radio" name="inOutTransfer" id="in" value="IN" /><label for="in">수입</label>
+			<input type="radio" name="inOutTransfer" id="transfer" value="TRANSFER" /><label for="transfer">이체</label>
+		</fieldset>
+		
+		<label for="useDate">언제</label><input type="date" id="useDate" />
+		<label for="amount">금액</label><input type="number" id="amount" />
+		<label for="content">내용</label><input type="text" id="content" />
+		
+		<label for="assetName">계좌</label>
+			<select data-native-menu="false" id="assetName">
+				<optgroup label="Custom menu example">
+					<option value="standard">Standard: 7 day</option>
+					<option value="rush">Rush: 3 days</option>
+					<option value="express">Express: next day</option>
+					<option value="overnight">Overnight</option>
+				</optgroup>
+				<optgroup label="Overnights">
+					<option value="overnight">Overnight</option>
+					<option value="overnight">Overnight</option>
+					<option value="overnight">Overnight</option>
+					<option value="overnight">Overnight</option>
+				</optgroup>
+			</select>
+		
+		<div data-role="fieldcontain" style="display:none">
+			<label for="select-choice-a" class="select">현금/카드 할부</label>
+			<select name="select-choice-a" id="installmentPlan" onchange="javascript:onEtc(this.value)"> 
+				<option value="-1" selected="selected">현금</option> 
+				<option value="1">일시불</option>
+				<option value="2">2개월</option>
+				<option value="3">3개월</option>
+				<option value="9">기타</option>
+			</select>
+		</div>
+		
+		<label for="categoryOid">카테고리</label><input type="text" id="categoryOid" />
+		<label for="tags">관련어</label><input type="text" id="tags" />
+		<label for="description">메모</label><textarea id="description"></textarea>
+	</div>
+	
+	<!-- footer -->
+	<div data-role="footer"  data-position="fixed" class="ui-bar">
+	    <div><a href="javascript:;" onclick="SigninUtil.signout()">로그아웃</a></div>
+	</div>
+	<!--// footer -->
+</div>
+
+</body>
+</html>

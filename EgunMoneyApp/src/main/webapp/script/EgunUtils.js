@@ -71,6 +71,20 @@ StringUtil.isEmpty = function(str) {
 };
 
 /**
+ * 로케이션 유틸
+ */
+function EgunLocationUtil() {}
+
+/**
+ * 이전 페이지로..
+ */
+EgunLocationUtil.gotoPrev = function() {
+	history.back();
+};
+
+
+
+/**
  * 로그인 유틸
  */
 function SigninUtil() {}
@@ -110,7 +124,7 @@ SigninUtil.signout = function() {
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_SIGNIN_ID );
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_AUTH_TOKEN );
 	
-	location.href="/auth/signin.html";
+	location.href="/auth/Signin.html";
 };
 
 function EgunSessionStorage() {
@@ -162,7 +176,6 @@ EgunSessionStorage.prototype.removeItem = function(key) {
 		value = window.key;
 	}
 };
-
 
 (function(){
 	if (!window.egun) {

@@ -1,17 +1,17 @@
 package com.appspot.egun.money.comp.domain;
 
 /**
- * 수입/지출 구분
+ * 수입/지출/이체 구분
  * 
  * @author dongchimi
  * @since 2011.07.10
  */
-public enum InOut {
-	IN("수입"), OUT("지출");
+public enum InOutTransfer {
+	IN("수입"), OUT("지출"), TRANSFER("이체");
 
 	private String korean;
 
-	private InOut(String korean) {
+	private InOutTransfer(String korean) {
 		this.korean = korean;
 	}
 
