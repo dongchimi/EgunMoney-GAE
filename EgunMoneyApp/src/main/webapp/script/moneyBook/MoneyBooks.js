@@ -31,7 +31,7 @@ MoneyBooks.getAccountBooksCallback = function( foundMoneyBooks ) {
  */
 MoneyBooks.gotoMoneyBookItems_Click = function(moneyBookId) {
 	egun.sessionStorage.setItem(EgunSessionStorage.Key_CURRENT_MONEYBOOK, moneyBookId);
-	location.href="./MoneyBookItems.html";
+	location.href="./moneyBookItems.html";
 };
 
 

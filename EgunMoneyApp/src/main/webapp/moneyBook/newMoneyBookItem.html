@@ -12,7 +12,9 @@
 	<div data-role="header" data-position="fixed">
 		<a href="javascript:;" onclick="EgunLocationUtil.gotoPrev()" data-icon="check" class="ui-btn-left">이전</a>
 		<h1>지출/수입 등록</h1>
+		<!-- 
 	    <a href="javascript:registerAccountItem()" data-theme="b" data-icon="check" class="ui-btn-right">저장</a>
+	     -->
 	</div>
 	
 	<div data-role="content">
@@ -28,20 +30,23 @@
 		<label for="content">내용</label><input type="text" id="content" />
 		
 		<label for="assetName">계좌</label>
-			<select data-native-menu="false" id="assetName">
-				<optgroup label="Custom menu example">
-					<option value="standard">Standard: 7 day</option>
-					<option value="rush">Rush: 3 days</option>
-					<option value="express">Express: next day</option>
-					<option value="overnight">Overnight</option>
-				</optgroup>
-				<optgroup label="Overnights">
-					<option value="overnight">Overnight</option>
-					<option value="overnight">Overnight</option>
-					<option value="overnight">Overnight</option>
-					<option value="overnight">Overnight</option>
-				</optgroup>
-			</select>
+		<select data-native-menu="false" id="assetName">
+			<option>선택하세요</option>
+			<!-- 
+			<optgroup label="Custom menu example">
+				<option value="standard">Standard: 7 day</option>
+				<option value="rush">Rush: 3 days</option>
+				<option value="express">Express: next day</option>
+				<option value="overnight">Overnight</option>
+			</optgroup>
+			<optgroup label="Overnights">
+				<option value="overnight">Overnight</option>
+				<option value="overnight">Overnight</option>
+				<option value="overnight">Overnight</option>
+				<option value="overnight">Overnight</option>
+			</optgroup>
+		 	-->
+		</select>
 		
 		<div data-role="fieldcontain" style="display:none">
 			<label for="select-choice-a" class="select">현금/카드 할부</label>
@@ -54,9 +59,23 @@
 			</select>
 		</div>
 		
-		<label for="categoryOid">카테고리</label><input type="text" id="categoryOid" />
+		<label for="categoryOid">카테고리</label>
+		<select data-native-menu="false" id="categoryOid">
+			<option>선택하세요</option>
+			<!-- 
+			<optgroup label="Custom menu example">
+				<option value="standard">Standard: 7 day</option>
+				<option value="rush">Rush: 3 days</option>
+				<option value="express">Express: next day</option>
+				<option value="overnight">Overnight</option>
+			</optgroup>
+		 	-->
+		</select>
+		
 		<label for="tags">관련어</label><input type="text" id="tags" />
 		<label for="description">메모</label><textarea id="description"></textarea>
+		
+		<a href="index.html" data-role="button" data-icon="check">저장</a>
 	</div>
 	
 	<!-- footer -->

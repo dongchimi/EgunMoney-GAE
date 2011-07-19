@@ -35,5 +35,5 @@ Signin.signin_Callback = function(jsonResponse) {
 	SigninUtil.setSiginId( jsonResponse.userEmail );
 	SigninUtil.setAuthToken( jsonResponse.authToken );
 	
-	location.href="/moneyBook/MoneyBooks.html";
+	location.href="/moneyBook/moneyBooks.html";
 };
