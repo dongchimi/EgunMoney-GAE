@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>가계부 목록 : 이건머니</title>
 	<script src="../script/EgunCommon.js"></script>
 	<script src="../script/moneyBook/MoneyBooks.js"></script>
@@ -9,6 +10,7 @@
 <body>
 <div data-role="page">
 	<div data-role="header">
+		<a href="javascript:;" onclick="EgunLocationUtil.gotoPrev()" data-icon="check" class="ui-btn-left">이전</a>
 	    <h1>내 가계부들</h1>
 	</div>
 	<div data-role="content">
@@ -16,7 +18,7 @@
 		</ul>
 	</div>
 	
-	<div data-role="footer"  data-position="fixed" class="ui-bar">
+	<div data-role="footer" class="ui-bar">
 	    <div><a href="javascript:;" onclick="SigninUtil.signout()">로그아웃</a></div>
 	</div>
 </div>

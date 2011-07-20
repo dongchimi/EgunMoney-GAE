@@ -3,6 +3,9 @@ $(document).ready(function() {
 });
 
 function MoneyBookItems() {}
+MoneyBookItems.viewMoneyBookItems = function() {
+	MoneyBookItems.getMoneyBookItems();
+};
 
 MoneyBookItems.getMoneyBookItems = function() {
 	var currentMoneyBookId = egun.sessionStorage.getItem(EgunSessionStorage.Key_CURRENT_MONEYBOOK);
@@ -17,4 +20,11 @@ MoneyBookItems.getMoneyBookItems = function() {
 
 MoneyBookItems.getMoneyBookItemsCallback = function(moneyBookItems) {
 	alert(moneyBookItems);
+};
+
+/**
+ * 새로운 지출/수입건 등록
+ */
+MoneyBookItems.registerMoneyBookItem_Click = function() {
+	
 };

@@ -124,7 +124,7 @@ SigninUtil.signout = function() {
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_SIGNIN_ID );
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_AUTH_TOKEN );
 	
-	location.href="/auth/Signin.html";
+	location.href="/auth/signin.html";
 };
 
 function EgunSessionStorage() {
