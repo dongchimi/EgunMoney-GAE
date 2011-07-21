@@ -2,9 +2,9 @@ package com.appspot.egun.money.comp.process;
 
 import java.util.List;
 
+import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.domain.MoneyBook;
 import com.appspot.egun.money.comp.domain.MoneyBookAuthorize;
-import com.appspot.egun.money.comp.domain.EgunUser;
 
 public interface MoneyBookProcess
 {

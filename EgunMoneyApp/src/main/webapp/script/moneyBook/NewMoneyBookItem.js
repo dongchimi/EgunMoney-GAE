@@ -12,8 +12,8 @@ NewMoneyBookItem.viewMoneyBookItems_Click = function() {
 };
 
 NewMoneyBookItem.manageAsset_Click = function() {
-	alert("자산관리");
+	location.href="/asset/assets.html";
 };
 NewMoneyBookItem.manageCategory_Click = function() {
-	alert("카테고리관리");
+	location.href="/category/categories.html";
 };

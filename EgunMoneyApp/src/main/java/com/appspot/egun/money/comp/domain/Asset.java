@@ -33,6 +33,10 @@ public class Asset implements Serializable {
 	/** 종류 */
 	@Persistent
 	private AssetType type;
+	
+	/** 자산 주인 이메일 */
+	@Persistent
+	private String userEmail;
 
 	/** 추가 필드들.. 타입에 따라 변경됨 */
 	private List<Field> fields;
@@ -67,5 +71,13 @@ public class Asset implements Serializable {
 
 	public void setFields(List<Field> fields) {
 		this.fields = fields;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 }

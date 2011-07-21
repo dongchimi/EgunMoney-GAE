@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.sun.jersey.spi.resource.Singleton;
 
+
 @Component("AccountItemResourceApp")
 @Singleton
 @Path("/accountItem")

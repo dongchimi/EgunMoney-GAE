@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 	http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
-	<localRepository>/Users/dongchimi/dev_workspace/Egun/repo</localRepository>
+	<localRepository>E:\egun-money\dev\repo</localRepository>
 
 	<servers>
 		<server>

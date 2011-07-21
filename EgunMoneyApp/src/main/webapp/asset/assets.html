@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>자산관리 : 이건머니</title>
+	<script src="../script/EgunCommon.js"></script>
+	<script src="../script/asset/Assets.js"></script>
+</head>
+<body>
+<div data-role="page">
+	<div data-role="header">
+		<a href="javascript:;" onclick="EgunLocationUtil.gotoPrev()" data-icon="check" class="ui-btn-left">이전</a>
+	    <h1>내 자산목록</h1>
+	    <a href="./newAsset.html" data-ajax="false" data-icon="check" data-theme="b" class="ui-btn-right">New</a>
+	</div>
+	<div data-role="content">
+		<ul id="assets" data-role="listview">
+		</ul>
+	</div>
+	
+	<div data-role="footer" class="ui-bar">
+	    <div><a href="javascript:;" onclick="SigninUtil.signout()">로그아웃</a></div>
+	</div>
+</div>
+</body>
+</html>

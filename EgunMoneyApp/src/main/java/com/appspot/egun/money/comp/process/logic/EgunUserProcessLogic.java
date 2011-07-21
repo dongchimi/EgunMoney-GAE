@@ -7,6 +7,7 @@ import com.appspot.egun.money.comp.domain.EgunUser;
 import com.appspot.egun.money.comp.domain.MoneyBook;
 import com.appspot.egun.money.comp.domain.MoneyBookAuthorize;
 import com.appspot.egun.money.comp.process.EgunUserProcess;
+import com.appspot.egun.money.comp.service.AssetService;
 import com.appspot.egun.money.comp.service.EgunUserService;
 import com.appspot.egun.money.comp.service.MoneyBookService;
 
@@ -17,6 +18,9 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 
 	@Autowired
 	private MoneyBookService moneyBookService;
+	
+	@Autowired
+	private AssetService assetService;
 
 	@Override
 	public Long registerUser(EgunUser user) {
@@ -33,6 +37,9 @@ public class EgunUserProcessLogic implements EgunUserProcess {
 		// 가계부 권한 등록
 		MoneyBookAuthorize bookAuthorize = new MoneyBookAuthorize(user.getUserEmail(), bookOid);
 		moneyBookService.registerMoneyBookAuthorize(bookAuthorize);
+		
+		// 기본 자산 등록
+		assetService.createUserAsset(user.getUserEmail());
 
 		return userOid;
 	}
