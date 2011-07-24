@@ -8,8 +8,8 @@ import javax.jdo.PersistenceManager;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.Asset;
-import com.appspot.egun.money.comp.domain.AssetType;
+import com.appspot.egun.money.comp.domain.asset.AbstractAssetType;
+import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
 import com.appspot.egun.money.comp.service.AssetService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
 
@@ -22,14 +22,14 @@ public class AssetServiceLogic implements AssetService {
 	private PersistenceManager pm = null;
 	
 	@Override
-	public long registerDefaultUserAssetTypes(List<AssetType> assetTypes) {
+	public long registerUserAssetTypes(List<AbstractAssetType> assetTypes) {
 		pm = PMFProvider.getPersistenceManager();
 		try {
-			for (AssetType type : assetTypes) {
+			for(AbstractAssetType type : assetTypes) {
 				pm.makePersistent(type);
 			}
 		} catch (JDOFatalUserException e) {
-			e.printStackTrace();
+			throw e;
 		} finally {
 			if (!pm.isClosed()) {
 				pm.close();
@@ -40,12 +40,23 @@ public class AssetServiceLogic implements AssetService {
 	}
 	
 	@Override
-	public boolean registerDefaultUserAsset(List<AssetType> assetType) {
-		return false;
+	public long registerUserAsset(EgunUserAsset userAsset) {
+		pm = PMFProvider.getPersistenceManager();
+		try {
+			pm.makePersistent(userAsset);
+		} catch (JDOFatalUserException e) {
+			throw e;
+		} finally {
+			if (!pm.isClosed()) {
+				pm.close();
+			}
+		}
+		
+		return userAsset.getOid();
 	}
 
 	@Override
-	public List<Asset> getAssetsByUserEmail(String userEmail) {
+	public List<EgunUserAsset> getAssetsByUserEmail(String userEmail) {
 		return null;
 	}
 }

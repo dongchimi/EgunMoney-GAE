@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
- 
+
 	<!-- The Basics -->
 	<groupId>net.egunmoney</groupId>
 	<artifactId>EGunMoneyApp</artifactId>
@@ -13,13 +13,8 @@
 	<description>e-gun money 애플리케이션 프로젝트</description>
 
 	<dependencies>
-		<!-- 
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>com.sun.jersey</groupId> <artifactId>jersey-json</artifactId> 
+			<version>${jersey.version}</version> </dependency> -->
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>
 			<artifactId>jersey-spring</artifactId>
@@ -102,8 +97,8 @@
 			<artifactId>json-lib</artifactId>
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
-		</dependency> 
-		
+		</dependency>
+
 		<!-- servlet, jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -153,7 +148,7 @@
 			<version>${gae.version}</version>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
@@ -180,7 +175,7 @@
 			<artifactId>datanucleus-enhancer</artifactId>
 			<version>1.1.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-testing</artifactId>
@@ -301,11 +296,12 @@
 					<jettyConfig>src/test/resources/jetty.xml</jettyConfig>
 					<webDefaultXml>src/test/resources/webdefault.xml</webDefaultXml>
 				</configuration>
-			</plugin> 
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>

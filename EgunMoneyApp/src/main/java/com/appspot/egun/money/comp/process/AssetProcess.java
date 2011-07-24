@@ -2,7 +2,7 @@ package com.appspot.egun.money.comp.process;
 
 import java.util.List;
 
-import com.appspot.egun.money.comp.domain.Asset;
+import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
 
 public interface AssetProcess {
 	
@@ -17,5 +17,5 @@ public interface AssetProcess {
 	 * 사용자의 자산 목록 조회
 	 * @param	String 	userEmail	사용자 이메일
 	 */
-	public List<Asset> getAssetsByUserEmail(String userEmail);
+	public List<EgunUserAsset> getAssetsByUserEmail(String userEmail);
 }

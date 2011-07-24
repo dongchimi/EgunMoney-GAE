@@ -8,6 +8,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
+
 /**
  * 가계부 item
  * 
@@ -44,7 +46,7 @@ public class MoneyBookItem {
 
 	/** 자산 */
 	@Persistent
-	private Asset relatedAsset;
+	private EgunUserAsset relatedAsset;
 
 	/** 메모 */
 	@Persistent
@@ -115,11 +117,11 @@ public class MoneyBookItem {
 		this.content = content;
 	}
 
-	public Asset getRelatedAsset() {
+	public EgunUserAsset getRelatedAsset() {
 		return relatedAsset;
 	}
 
-	public void setRelatedAsset(Asset relatedAsset) {
+	public void setRelatedAsset(EgunUserAsset relatedAsset) {
 		this.relatedAsset = relatedAsset;
 	}
 
