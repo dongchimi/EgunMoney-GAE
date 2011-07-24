@@ -38,5 +38,8 @@ Signup.register = function() {
 Signup.register_Callback = function(jsonResponse) {
 	alert("회원가입이 완료되었습니다. 내 가계부 목록으로 이동합니다.");
 	
-	location.href="/accountBook/getAccountBooks";
+	SigninUtil.setSiginId( jsonResponse.userEmail );
+	SigninUtil.setAuthToken( jsonResponse.authToken );
+	
+	location.href="/moneyBook/moneyBooks.html";
 };

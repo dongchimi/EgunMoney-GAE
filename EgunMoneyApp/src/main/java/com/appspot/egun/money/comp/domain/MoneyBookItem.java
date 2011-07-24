@@ -1,6 +1,5 @@
 package com.appspot.egun.money.comp.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -16,10 +15,7 @@ import javax.jdo.annotations.PrimaryKey;
  * @since 2010.09.01
  */
 @PersistenceCapable(identityType = IdentityType.DATASTORE)
-public class MoneyBookItem implements Serializable {
-
-	/** UID */
-	private static final long serialVersionUID = 8590762381001509903L;
+public class MoneyBookItem {
 
 	/** id */
 	@PrimaryKey

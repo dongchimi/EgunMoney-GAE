@@ -1,7 +1,5 @@
 package com.appspot.egun.money.comp.domain;
 
-import java.io.Serializable;
-
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -15,10 +13,7 @@ import javax.jdo.annotations.PrimaryKey;
  * @since 2011.07.10
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Field implements Serializable{
-
-	/** UID */
-	private static final long serialVersionUID = -3285435722401723395L;
+public class Field {
 
 	/** 오브젝트 id */
 	@PrimaryKey
@@ -26,10 +21,17 @@ public class Field implements Serializable{
 	private Long oid;
 
 	/** 필드 명 */
-	private String name;
+	@Persistent
+	private String fieldName;
 	
 	/** 필드 값 */
+	@Persistent
 	private String value;
+	
+	public Field() {}
+	public Field(String name) {
+		this.fieldName = name;
+	}
 	
 	public Long getOid() {
 		return oid;
@@ -39,19 +41,17 @@ public class Field implements Serializable{
 		this.oid = oid;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getValue() {
 		return value;
 	}
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public String getFieldName() {
+		return fieldName;
+	}
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
 	}
 }

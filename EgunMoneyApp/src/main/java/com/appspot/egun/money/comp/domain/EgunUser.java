@@ -1,7 +1,5 @@
 package com.appspot.egun.money.comp.domain;
 
-import java.io.Serializable;
-
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -17,10 +15,7 @@ import com.appspot.egun.money.comp.utility.StringU;
  * @since 2010.08.31
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class EgunUser implements Serializable {
-
-	/** UID */
-	private static final long serialVersionUID = -8986058610180702616L;
+public class EgunUser {
 
 	/** 오브젝트 id */
 	@PrimaryKey

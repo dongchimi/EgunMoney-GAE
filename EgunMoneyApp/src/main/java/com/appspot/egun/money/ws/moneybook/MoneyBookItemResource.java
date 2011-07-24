@@ -17,7 +17,6 @@ import com.appspot.egun.money.comp.domain.MoneyBookItem;
 import com.appspot.egun.money.comp.process.MoneyBookItemProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
-import com.appspot.egun.money.comp.utility.SessionManager;
 import com.sun.jersey.spi.resource.Singleton;
 
 @Component("MoneyBookItemResourceWS")
@@ -56,8 +55,6 @@ public class MoneyBookItemResource {
 								@FormParam("installmentPlan") String installmentPlan,
 								@FormParam("tags") String tags) {
 		
-		long bookId = SessionManager.getCurrentAccountBookId(request);
-
 //		MoneyBookItem item = new MoneyBookItem();
 //		item.setAccountBookId(bookId);
 //		item.setMoneyDivsition(InOut.valueOf(moneyDivision));

@@ -7,11 +7,11 @@ import com.appspot.egun.money.comp.domain.Asset;
 public interface AssetProcess {
 	
 	/**
-	 * 새로운 자산을 생성한다.
+	 * 기본적인 새로운 자산을 생성한다.
 	 * @param userEmail		사용자 이메일
 	 * @return	생성 여부
 	 */
-	public boolean createNewAssetOfEgunUser(String userEmail);
+	public boolean registerDefaultUserAsset(String userEmail);
 	
 	/** 
 	 * 사용자의 자산 목록 조회

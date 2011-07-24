@@ -1,10 +1,11 @@
 package com.appspot.egun.money.comp.domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -15,24 +16,28 @@ import javax.jdo.annotations.PrimaryKey;
  * @since 2011.07.10
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class AssetType implements Serializable {
+public class AssetType {
 	
-	/** UID */
-	private static final long serialVersionUID = 2214946206362484951L;
-
 	/** 오브젝트 id */
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long oid;
 	
 	/** 자산 종류 명 */
+	@Persistent
 	private String name;
 	
 	/** 사용자 이메일 */
+	@Persistent
 	private String userEmail;
 	
-	/** 자산 종류 기준 필드 */
-	private List<Field> fields;
+	/** 자산 종류 기준 필드 oid */
+	@Persistent
+	private List<Long> fieldOids = new ArrayList<Long>(10);
+	
+	/** 자산 종류 기준 필드  */
+	@NotPersistent
+	private List<Field> fields = new ArrayList<Field>(10);
 	
 	public AssetType() {}
 	public AssetType(String name, String email) {
@@ -56,17 +61,30 @@ public class AssetType implements Serializable {
 		this.name = name;
 	}
 
-	public List<Field> getFields() {
-		return fields;
+	public void addFieldOid(Long fieldOid) {
+		this.fieldOids.add(fieldOid);
 	}
-
-	public void setFields(List<Field> fields) {
-		this.fields = fields;
+	
+	public void addField(Field field) {
+		this.fields.add(field);
 	}
+	
 	public String getUserEmail() {
 		return userEmail;
 	}
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+	public List<Long> getFieldOids() {
+		return fieldOids;
+	}
+	public void setFieldOids(List<Long> fieldOids) {
+		this.fieldOids = fieldOids;
+	}
+	public List<Field> getFields() {
+		return fields;
+	}
+	public void setFields(List<Field> fields) {
+		this.fields = fields;
 	}
 }
