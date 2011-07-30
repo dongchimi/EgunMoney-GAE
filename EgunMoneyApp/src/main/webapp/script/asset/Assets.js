@@ -8,7 +8,7 @@ function Assets() {}
  * 내 자산목록 조회
  */
 Assets.getAssets = function() {
-	var url = "/ws/asset/getAssets";
+	var url = "/ws/asset/asset/getAssets";
 	
 	var signinId = SigninUtil.getSigninId();
 	var params = {
@@ -17,36 +17,19 @@ Assets.getAssets = function() {
 	egun.httpClient.post(url, params, Assets.getAssetsCallback);
 };
 
-Assets.getAssetsCallback = function( foundAssets ) {
+Assets.getAssetsCallback = function( foundUserAsset ) {
+	console.log(foundUserAsset);
+	
 	var $targetArea = $("#assets");
-	for (var idx = 0; idx < foundAssets.length; idx++) {
-		var asset = foundAssets[idx];
+	
+	var assets = foundUserAsset.assets;
+	for (var idx = 0; idx < assets.length; idx++) {
+		var asset = assets[idx];
 		
-		$targetArea.append("<li><h3><a href='javascript:;' onclick='MoneyBooks.gotoMoneyBookItems_Click(" + book.oid + ")' >" + book.moneyBookName + "</a></h3><p>기준일 : " + book.baseDay + "</p></li>");
+		$targetArea.append("<li><h3><a href='javascript:;' onclick='Asset.showAsset_Click(" + asset.oid + ")' >" + asset.name + "</a></h3></li>");
 	}
 };
 
-///**
-// * 가계부 목록 조회
-// */
-//MoneyBooks.getMoneyBooks=function() {
-//	var url = "/ws/moneyBook/getMoneyBooks";
-//	egun.httpClient.post(url, null, MoneyBooks.getAccountBooksCallback);
-//};
-//
-///**
-// * 가계부 목록 조회 콜
-// * @param moneyBooks
-// */
-//MoneyBooks.getAccountBooksCallback = function( foundMoneyBooks ) {
-//	
-//	$targetArea.listview("refresh");
-//};
-//
-///**
-// * 가계부 목록 선택
-// */
-//MoneyBooks.gotoMoneyBookItems_Click = function(moneyBookId) {
-//	egun.sessionStorage.setItem(EgunSessionStorage.Key_CURRENT_MONEYBOOK, moneyBookId);
-//	location.href="./moneyBookItems.html";
-//};
+Assets.showAsset_Click = function( assetOid ) {
+	alert(assetOid);
+};

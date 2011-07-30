@@ -25,5 +25,5 @@ public interface AssetService {
 	 * 사용자의 자산 목록 조회
 	 * @param	String 	userEmail	사용자 이메일
 	 */
-	public List<EgunUserAsset> getAssetsByUserEmail(String userEmail);
+	public EgunUserAsset getUserAssetsByUserEmail(String userEmail);
 }

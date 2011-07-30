@@ -3,6 +3,21 @@ $(document).ready(function() {
 
 function Categories() {}
 
+/**
+ * 카테고리 목록 조회
+ */
+Categories.getCategories = function() {
+	var url = "/ws/category/getCategories";
+	egun.httpClient.post(url, null, Categories.getCategoriesCallback);
+};
+
+/**
+ * 카테고리 목록 조회 콜백
+ */
+Categories.getCategoriesCallback = function( foundCategories ) {
+	
+};
+
 ///**
 // * 가계부 목록 조회
 // */

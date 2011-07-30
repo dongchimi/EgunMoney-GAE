@@ -1,19 +1,14 @@
 package com.appspot.egun.money.ws.moneybook;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.MoneyBookItem;
 import com.appspot.egun.money.comp.process.MoneyBookItemProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
@@ -27,18 +22,15 @@ public class MoneyBookItemResource {
 	@Autowired
 	private MoneyBookItemProcess moneyBookItemProcess;
 
-	@Context
-	private HttpServletRequest request;
-	
-	/** 
+	/**
 	 * TODO authToken으로 인증할것!!
 	 * */
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/findThisMonthMoneyBookItems")
 	public JSONResponse findThisMonthMoneyBookItems(@FormParam("moneyBookId") Long moneyBookId) {
-		List<MoneyBookItem> foundItems = moneyBookItemProcess.findThisMonthMoneyBookItems(moneyBookId);
-		return ResponseBuilder.buildSuccessResponse(foundItems);
+		//List<MoneyBookItem> foundItems = moneyBookItemProcess.findThisMonthMoneyBookItems(moneyBookId);
+		return ResponseBuilder.buildSuccessResponse(null);
 	}
 
 	@POST

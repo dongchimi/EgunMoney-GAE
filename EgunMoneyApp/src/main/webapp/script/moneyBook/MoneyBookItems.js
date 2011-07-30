@@ -19,7 +19,7 @@ MoneyBookItems.getMoneyBookItems = function() {
 };
 
 MoneyBookItems.getMoneyBookItemsCallback = function(moneyBookItems) {
-	alert(moneyBookItems);
+	console.log(moneyBookItems);
 };
 
 /**

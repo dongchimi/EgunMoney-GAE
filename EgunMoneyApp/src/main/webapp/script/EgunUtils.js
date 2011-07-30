@@ -123,6 +123,7 @@ SigninUtil.getAuthToken = function() {
 SigninUtil.signout = function() {
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_SIGNIN_ID );
 	egun.sessionStorage.removeItem( EgunSessionStorage.KEY_AUTH_TOKEN );
+	egun.sessionStorage.removeItem( EgunSessionStorage.Key_CURRENT_MONEYBOOK );
 	
 	location.href="/auth/signin.html";
 };

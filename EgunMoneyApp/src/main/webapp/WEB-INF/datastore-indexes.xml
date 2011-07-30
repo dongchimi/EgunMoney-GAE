@@ -4,4 +4,7 @@
         <property name="userEmail" direction="asc" />
         <property name="nickName" direction="asc" />
     </datastore-index>
+    <datastore-index kind="EgunUserAsset" ancestor="true">
+        <property name="userEmail" direction="asc" />
+    </datastore-index>
 </datastore-indexes>

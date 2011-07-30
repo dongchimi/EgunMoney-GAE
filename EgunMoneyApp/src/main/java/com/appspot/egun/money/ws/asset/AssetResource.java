@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
 import com.appspot.egun.money.comp.process.AssetProcess;
 import com.appspot.egun.money.comp.utility.JSONResponse;
 import com.appspot.egun.money.comp.utility.ResponseBuilder;
@@ -39,10 +40,8 @@ public class AssetResource {
 	@Path("/getAssets")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONResponse getAssets(@FormParam("signinId") String signinId) {
-		
-		
-		
-		return ResponseBuilder.buildSuccessResponse(null);
+		EgunUserAsset foundAsset = assetProcess.getAssetsByUserEmail(signinId);
+		return ResponseBuilder.buildSuccessResponse(foundAsset);
 	}
 //	@POST
 //	@Path("/signin")

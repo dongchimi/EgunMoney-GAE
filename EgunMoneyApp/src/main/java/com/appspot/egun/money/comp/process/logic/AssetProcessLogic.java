@@ -36,15 +36,6 @@ public class AssetProcessLogic implements AssetProcess {
 		}
 		assetService.registerUserAsset(userAsset);
 		
-		// 기본자산타입을 등록
-//		List<AssetType> defaultAssetTypes = getDefaultAssetTypes(userEmail);
-//		for (AssetType defaultAssetType : defaultAssetTypes) {
-//			List<Field> fields = defaultAssetType.getFields();
-//			List<Long> fieldOids = fieldService.registerFields(fields);
-//			defaultAssetType.setFieldOids(fieldOids);
-//		}
-//		assetService.registerDefaultUserAssetTypes(defaultAssetTypes);
-		
 		return true;
 	}
 	
@@ -59,7 +50,7 @@ public class AssetProcessLogic implements AssetProcess {
 	}
 	
 	@Override
-	public List<EgunUserAsset> getAssetsByUserEmail(String userEmail) {
-		return null;
+	public EgunUserAsset getAssetsByUserEmail(String userEmail) {
+		return assetService.getUserAssetsByUserEmail(userEmail);
 	}
 }

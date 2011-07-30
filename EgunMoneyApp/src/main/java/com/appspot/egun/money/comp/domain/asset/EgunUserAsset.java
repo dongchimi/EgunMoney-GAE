@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -28,7 +29,11 @@ public class EgunUserAsset {
 	private String userEmail;
 
 	/** 자산 목록 */
+	@Persistent()
 	private List<Long> assetOids = new ArrayList<Long>();
+	
+	@NotPersistent
+	private List<AbstractAssetType> assets = null;
 	
 	public EgunUserAsset(String userEmail) {
 		this.userEmail = userEmail;
@@ -59,5 +64,11 @@ public class EgunUserAsset {
 	
 	public void addAssetOid(Long assetOid) {
 		this.assetOids.add(assetOid);
+	}
+	public List<AbstractAssetType> getAssets() {
+		return assets;
+	}
+	public void setAssets(List<AbstractAssetType> assets) {
+		this.assets = assets;
 	}
 }
