@@ -29,7 +29,7 @@ public class EgunUserAsset {
 	private String userEmail;
 
 	/** 자산 목록 */
-	@Persistent()
+	@Persistent
 	private List<Long> assetOids = new ArrayList<Long>();
 	
 	@NotPersistent
