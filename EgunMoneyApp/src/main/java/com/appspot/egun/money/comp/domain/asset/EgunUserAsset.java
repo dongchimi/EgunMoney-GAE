@@ -3,9 +3,9 @@ package com.appspot.egun.money.comp.domain.asset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -16,7 +16,7 @@ import javax.jdo.annotations.PrimaryKey;
  * @author 이동규
  * @since 2011.02.04
  */
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
+@PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
 public class EgunUserAsset {
 
 	/** 오브젝트 id */
@@ -27,16 +27,43 @@ public class EgunUserAsset {
 	/** 자산 주인 이메일 */
 	@Persistent
 	private String userEmail;
-
-	/** 자산 목록 */
-	@Persistent
-	private List<Long> assetOids = new ArrayList<Long>();
 	
-	@NotPersistent
-	private List<AbstractAssetType> assets = null;
+	@Persistent()
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<BankAsset> bankAssets = new ArrayList<BankAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<CheckCardAsset> checkCardAssets = new ArrayList<CheckCardAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<CreditCardAsset> creditCardAssets = new ArrayList<CreditCardAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<InsuranceAsset> insuranceAssets = new ArrayList<InsuranceAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<InvestmentAsset> inverInvestmentAssets = new ArrayList<InvestmentAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<LendAsset> lendAssets = new ArrayList<LendAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<LoanAsset> loanAssets = new ArrayList<LoanAsset>();
+	
+	@Persistent
+	@Element(dependent="true", mappedBy="egunUserAsset")
+	private List<WalletAsset> walletAssets = new ArrayList<WalletAsset>();
 	
 	public EgunUserAsset(String userEmail) {
 		this.userEmail = userEmail;
+		
+		this.addWalletAsset( new WalletAsset("내지갑") );
 	}
 	public Long getOid() {
 		return oid;
@@ -53,22 +80,55 @@ public class EgunUserAsset {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-
-	public List<Long> getAssetOids() {
-		return assetOids;
+	public List<BankAsset> getBankAssets() {
+		return bankAssets;
 	}
-
-	public void setAssetOids(List<Long> assetOids) {
-		this.assetOids = assetOids;
+	public void setBankAssets(List<BankAsset> bankAssets) {
+		this.bankAssets = bankAssets;
 	}
-	
-	public void addAssetOid(Long assetOid) {
-		this.assetOids.add(assetOid);
+	public List<CheckCardAsset> getCheckCardAssets() {
+		return checkCardAssets;
 	}
-	public List<AbstractAssetType> getAssets() {
-		return assets;
+	public void setCheckCardAssets(List<CheckCardAsset> checkCardAssets) {
+		this.checkCardAssets = checkCardAssets;
 	}
-	public void setAssets(List<AbstractAssetType> assets) {
-		this.assets = assets;
+	public List<CreditCardAsset> getCreditCardAssets() {
+		return creditCardAssets;
+	}
+	public void setCreditCardAssets(List<CreditCardAsset> creditCardAssets) {
+		this.creditCardAssets = creditCardAssets;
+	}
+	public List<InsuranceAsset> getInsuranceAssets() {
+		return insuranceAssets;
+	}
+	public void setInsuranceAssets(List<InsuranceAsset> insuranceAssets) {
+		this.insuranceAssets = insuranceAssets;
+	}
+	public List<InvestmentAsset> getInverInvestmentAssets() {
+		return inverInvestmentAssets;
+	}
+	public void setInverInvestmentAssets(List<InvestmentAsset> inverInvestmentAssets) {
+		this.inverInvestmentAssets = inverInvestmentAssets;
+	}
+	public List<LendAsset> getLendAssets() {
+		return lendAssets;
+	}
+	public void setLendAssets(List<LendAsset> lendAssets) {
+		this.lendAssets = lendAssets;
+	}
+	public List<LoanAsset> getLoanAssets() {
+		return loanAssets;
+	}
+	public void setLoanAssets(List<LoanAsset> loanAssets) {
+		this.loanAssets = loanAssets;
+	}
+	public List<WalletAsset> getWalletAssets() {
+		return walletAssets;
+	}
+	public void setWalletAssets(List<WalletAsset> walletAssets) {
+		this.walletAssets = walletAssets;
+	}
+	public void addWalletAsset(WalletAsset walletAsset) {
+		this.walletAssets.add(walletAsset);
 	}
 }

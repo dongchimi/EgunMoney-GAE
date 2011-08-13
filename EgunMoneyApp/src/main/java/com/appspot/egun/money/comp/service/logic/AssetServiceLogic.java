@@ -1,7 +1,6 @@
 package com.appspot.egun.money.comp.service.logic;
 
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOFatalUserException;
@@ -10,7 +9,6 @@ import javax.jdo.Query;
 
 import org.springframework.stereotype.Component;
 
-import com.appspot.egun.money.comp.domain.asset.AbstractAssetType;
 import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
 import com.appspot.egun.money.comp.service.AssetService;
 import com.appspot.egun.money.comp.utility.PMFProvider;
@@ -22,24 +20,6 @@ public class AssetServiceLogic implements AssetService {
 	private static final Logger logger = Logger.getLogger(AssetServiceLogic.class.getSimpleName());
 
 	private PersistenceManager pm = null;
-
-	@Override
-	public long registerUserAssetTypes(List<AbstractAssetType> assetTypes) {
-		pm = PMFProvider.getPersistenceManager();
-		try {
-			for (AbstractAssetType type : assetTypes) {
-				pm.makePersistent(type);
-			}
-		} catch (JDOFatalUserException e) {
-			throw e;
-		} finally {
-			if (!pm.isClosed()) {
-				pm.close();
-			}
-		}
-
-		return assetTypes.size();
-	}
 
 	@Override
 	public long registerUserAsset(EgunUserAsset userAsset) {
@@ -66,10 +46,11 @@ public class AssetServiceLogic implements AssetService {
 		try {
 			Query getUserQuery = pm.newQuery(EgunUserAsset.class, "userEmail == userEmailParam");
 			getUserQuery.declareParameters("String userEmailParam");
-
+			
 			List<EgunUserAsset> founUserAssets = (List<EgunUserAsset>) getUserQuery.execute(userEmail);
 			if (!founUserAssets.isEmpty()) {
 				userAsset = founUserAssets.get(0);
+				userAsset.getWalletAssets();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,32 +58,8 @@ public class AssetServiceLogic implements AssetService {
 			if (!pm.isClosed()) {
 				pm.close();
 			}
-		}
-		
-		if (userAsset != null) {
-			this.setAssets(userAsset);
 		}
 		
 		return userAsset;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void setAssets(EgunUserAsset userAsset) {
-		pm = PMFProvider.getPersistenceManager();
-		try {
-			Query getUserQuery = pm.newQuery(AbstractAssetType.class, ":p.contains(oid)");
-			logger.log(Level.WARNING, "Query is " + getUserQuery.toString());
-
-			List<AbstractAssetType> foundAssets = (List<AbstractAssetType>) getUserQuery.execute(userAsset.getAssetOids());
-			logger.log(Level.WARNING, "3333333333333333");
-			userAsset.setAssets(foundAssets);
-			logger.log(Level.WARNING, "4444444444444444");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (!pm.isClosed()) {
-				pm.close();
-			}
-		}
 	}
 }

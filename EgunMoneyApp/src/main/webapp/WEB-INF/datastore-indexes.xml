@@ -7,4 +7,25 @@
     <datastore-index kind="EgunUserAsset" ancestor="true">
         <property name="userEmail" direction="asc" />
     </datastore-index>
+    <datastore-index kind="BANKASSET" ancestor="true" source="manual">
+        <property name="BANK_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="CHECKCARDASSET" ancestor="true" source="manual">
+        <property name="CHECK_CARD_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="CREDITCARDASSET" ancestor="true" source="manual">
+        <property name="CREDIT_CARD_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="INSURANCEASSET" ancestor="true" source="manual">
+        <property name="INSURANCE_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="INVESTMENTASSET" ancestor="true" source="manual">
+        <property name="INVER_INVESTMENT_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="LENDASSET" ancestor="true" source="manual">
+        <property name="LEND_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="LOANASSET" ancestor="true" source="manual">
+        <property name="LOAN_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
 </datastore-indexes>
