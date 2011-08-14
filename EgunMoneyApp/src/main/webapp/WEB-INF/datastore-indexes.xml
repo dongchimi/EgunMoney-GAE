@@ -20,12 +20,15 @@
         <property name="INSURANCE_ASSETS_INTEGER_IDX" direction="asc"/>
     </datastore-index>
     <datastore-index kind="INVESTMENTASSET" ancestor="true" source="manual">
-        <property name="INVER_INVESTMENT_ASSETS_INTEGER_IDX" direction="asc"/>
+        <property name="INVESTMENT_ASSETS_INTEGER_IDX" direction="asc"/>
     </datastore-index>
     <datastore-index kind="LENDASSET" ancestor="true" source="manual">
         <property name="LEND_ASSETS_INTEGER_IDX" direction="asc"/>
     </datastore-index>
     <datastore-index kind="LOANASSET" ancestor="true" source="manual">
         <property name="LOAN_ASSETS_INTEGER_IDX" direction="asc"/>
+    </datastore-index>
+    <datastore-index kind="WALLETASSET" ancestor="true" source="manual">
+        <property name="WALLET_ASSETS_INTEGER_IDX" direction="asc"/>
     </datastore-index>
 </datastore-indexes>

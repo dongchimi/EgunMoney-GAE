@@ -50,7 +50,6 @@ public class AssetServiceLogic implements AssetService {
 			List<EgunUserAsset> founUserAssets = (List<EgunUserAsset>) getUserQuery.execute(userEmail);
 			if (!founUserAssets.isEmpty()) {
 				userAsset = founUserAssets.get(0);
-				userAsset.getWalletAssets();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

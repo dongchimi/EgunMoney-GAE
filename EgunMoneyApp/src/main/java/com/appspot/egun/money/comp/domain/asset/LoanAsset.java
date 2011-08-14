@@ -14,7 +14,7 @@ import com.google.appengine.api.datastore.Key;
  * @since 2011.07.24
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
-public class LoanAsset {
+public class LoanAsset extends Asset {
 	
 	/** 오브젝트 id */
 	@PrimaryKey

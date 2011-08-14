@@ -28,6 +28,10 @@ public class AssetProcessLogic implements AssetProcess {
 	
 	@Override
 	public EgunUserAsset getAssetsByUserEmail(String userEmail) {
-		return assetService.getUserAssetsByUserEmail(userEmail);
+		EgunUserAsset userAsset = assetService.getUserAssetsByUserEmail(userEmail);
+		if (userAsset != null) {
+			userAsset.buildForUI();
+		}
+		return userAsset;
 	}
 }

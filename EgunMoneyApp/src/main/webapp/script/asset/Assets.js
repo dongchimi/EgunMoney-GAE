@@ -26,7 +26,7 @@ Assets.getAssetsCallback = function( foundUserAsset ) {
 	for (var idx = 0; idx < assets.length; idx++) {
 		var asset = assets[idx];
 		
-		$targetArea.append("<li><h3><a href='javascript:;' onclick='Asset.showAsset_Click(" + asset.oid + ")' >" + asset.name + "</a></h3></li>");
+		$targetArea.append("<li><h3><a href='javascript:;' onclick='Asset.showAsset_Click(" + asset.oid.id + ")' >" + asset.name + "</a></h3></li>");
 	}
 };
 
