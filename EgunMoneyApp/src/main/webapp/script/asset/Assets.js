@@ -20,14 +20,15 @@ Assets.getAssets = function() {
 Assets.getAssetsCallback = function( foundUserAsset ) {
 	console.log(foundUserAsset);
 	
-	var $targetArea = $("#assets");
+	var $targetArea = $("#assets").empty();
 	
 	var assets = foundUserAsset.assets;
 	for (var idx = 0; idx < assets.length; idx++) {
 		var asset = assets[idx];
 		
-		$targetArea.append("<li><h3><a href='javascript:;' onclick='Asset.showAsset_Click(" + asset.oid.id + ")' >" + asset.name + "</a></h3></li>");
+		$targetArea.append("<li><h3><a href='javascript:;' onclick='Assets.showAsset_Click(" + asset.oid.id + ")' >" + asset.name + "</a></h3></li>");
 	}
+	$targetArea.listview("refresh");
 };
 
 Assets.showAsset_Click = function( assetOid ) {

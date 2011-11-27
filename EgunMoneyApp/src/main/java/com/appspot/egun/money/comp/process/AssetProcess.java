@@ -16,4 +16,12 @@ public interface AssetProcess {
 	 * @param	String 	userEmail	사용자 이메일
 	 */
 	public EgunUserAsset getAssetsByUserEmail(String userEmail);
+	
+	/**
+	 * 새로운 자산을 등록한다.
+	 * @param assetType	자산타입	
+	 * @param assetName	자산명
+	 * @param userEmail	자산 주인 ID(이메일)
+	 */
+	public void registerAsset(String assetType, String assetName, String userEmail);
 }

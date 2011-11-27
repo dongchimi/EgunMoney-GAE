@@ -18,12 +18,12 @@
 			<label for="password">비밀번호</label><input type="password" id="signin_password" name="password" onkeypress="Signin.pressUserEmailPassword_Click()" /><br />
 			<label for="autoSignin">자동 로그인</label>
 			<select name="autoSignin" id="autoSignin" data-role="slider">
-				<option value="off">안한다</option>
-				<option value="on">한다</option>
+				<option value="OFF">안한다</option>
+				<option value="ON">한다</option>
 			</select>
 			<div>
 		    	<a href="javascript:;"  onclick="Signin.signin_Click()" data-role="button" data-theme="b">로그인</a>
-		    	<a href="./signup.html" data-ajax="false" data-role="button">회원가입</a>
+		    	<a href="/auth/signup.html" data-ajax="false" data-role="button">회원가입</a>
 		    </div>
 	    </div>
 	</div>

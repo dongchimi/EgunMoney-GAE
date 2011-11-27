@@ -26,6 +26,10 @@ public class EgunTag {
 	/** 태그명 */
 	@Persistent
 	private String name;
+	
+	/** 사용 카운트 */
+	@Persistent
+	private Integer usedCount = new Integer(0);
 
 	// method ------------------------------------------------------------------
 	/**
@@ -33,18 +37,28 @@ public class EgunTag {
 	 * @param tagString
 	 * @return
 	 */
-	public static List<EgunTag> getTagString(String tagString) {
+	public static List<EgunTag> convertTagStringToList(String tagString) {
 		List<EgunTag> tags = new ArrayList<EgunTag>();
 		if (tagString == null || tagString.length() < 1)
 			return tags;
 
-		String[] tagStrings = tagString.split("/,");
+		String[] tagStrings = tagString.split(" ");
 		for (String tag : tagStrings) {
 			EgunTag contentTag = new EgunTag(tag);
 			tags.add(contentTag);
 		}
 
 		return tags;
+	}
+	
+	public boolean isUsing() {
+		boolean using = false;
+		
+		if (this.usedCount != null) {
+			using = this.usedCount < 1;
+		}
+		
+		return using;
 	}
 
 	public EgunTag(String tagName) {
@@ -65,5 +79,20 @@ public class EgunTag {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getUsedCount() {
+		return usedCount;
+	}
+
+	public void setUsedCount(Integer usedCount) {
+		this.usedCount = usedCount;
+	}
+
+	public void addCount() {
+		if (this.usedCount == null) {
+			this.usedCount = new Integer(0);
+		}
+		this.usedCount++;
 	}
 }

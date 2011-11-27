@@ -16,27 +16,29 @@
 	    <a href="javascript:;" data-theme="b" data-icon="check" class="ui-btn-right" onclick="NewMoneyBookItem.registerMoneyBookItem_Click()">저장</a>
 	</div>
 	<div data-role="content">
-	
+		<input type="hidden" id="moneyBookItemOid" />
+		
 		<fieldset data-role="controlgroup" data-type="horizontal" style="text-align:center">
 			<input type="radio" name="inOutTransfer" id="out" value="OUT" checked="checked" /><label for="out">지출</label>
 			<input type="radio" name="inOutTransfer" id="in" value="IN" /><label for="in">수입</label>
 			<input type="radio" name="inOutTransfer" id="transfer" value="TRANSFER" /><label for="transfer">이체</label>
 		</fieldset>
 		
-		<label for="useDate">언제</label><input type="date" id="useDate" />
-		<label for="amount">금액</label><input type="number" id="amount" />
-		<label for="content">내용</label><input type="text" id="content" />
-		
-		<select data-native-menu="true" id="asset">
+		<label for="useDate">언제</label><input type="text" id="useDate" placeholder="2001-01-01"/>
+		<label for="amount">금액</label><input type="number" id="amount" placeholder="30000" />
+		<label for="content">내용</label><input type="text" id="content" placeholder="사용내용"/>
+
+		<!--
+		<select id="assets">
 			<option>자산선택</option>
 		</select>
 		
 		<select data-native-menu="true" id="category">
 			<option>카테고리선택</option>
 		</select>
-		
-		<label for="tags">관련어</label><input type="text" id="tags" />
-		<label for="description">메모</label><textarea id="description"></textarea>
+		-->
+		<label for="tags">관련어</label><input type="text" id="tags" placeholder="예)태그1 태그2"/>
+		<label for="description">메모</label><textarea id="description" placeholder="메모"></textarea>
 	</div>
 	
 	<!-- 

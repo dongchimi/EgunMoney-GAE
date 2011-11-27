@@ -24,4 +24,32 @@ public interface ContentTagService
      * @param tags
      */
     public List<Long> registerContentTags( List<EgunTag> tags );
+    
+    /**
+     * 이름으로 태그 조회
+     * @param tagName
+     * @return
+     */
+    public EgunTag getContentTagByName(String tagName);
+    
+    /**
+     * oid로 태그 조회
+     * @param tagOids
+     * @return
+     */
+	public List<EgunTag> findEgunTagsByOid(List<Long> tagOids);
+	
+	/**
+	 * 사용중인 태그인가?
+	 * @param tagOid
+	 * @param exceptBookItem
+	 * @return
+	 */
+	public boolean isUsingEgunTag(Long tagOid, Long exceptBookItem);
+	
+	/**
+	 * 태그 삭제
+	 * @param tagOid
+	 */
+	public void removeEgunTag(Long tagOid);
 }

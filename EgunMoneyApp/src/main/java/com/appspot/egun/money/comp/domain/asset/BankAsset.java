@@ -35,7 +35,7 @@ public class BankAsset extends Asset{
 	
 	/** 현재금액 */
 	@Persistent
-	private String amount;
+	private Long amount;
 	
 	/** 사용자 자산 */
 	@Persistent
@@ -58,10 +58,10 @@ public class BankAsset extends Asset{
 	public void setBankAccountNumber(String bankAccountNumber) {
 		this.bankAccountNumber = bankAccountNumber;
 	}
-	public String getAmount() {
+	public Long getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(Long amount) {
 		this.amount = amount;
 	}
 	public Key getOid() {

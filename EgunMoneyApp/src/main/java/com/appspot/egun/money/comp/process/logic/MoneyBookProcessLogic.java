@@ -58,4 +58,9 @@ public class MoneyBookProcessLogic implements MoneyBookProcess {
 		return false;
 	}
 
+	@Override
+	public MoneyBook getMoneyBook(long bookId) {
+		return bookService.getMoneyBook(bookId);
+	}
+
 }

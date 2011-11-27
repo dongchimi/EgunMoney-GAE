@@ -8,17 +8,26 @@
 	<script src="../script/moneyBook/MoneyBookItems.js"></script>
 </head>
 <body>
-<div id="signin" data-role="page">
+<div id="signin" data-role="page" >
 	<div data-role="header">
 		<a href="javascript:;" onclick="EgunLocationUtil.gotoPrev()" data-icon="check" class="ui-btn-left">이전</a>
-	    <h1>지출/수입 목록</h1>
+	    <h1>
+	    	<a href="javascript:;" data-ajax="false" onclick="MoneyBookItems.gotoPrev_Click()">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;
+	    	<a href="javascript:;" data-ajax="false" onclick="MoneyBookItems.getNextMonth_Click()">&gt;&gt;</a> &nbsp;&nbsp;&nbsp;
+	    	<span id="startDay" data-yyyyMMdd=""></span> ~ <span id="endDay" data-yyyyMMdd=""></span> 지출/수입 목록
+	    </h1>
 	    <a href="./newMoneyBookItem.html" data-ajax="false" data-icon="check" data-theme="b" class="ui-btn-right">New</a>
 	</div>
 	
 	<div data-role="content">
-		<ul id="moneyBookItems" data-role="listview" />
+		<ul id="moneyBookItems" data-role="listview" data-spilt-icon="gear" data-spilt-theme="b" />
+	</div>
+		
+	<div data-role="footer" class="ui-bar">
+	    <div>
+	    	<a href="javascript:;" onclick="SigninUtil.signout()">로그아웃</a>
+	    </div>
 	</div>
 </div>
-
 </body>
 </html>

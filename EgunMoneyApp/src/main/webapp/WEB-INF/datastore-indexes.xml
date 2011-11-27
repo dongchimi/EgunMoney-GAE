@@ -31,4 +31,8 @@
     <datastore-index kind="WALLETASSET" ancestor="true" source="manual">
         <property name="WALLET_ASSETS_INTEGER_IDX" direction="asc"/>
     </datastore-index>
+    <datastore-index kind="MONEYBOOKITEM" ancestor="false" source="manual">
+        <property name="ACCOUNT_BOOK_ID" direction="asc"/>
+        <property name="USE_DATE" direction="desc"/>
+    </datastore-index>
 </datastore-indexes>

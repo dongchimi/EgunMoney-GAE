@@ -43,6 +43,19 @@ public class AssetResource {
 		EgunUserAsset foundAsset = assetProcess.getAssetsByUserEmail(signinId);
 		return ResponseBuilder.buildSuccessResponse(foundAsset);
 	}
+	
+	@POST
+	@Path("/register")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONResponse register(@FormParam("assetType") String assetType,
+									@FormParam("assetName") String assetName,
+									@FormParam("signinId") String signinId) {
+		
+		assetProcess.registerAsset(assetType, assetName, signinId);
+		
+		
+		return ResponseBuilder.buildSuccessResponse(null);
+	}
 //	@POST
 //	@Path("/signin")
 //	@Produces(MediaType.APPLICATION_JSON)

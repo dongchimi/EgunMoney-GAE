@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-
-import com.appspot.egun.money.comp.domain.asset.EgunUserAsset;
 
 /**
  * 가계부 item
@@ -41,12 +40,13 @@ public class MoneyBookItem {
 	private long amount;
 
 	/** 분류 */
-	@Persistent
-	private Long categoryOid;
+//	@Persistent
+//	private Long categoryOid;
 
 	/** 자산 */
 	@Persistent
-	private EgunUserAsset relatedAsset;
+	private long asset;
+//	private EgunUserAsset relatedAsset;
 
 	/** 메모 */
 	@Persistent
@@ -58,6 +58,9 @@ public class MoneyBookItem {
 
 	/** 관련어 */
 	@Persistent
+	private List<Long> tagOids;
+	
+	@NotPersistent
 	private List<EgunTag> relatedTags;
 
 	// method ------------------------------------------------------------------
@@ -93,13 +96,13 @@ public class MoneyBookItem {
 		this.oid = oid;
 	}
 
-	public Long getCategoryOid() {
-		return categoryOid;
-	}
-
-	public void setCategoryOid(Long categoryOid) {
-		this.categoryOid = categoryOid;
-	}
+//	public Long getCategoryOid() {
+//		return categoryOid;
+//	}
+//
+//	public void setCategoryOid(Long categoryOid) {
+//		this.categoryOid = categoryOid;
+//	}
 
 	public long getAccountBookId() {
 		return accountBookId;
@@ -117,13 +120,13 @@ public class MoneyBookItem {
 		this.content = content;
 	}
 
-	public EgunUserAsset getRelatedAsset() {
-		return relatedAsset;
-	}
-
-	public void setRelatedAsset(EgunUserAsset relatedAsset) {
-		this.relatedAsset = relatedAsset;
-	}
+//	public EgunUserAsset getRelatedAsset() {
+//		return relatedAsset;
+//	}
+//
+//	public void setRelatedAsset(EgunUserAsset relatedAsset) {
+//		this.relatedAsset = relatedAsset;
+//	}
 
 	public List<EgunTag> getRelatedTags() {
 		return relatedTags;
@@ -139,5 +142,13 @@ public class MoneyBookItem {
 
 	public void setInOutTransfer(InOutTransfer inOutTransfer) {
 		this.inOutTransfer = inOutTransfer;
+	}
+
+	public List<Long> getTagOids() {
+		return tagOids;
+	}
+
+	public void setTagOids(List<Long> tagOids) {
+		this.tagOids = tagOids;
 	}
 }

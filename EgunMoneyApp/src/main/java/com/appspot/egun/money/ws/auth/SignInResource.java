@@ -58,9 +58,19 @@ public class SignInResource {
 			return ResponseBuilder.buildFailResponse("비밀번호가 옳지 않습니다.");
 		}
 
-		// 로그인 처리
-		// SessionManager.setLoginUser(request, foundUser);
-
+		return ResponseBuilder.buildSuccessResponse(foundUser);
+	}
+	
+	@POST
+	@Path("/signinByAutoToken")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONResponse signinByAutoToken(@FormParam("authToken") String authToken) {
+		
+		EgunUser foundUser = egunUserProcess.getUserByAuthToken(authToken);
+		if (foundUser == null) {
+			return ResponseBuilder.buildFailResponse("해당하는 사용자가 없습니다.");
+		}
+		
 		return ResponseBuilder.buildSuccessResponse(foundUser);
 	}
 }

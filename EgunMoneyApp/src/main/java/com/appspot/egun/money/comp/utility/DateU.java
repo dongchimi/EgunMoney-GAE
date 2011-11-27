@@ -75,24 +75,42 @@ public class DateU {
 	}
 
 	public static String getThisMonthStartDayByBaseDate(String baseDate) {
-		// String currentYyyyMM = getCurrentDateString("yyyyMM");
-		// String currentDd = getCurrentDateString("dd");
-		//
-		// int baseDateI = NU.getInt( baseDate );
-		// int todayI = NU.getInt( currentDd );
-		//
-		// String startDay = "";
-		// if (baseDateI > todayI) {
-		// startDay = currentYyyyMM + currentDd;
-		// } else if (baseDateI == todayI) {
-		//
-		// }
+		String currentYyyyMMdd = getCurrentDateString("yyyyMMdd");
+		
+		String currentYyyyMm = currentYyyyMMdd.substring(0, 6);
+		String currentDd = currentYyyyMMdd.substring(6, 8);
+		
+		int baseDateI = NumberU.getInt(baseDate);
+		int todayI = NumberU.getInt(currentDd);
+		
+		String startDay = currentYyyyMm + baseDate;
+		if (baseDateI > todayI) {
+			startDay = DateU.addMonth(startDay, -1);
+		}
 
-		return "20110301";
+		return startDay;
 	}
 
 	public static String getThisMonthEndDayByBaseDate(String baseDate) {
-		return "20110331";
+		String currentYyyyMMdd = getCurrentDateString("yyyyMMdd");
+		
+		String currentYyyyMm = currentYyyyMMdd.substring(0, 6);
+		String currentDd = currentYyyyMMdd.substring(6, 8);
+		
+		int baseDateI = NumberU.getInt(baseDate);
+		int todayI = NumberU.getInt(currentDd);
+		
+		String endDay = currentYyyyMm + baseDate;
+		if (baseDateI <= todayI) {
+			endDay = DateU.addMonth(endDay, 1);
+		}
+		
+		return endDay;
+	}
+	
+	public static void main(String[] args) {
+		//System.out.println(DateU.getThisMonthStartDayByBaseDate("25"));
+		System.out.println(DateU.getThisMonthEndDayByBaseDate("25"));
 	}
 
 	/**
@@ -315,12 +333,12 @@ public class DateU {
 	 * 
 	 * @param currentDate
 	 *            기준일자
-	 * @param nYears
+	 * @param nMonths
 	 *            증감(+ or -) 년수
 	 * @return
 	 */
-	public static String addMonth(String currentDate, int nYears) {
-		return addMonth(currentDate, DEFAULT_DATE_FORMAT, nYears);
+	public static String addMonth(String currentDate, int nMonths) {
+		return addMonth(currentDate, DEFAULT_DATE_FORMAT, nMonths);
 	}
 
 	/**

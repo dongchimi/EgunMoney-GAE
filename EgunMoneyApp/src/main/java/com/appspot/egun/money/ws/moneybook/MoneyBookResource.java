@@ -3,7 +3,6 @@ package com.appspot.egun.money.ws.moneybook;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -44,14 +43,4 @@ public class MoneyBookResource {
 		return ResponseBuilder.buildSuccessResponse(foundBooks);
 	}
 	
-	@GET
-	@Path("/getDefaultMoneyBook")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONResponse getDefaultMoneyBook() {
-		//EgunUser loginUser = SessionManager.getLoginUser(request);
-
-		//MoneyBook foundBook = moneyBookItemProcess.findDefaultMoneyBookByUserEmail(loginUser.getUserEmail());
-		//return ResponseBuilder.buildSuccessResponse(foundBook);
-		return null;
-	}
 }

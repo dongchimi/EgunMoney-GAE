@@ -134,6 +134,9 @@ public class EgunUserAsset {
 	public void setBankAssets(List<BankAsset> bankAssets) {
 		this.bankAssets = bankAssets;
 	}
+	public void addBankAsset(BankAsset bankAsset) {
+		this.bankAssets.add(bankAsset);
+	}
 	public List<CheckCardAsset> getCheckCardAssets() {
 		return checkCardAssets;
 	}

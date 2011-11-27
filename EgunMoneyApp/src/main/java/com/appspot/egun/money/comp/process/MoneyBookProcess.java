@@ -43,4 +43,11 @@ public interface MoneyBookProcess
      * @return
      */
     public boolean hasMoneyBookAuthorize( EgunUser user, MoneyBook book );
+    
+    /**
+     * 가계부 조회
+     * @param bookId
+     * @return 가계부
+     */
+    public MoneyBook getMoneyBook(long bookId);
 }
